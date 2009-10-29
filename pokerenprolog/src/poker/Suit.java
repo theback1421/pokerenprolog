@@ -6,6 +6,7 @@
 package poker;
 
 import java.util.ArrayList;
+import jpl.Query;
 
 /**
  *
@@ -26,6 +27,19 @@ public class Suit {
      */
     public void setSuitlist(ArrayList<String> suitlist) {
         this.suitlist = suitlist;
+    }
+
+    public void setSuit()
+    {
+
+        Query q1 = new Query("suit(S)");
+        java.util.Hashtable[] ss4 = q1.allSolutions();
+        System.out.println( "all solutions of " + "suit(S)");
+        for ( int i=0 ; i<ss4.length ; i++ )
+        {
+            this.suitlist.add(ss4[i].toString());
+        }
+        System.out.println("Suitlist: " + this.suitlist.toString());
     }
 
      /*

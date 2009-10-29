@@ -13,36 +13,59 @@ import jpl.*;
  */
 public class Conector {
     
-    private String consulta;
-    public Conector(String t)
+    private String predicado;
+    private Query consulta;
+
+    public Conector(String t, Query q)
     {
-        this.consulta=t;
+        this.predicado=t;
+        this.consulta=q;
     }
     public Conector()
     {
-        this.consulta="";
+        this.predicado="";
+        this.consulta=null;
+    }
+    
+ 
+
+    /**
+     * @return the predicado
+     */
+    public String getPredicado() {
+        return predicado;
+    }
+
+    /**
+     * @param predicado the predicado to set
+     */
+    public void setPredicado(String predicado) {
+        this.predicado = predicado;
     }
 
     /**
      * @return the consulta
      */
-    public String getConsulta() {
+    public Query getConsulta() {
         return consulta;
     }
 
     /**
      * @param consulta the consulta to set
      */
-    public void setConsulta(String consulta) {
+    public void setConsulta(Query consulta) {
         this.consulta = consulta;
     }
     
-    String getConector(){
+    Conector getConector(){
+        Conector c = new Conector();
         String t1 = "consult('poker.pl')";
         Query q1 = new Query(t1);
+        c.setPredicado(t1);
+        c.setConsulta(q1);
         System.out.println( t1 + " " + (q1.hasSolution() ?
         "succeeded" : "failed") );
-        return t1;
+        return c;
     }
 
 }

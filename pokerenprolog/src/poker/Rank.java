@@ -5,23 +5,24 @@
 
 package poker;
 
-import java.util.ArrayList;
+import java.util.*;
+import jpl.*;
 
 /**
  *
  * @author USUARIO
  */
 public class Rank {
-    private ArrayList<String> ranklist =  new ArrayList();
+    private ArrayList<String> ranklist =  new ArrayList<String>();
 
     /**
      * @return the ranklist
      */
     public Rank()
     {
-        this.ranklist = new ArrayList();
+        this.ranklist = new ArrayList<String>();
     }
-    public Rank(ArrayList ranklist)
+    public Rank(ArrayList<String> ranklist)
     {
         this.ranklist=ranklist;
     }
@@ -40,5 +41,17 @@ public class Rank {
      * Rellenar rangos
      * Leemos del prolog y rellenamos la lista con los ranks del poker.pl
      */
+    public void setRank()
+    {
+        
+        Query q1 = new Query("rank(R)");
+        java.util.Hashtable[] ss4 = q1.allSolutions();
+        System.out.println( "all solutions of " + "rank(R)");
+        for ( int i=0 ; i<ss4.length ; i++ )
+        {
+            this.ranklist.add(ss4[i].toString());
+        }
+        System.out.println("Ranklist: " + this.ranklist.toString());
+    }
 
 }
