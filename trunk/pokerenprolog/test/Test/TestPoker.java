@@ -15,6 +15,7 @@ import static org.junit.Assert.*;
 import java.util.Hashtable;
 import jpl.*;
 import jpl.Query;
+import poker.Conector;
 
 /**
  *
@@ -27,7 +28,8 @@ public class TestPoker {
 
     @BeforeClass
     public static void setUpClass() throws Exception {
-        java.lang.String t1 = "consult('poker.pl')";
+        Conector c = new Conector();
+        String t = new String();
     }
 
     @AfterClass
