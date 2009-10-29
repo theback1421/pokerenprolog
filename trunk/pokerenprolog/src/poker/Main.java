@@ -17,6 +17,9 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        String conexion;
+        Conector c = new Conector();
+        conexion =c.getConector();
 
     }
 
