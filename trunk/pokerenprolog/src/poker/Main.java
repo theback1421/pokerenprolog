@@ -17,7 +17,7 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-       /* String conexion;
+       /* Rank conexion;
         Conector c = new Conector();
         conexion =c.getConector();
 
@@ -31,12 +31,8 @@ public class Main {
         }*/
         Conector c = new Conector();
         c.getConector();
-        Rank r = new Rank();
-        r.setRank();
-        System.out.println("RANKs "+r.getRanklist().toString());
-        Suit s = new Suit();
-        s.setSuit();
-        System.out.println("SUITs "+s.getSuitlist().toString());
+        Baraja b = new Baraja();
+        b.setBaraja();
     }
 
 
