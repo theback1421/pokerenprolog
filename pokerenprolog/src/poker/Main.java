@@ -31,8 +31,13 @@ public class Main {
         }*/
         Conector c = new Conector();
         c.getConector();
+        Rank actual = new Rank();
+        actual.setRank();
+        actual.getRanklist().get(0);
         Baraja b = new Baraja();
         b.setBaraja();
+        System.out.println("primer Rank:"+actual.getRanklist().get(0));
+        System.out.println("primer elemento: "+ b.getBarajalist().get(0).getRank()+b.getBarajalist().get(0).getSuit());
     }
 
 

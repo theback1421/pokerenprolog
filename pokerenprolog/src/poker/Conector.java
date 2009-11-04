@@ -57,7 +57,7 @@ public class Conector {
         this.consulta = consulta;
     }
     
-    Conector getConector(){
+    public Conector getConector(){
         Conector c = new Conector();
         String t1 = "consult('poker.pl')";
         Query q1 = new Query(t1);
