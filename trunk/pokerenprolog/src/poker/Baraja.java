@@ -54,7 +54,8 @@ public class Baraja {
                 Card c = new Card();
 
                 c.setCard(r.getRanklist().get(i), s.getSuitlist().get(j));
-                System.out.println(c.getRank() + c.getSuit());
+                this.barajalist.add(c);
+                //System.out.println(c.getRank() + c.getSuit());
                 
             }
         }

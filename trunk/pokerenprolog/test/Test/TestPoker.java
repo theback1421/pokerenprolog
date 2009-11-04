@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 import java.util.Hashtable;
 import jpl.*;
 import jpl.Query;
-import poker.Conector;
+import poker.*;
 
 /**
  *
@@ -28,8 +28,7 @@ public class TestPoker {
 
     @BeforeClass
     public static void setUpClass() throws Exception {
-        Conector c = new Conector();
-        String t = new String();
+       
     }
 
     @AfterClass
@@ -38,6 +37,9 @@ public class TestPoker {
 
     @Before
     public void setUp() {
+        Conector c = new Conector();
+        c.getConector();
+
     }
 
     @After
@@ -64,32 +66,157 @@ public class TestPoker {
      * Reparto
      */
 
-    @Test
-    public static void prueba1( )
-    {
-        java.lang.String t1 = "consult('poker.pl')";
-        Query q1 = new Query(t1);
-        System.out.println( t1 + " " + (q1.hasSolution() ?
-        "succeeded" : "failed") );
-        java.lang.String t2 = "card(R,S)";
-        Query q2 = new Query(t2);
-        System.out.println( t2 + " " + (q2.hasSolution() ?
-        "succeeded" : "failed") );
+    
 
-    }
+    
+    
 
     @Test
-    public void carta_existe()
+    public void testRankExiste()
     {
-        ArrayList r,s;
-        java.lang.String t = "card(R,S)";
-        Query q = new Query(t);
-        Hashtable[] ht=q.allSolutions();
-        System.out.println( "all solutions of " + t);
-        for ( int i=0 ; i<ht.length ; i++ )
+        boolean res=false;
+        Rank actual = new Rank();
+        actual.setRank();
+        String esperado = "{R=ace}";
+        for(int i=0;i<actual.getRanklist().size();i++)
         {
-            System.out.println( "R = " + ht[i].get("R"));
+            if(actual.getRanklist().get(i).compareTo(esperado)==0)
+            {
+                res=true;
+            }
         }
+        assertTrue("El Rank no existe",res);
     }
+
+    @Test
+    public void testRankNoExiste()
+    {
+        boolean res=false;
+        Rank actual = new Rank();
+        actual.setRank();
+        String esperado = "{R=13}";
+        for(int i=0;i<actual.getRanklist().size();i++)
+        {
+            if(actual.getRanklist().get(i).compareTo(esperado)==0)
+            {
+                res=true;
+
+            }
+            
+        }
+        assertFalse("El Rank existe",res);
+    }
+
+    @Test
+    public void testSuitExiste()
+    {
+        
+        boolean res=false;
+        Suit actual = new Suit();
+        actual.setSuit();
+        String esperado = "{S=hearts}";
+        for(int i=0;i<actual.getSuitlist().size();i++)
+        {
+            if(actual.getSuitlist().get(i).compareTo(esperado)==0)
+            {
+                res=true;
+                break;
+            }
+            
+        }
+        assertTrue("El Suit no existe",res);
+    
+    }
+
+    @Test
+    public void testSuitNoExiste()
+    {
+        boolean res=false;
+        Suit actual = new Suit();
+        actual.setSuit();
+        String esperado = "{S=bastos}";
+        for(int i=0;i<actual.getSuitlist().size();i++)
+        {
+            if(actual.getSuitlist().get(i).compareTo(esperado)==0)
+            {
+                res=true;
+            }
+            
+        }
+        assertFalse("El Rank existe",res);
+    }
+
+    @Test
+    public void testCartaExiste()
+    {
+        Baraja b = new Baraja();
+        b.setBaraja();
+        boolean res=false;
+        Card esperado = new Card();
+        esperado.setRank("{R=ace}");
+        esperado.setSuit("{S=spades}");
+        for(int i=0;i<b.getBarajalist().size();i++)
+        {
+            if(b.getBarajalist().get(i).getRank().compareTo(esperado.getRank())==0 && b.getBarajalist().get(i).getSuit().compareTo(esperado.getSuit())==0)
+            {
+                res=true;
+            }
+            
+        }
+        assertTrue("La carta no existe",res);
+
+    }
+
+    @Test
+    public void testCartaNoExiste()
+    {
+        Baraja b = new Baraja();
+        b.setBaraja();
+        boolean res=false;
+        Card esperado = new Card();
+        esperado.setRank("{R=13}");
+        esperado.setSuit("{S=bastos}");
+        for(int i=0;i<b.getBarajalist().size();i++)
+        {
+            if(b.getBarajalist().get(i).getRank().compareTo(esperado.getRank())==0 && b.getBarajalist().get(i).getSuit().compareTo(esperado.getSuit())==0)
+            {
+                res=true;
+            }
+
+        }
+        assertFalse("La carta existe",res);
+        
+    }
+
+    @Test
+    public void testParejaValida()
+    {
+
+    }
+
+    @Test
+    public void testParejaNoValida()
+    {
+
+    }
+
+    @Test
+    public void testTrioValido()
+    {
+
+    }
+
+    @Test
+    public void testTrioNovalido()
+    {
+
+    }
+
+    @Test
+    public void testRepartir()
+    {
+        /*que reparta cartas y que se quiten las repartidas de la baraja*/
+    }
+
 
 }
