@@ -62,5 +62,9 @@ public class Baraja {
        
 
     }
+    public void repartirCartas()
+    {
+        
+    }
 
 }

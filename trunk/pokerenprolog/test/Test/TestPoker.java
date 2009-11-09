@@ -334,7 +334,11 @@ public class TestPoker {
     public void testRepartir()
     {
         /*que reparta cartas y que se quiten las repartidas de la baraja*/
+        Baraja actual = new Baraja();
+        actual.setBaraja();
+        actual.repartirCartas();
+        Baraja esperada = actual;
+        assertNotSame(esperada, actual);
     }
-
 
 }
