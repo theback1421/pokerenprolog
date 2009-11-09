@@ -40,7 +40,17 @@ public class Mano {
         this.listacartas = listacartas;
     }
 
-       public boolean HayPareja(ArrayList<Card> listacartas)
+    
+    public Card CogerCartaMasAlta(ArrayList<Card> listacartas)
+    {
+        Card carta = new Card();
+        Conector c = new Conector();
+        c.getConector();
+        Query q = new Query("highest_card("+listacartas+")");
+        q.hasSolution();
+        return carta;
+    }
+    public boolean HayPareja(ArrayList<Card> listacartas)
     {
         boolean res = false;
         Conector c = new Conector();
@@ -49,6 +59,7 @@ public class Mano {
         res = q.hasSolution();
         return res;
     }
+
     public boolean HayTrio(ArrayList<Card> listacartas)
     {
         boolean res = false;

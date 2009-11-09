@@ -189,6 +189,42 @@ public class TestPoker {
     }
 
     @Test
+    public void tesCartaMasAlta()
+    {
+        boolean res = false;
+        Mano m1 = new Mano();
+        ArrayList<Card> listacartas = new ArrayList();
+        Card esperada1 = new Card();
+        Card esperada2 = new Card();
+        Card esperada3 = new Card();
+        Card esperada4 = new Card();
+        Card esperada5 = new Card();
+        Card esperada6 = new Card();
+        Card esperada7 = new Card();
+        esperada1.setCard("{R=ace}", "{S=spades}");
+        esperada2.setCard("{R=8}", "{S=clubs}");
+        esperada3.setCard("{R=2}", "{S=spades}");
+        esperada4.setCard("{R=3}", "{S=spades}");
+        esperada5.setCard("{R=4}", "{S=spades}");
+        esperada6.setCard("{R=5}", "{S=spades}");
+        esperada7.setCard("{R=6}", "{S=spades}");
+
+        listacartas.add(esperada1);
+        listacartas.add(esperada2);
+        listacartas.add(esperada3);
+        listacartas.add(esperada4);
+        listacartas.add(esperada5);
+        listacartas.add(esperada6);
+        listacartas.add(esperada7);
+
+        m1.setListacartas(listacartas);
+        Card actual = m1.CogerCartaMasAlta(listacartas);
+
+        assertEquals("{ace}",actual.getRank());
+    }
+
+    
+    @Test
     public void testParejaValida()
     {
         boolean res = false;
