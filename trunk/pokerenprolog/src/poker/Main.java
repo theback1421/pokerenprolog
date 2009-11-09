@@ -36,8 +36,9 @@ public class Main {
         actual.getRanklist().get(0);
         Baraja b = new Baraja();
         b.setBaraja();
-        System.out.println("primer Rank:"+actual.getRanklist().get(0));
-        System.out.println("primer elemento: "+ b.getBarajalist().get(0).getRank()+b.getBarajalist().get(0).getSuit());
+        System.out.println("Baraja: \n");
+        for(int i=0;i<b.getBarajalist().size();i++)
+        System.out.println(b.getBarajalist().get(i).getRank()+b.getBarajalist().get(i).getSuit());
     }
 
 

@@ -5,50 +5,58 @@
 
 package poker;
 
+import java.util.*;
+import jpl.Query;
+
 /**
  *
  * @author USUARIO
  */
 public class Mano {
-    private Card carta1 = new Card();
-    private Card carta2 = new Card();
+    private ArrayList<Card> listacartas = new ArrayList();
 
     public Mano()
     {
-        this.carta1=new Card();
-        this.carta2 = new Card();
+        this.listacartas=new ArrayList();
+        
     }
-    public Mano(Card carta1,Card carta2)
+    public Mano(ArrayList<Card> listacartas)
     {
-        this.carta1=carta1;
-        this.carta2=carta2;
+        this.listacartas=listacartas;
     }
+   
+
     /**
-     * @return the carta1
+     * @return the listacartas
      */
-    public Card getCarta1() {
-        return carta1;
+    public ArrayList<Card> getListacartas() {
+        return listacartas;
     }
 
     /**
-     * @param carta1 the carta1 to set
+     * @param listacartas the listacartas to set
      */
-    public void setCarta1(Card carta1) {
-        this.carta1 = carta1;
+    public void setListacartas(ArrayList<Card> listacartas) {
+        this.listacartas = listacartas;
     }
 
-    /**
-     * @return the carta2
-     */
-    public Card getCarta2() {
-        return carta2;
+       public boolean HayPareja(ArrayList<Card> listacartas)
+    {
+        boolean res = false;
+        Conector c = new Conector();
+        c.getConector();
+        Query q = new Query("has_pair("+listacartas+")");
+        res = q.hasSolution();
+        return res;
     }
-
-    /**
-     * @param carta2 the carta2 to set
-     */
-    public void setCarta2(Card carta2) {
-        this.carta2 = carta2;
+    public boolean HayTrio(ArrayList<Card> listacartas)
+    {
+        boolean res = false;
+        Conector c = new Conector();
+        c.getConector();
+        Query q = new Query("has_three_of_a_kind("+listacartas+")");
+        res = q.hasSolution();
+        return res;
     }
 
 }
