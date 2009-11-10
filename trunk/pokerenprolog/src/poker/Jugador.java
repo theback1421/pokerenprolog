@@ -11,6 +11,7 @@ package poker;
  */
 public class Jugador {
     private String nombre;
+    private Mano mano;
 
     /**
      * @return the nombre
@@ -24,6 +25,20 @@ public class Jugador {
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    /**
+     * @return the mano
+     */
+    public Mano getMano() {
+        return mano;
+    }
+
+    /**
+     * @param mano the mano to set
+     */
+    public void setMano(Mano mano) {
+        this.mano = mano;
     }
 
 }
