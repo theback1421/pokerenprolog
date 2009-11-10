@@ -116,18 +116,16 @@ public class TestPoker {
         boolean res=false;
         Suit actual = new Suit();
         actual.setSuit();
-        String esperado = "{S=hearts}";
-        for(int i=0;i<actual.getSuitlist().size();i++)
-        {
-            if(actual.getSuitlist().get(i).compareTo(esperado)==0)
-            {
-                res=true;
-                break;
-            }
-            
+       String esperado = actual.getSuitlist().toString();
+
+        if (esperado!= null && esperado.compareTo("false") !=0){
+            res = true;
+
         }
-        assertTrue("El Suit no existe",res);
-    
+        else
+            res = false;
+
+        assert(res);
     }
 
     @Test
