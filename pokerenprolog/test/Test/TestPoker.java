@@ -73,19 +73,20 @@ public class TestPoker {
 
     @Test
     public void testRankExiste()
-    {
+   {
         boolean res=false;
         Rank actual = new Rank();
         actual.setRank();
-        String esperado = "{R=ace}";
-        for(int i=0;i<actual.getRanklist().size();i++)
-        {
-            if(actual.getRanklist().get(i).compareTo(esperado)==0)
-            {
-                res=true;
-            }
+        String esperado = actual.getRanklist().toString();
+
+        if (esperado!= null && esperado.compareTo("false") !=0){
+            res = true;
+
         }
-        assertTrue("El Rank no existe",res);
+        else
+            res = false;
+
+        assert(res);
     }
 
     @Test
@@ -99,6 +100,7 @@ public class TestPoker {
         {
             if(actual.getRanklist().get(i).compareTo(esperado)==0)
             {
+
                 res=true;
 
             }
