@@ -370,11 +370,53 @@ public class TestPoker {
     public void testRepartir()
     {
         /*que reparta cartas y que se quiten las repartidas de la baraja*/
+        boolean res = false;
         Baraja actual = new Baraja();
+        Baraja aux = new Baraja();
         actual.setBaraja();
+        aux=actual;
         actual.repartirCartas();
         Baraja esperada = actual;
-        assertNotSame(esperada, actual);
+        if(esperada.getBarajalist().size()!=aux.getBarajalist().size())
+        {
+            res = true;
+        }
+        assertTrue("No reparte bien",res);
+    }
+
+    @Test
+    public void testJugador()
+    {
+        Jugador j = new Jugador();
+        Mano m = new Mano();
+        Card c1 = new Card();
+        Card c2 = new Card();
+        Card c3 = new Card();
+        Card c4 = new Card();
+        Card c5 = new Card();
+        Card c6 = new Card();
+        Card c7 = new Card();
+
+        ArrayList<Card> listacartas = new ArrayList();
+        listacartas.add(c1);
+        listacartas.add(c2);
+        listacartas.add(c3);
+        listacartas.add(c4);
+        listacartas.add(c5);
+        listacartas.add(c6);
+        listacartas.add(c7);
+        m.setListacartas(listacartas);
+        j.setMano(m);
+        assertEquals("Cantidad de cartas insuficiente",7,j.getMano().getListacartas().size());
+    }
+
+    @Test
+    public void testApuesta()
+    {
+        Apuesta a = new Apuesta();
+        a.setApuesta(-1);
+        boolean res=a.validarApuesta();
+        assertFalse("Apuesta valida",res);
     }
 
     
