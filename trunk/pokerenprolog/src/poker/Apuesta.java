@@ -37,4 +37,14 @@ public class Apuesta {
         this.apuesta = apuesta;
     }
 
+    public boolean validarApuesta()
+    {
+        boolean res=false;
+        if (this.getApuesta()>=0)
+        {
+            res=true;
+        }
+        return res;
+    }
+
 }

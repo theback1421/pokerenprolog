@@ -13,6 +13,16 @@ public class Jugador {
     private String nombre;
     private Mano mano;
 
+    public Jugador()
+    {
+        this.nombre="";
+        this.mano=new Mano();
+    }
+    public Jugador(String nombre, Mano mano)
+    {
+        this.nombre=nombre;
+        this.mano=mano;
+    }
     /**
      * @return the nombre
      */
