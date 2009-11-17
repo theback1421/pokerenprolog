@@ -16,6 +16,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
+
         // TODO code application logic here
        /* Rank conexion;
         Conector c = new Conector();
@@ -29,7 +31,7 @@ public class Main {
         {
             System.out.println( "X = " + ss4[i].get("R"));
         }*/
-        Conector c = new Conector();
+        /*Conector c = new Conector();
         c.getConector();
         String t = "card(R,S)";
         Query q = new Query(t);

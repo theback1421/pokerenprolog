@@ -21,7 +21,7 @@ rank([ace,10,9,8,7,6,5,4,3,2]).
 
 suit([spades,hearts,diamonds,clubs]).
 
-card(R,S) :- rank(R), suit(S).
+card(R,S) :- rank(R1), suit(S1), member(R,R1),member(S,S1).
 
 %%  CREAMOS LA BARAJA USANDO EL PRODUCTO CARTESIANO
 
