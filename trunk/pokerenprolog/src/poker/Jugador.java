@@ -12,6 +12,10 @@ package poker;
 public class Jugador {
     private String nombre;
     private Mano mano;
+    private int dinero;
+    private int apuesta;
+    private Opcion opcion;
+
 
     public Jugador()
     {
