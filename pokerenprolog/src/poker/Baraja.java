@@ -42,11 +42,9 @@ public class Baraja {
     
     public void setBaraja()
     {
-        Rank r = new Rank();
-        Suit s = new Suit();
-        r.setRank();
-        s.setSuit();
-        
+        Rank r;
+        Suit s;
+        /*
         for(int i = 0;i<r.getRanklist().size();i++)
         {
             for(int j=0;j<s.getSuitlist().size();j++)
@@ -59,7 +57,8 @@ public class Baraja {
                 
             }
         }
-       
+
+         */
 
     }
     public void repartirCartas()

@@ -35,6 +35,15 @@ public class Mesa {
         ronda = Ronda.PREFLOP;
     }
 
+    private void baraja()
+    {
+
+    }
+    public void iniciarTurno()
+    {
+        jugador1.setMano(new Mano());
+    }
+
     public void preflop()
     {
 

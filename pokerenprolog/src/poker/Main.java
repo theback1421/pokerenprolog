@@ -17,7 +17,34 @@ public class Main {
      */
     public static void main(String[] args) {
 
+        JPL.init();
 
+        Term consult_arg[] = {
+                new Atom( "poker.pl" )
+        };
+        Query consult_query =
+                new Query(
+                        "consult",
+                        consult_arg );
+
+        boolean consulted = consult_query.query();
+
+        if ( !consulted ){
+                System.err.println( "Consult failed" );
+                System.exit( 1 );
+        }
+
+        Card c1 = new Card(Rank.KING,Suit.SPADES);
+        Card c2 = new Card(Rank.R2,Suit.CLUBS);
+
+        ArrayList<Card> listaCartas = new ArrayList<Card>();
+        listaCartas.add(c1);
+        listaCartas.add(c2);
+
+        Mano m = new Mano(listaCartas);
+
+        System.out.println("Valor de la carta más alta = "+m.valorCartaMasAlta());
+        System.out.println("Es pareja = "+m.Pareja());
         // TODO code application logic here
        /* Rank conexion;
         Conector c = new Conector();

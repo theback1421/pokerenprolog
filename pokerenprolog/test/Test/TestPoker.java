@@ -156,8 +156,8 @@ public class TestPoker {
         esperado.setRank("{R=ace}");
         esperado.setSuit("{S=spades}");
         for(int i=0;i<b.getBarajalist().size();i++)
-        {
-            if(b.getBarajalist().get(i).getRank().compareTo(esperado.getRank())==0 && b.getBarajalist().get(i).getSuit().compareTo(esperado.getSuit())==0)
+        {System.out.println(b.getBarajalist().get(i).getRank().toString());
+            if(b.getBarajalist().get(i).getRank().toString().compareTo(esperado.getRank())==0 && b.getBarajalist().get(i).getSuit().toString().compareTo(esperado.getSuit())==0)
             {
                 res=true;
             }

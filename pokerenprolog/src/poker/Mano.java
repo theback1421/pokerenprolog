@@ -6,7 +6,10 @@
 package poker;
 
 import java.util.*;
+import jpl.Atom;
 import jpl.Query;
+import jpl.Term;
+import jpl.Variable;
 
 /**
  *
@@ -18,7 +21,6 @@ public class Mano {
     public Mano()
     {
         this.listacartas=new ArrayList();
-        
     }
     public Mano(ArrayList<Card> listacartas)
     {
@@ -40,24 +42,61 @@ public class Mano {
         this.listacartas = listacartas;
     }
 
-    
-    public Card CogerCartaMasAlta(ArrayList<Card> listacartas)
+    private String arrayCartasProlog()
     {
-        Card carta = new Card();
-        Conector c = new Conector();
-        c.getConector();
-        Query q = new Query("highest_card("+listacartas+")");
-        q.hasSolution();
-        return carta;
-    }
-    public boolean HayPareja(ArrayList<Card> listacartas)
-    {
-        boolean res = false;
-        Conector c = new Conector();
-        c.getConector();
-        Query q = new Query("has_pair("+listacartas+")");
-        res = q.hasSolution();
+        ListIterator<Card> it = listacartas.listIterator();
+        String res = "[";
+        Card c;
+        boolean primeraCarta = true;
+        while(it.hasNext())
+        {
+            if(!primeraCarta) res = res+",";
+            c = it.next();
+            res = res+"card("+c.getStringRank()+","+c.getStringSuit()+")";
+            primeraCarta = false;
+        }
+        res = res+"]";
+
         return res;
+    }
+
+    private void listaCartasProlog(String listaProlog)
+    {
+        String[] cartas = listaProlog.split("card");
+        for(int i=0; i<cartas.length; i++)
+            System.out.println(cartas[i]);
+       /* int i=0;
+        int posR;
+        int posS;
+        while(cartas != null)
+        {
+            posR = cartas[i].indexOf("card(") + 5;
+        }*/
+    }
+    
+    public int valorCartaMasAlta()
+    {
+        String res="-1";
+        Query q = new Query("highestHand("+arrayCartasProlog()+",Result)");
+        System.out.println("highestHand("+arrayCartasProlog()+",Result)   "+q.hasSolution());
+        java.util.Hashtable solution =	q.oneSolution();
+        if( null != solution ){
+		res = ((Term)solution.get( "Result" )).toString();
+	    }
+        q.close();
+        return Integer.parseInt(res);
+    }
+    public Rank Pareja()
+    {
+        String res = "";
+        Query q = new Query("one_pair("+arrayCartasProlog()+", ListaProlog, Rank)");
+        java.util.Hashtable solution =	q.oneSolution();
+        if( null != solution ){
+		res = ((Term)solution.get( "Rank" )).toString();
+	    }
+        //return
+        q.close();
+        return Rank.ACE;
     }
 
     public boolean HayTrio(ArrayList<Card> listacartas)
