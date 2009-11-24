@@ -12,19 +12,23 @@ import jpl.Query;
  *
  * @author USUARIO
  */
+
+public enum Suit{ SPADES, CLUBS, HEARTS, DIAMONDS};
+
+/*
 public class Suit {
     private ArrayList<String> suitlist =  new ArrayList();
 
     /**
      * @return the suitlist
-     */
+     *//*
     public ArrayList<String> getSuitlist() {
         return suitlist;
     }
 
     /**
      * @param suitlist the suitlist to set
-     */
+     *//*
     public void setSuitlist(ArrayList<String> suitlist) {
         this.suitlist = suitlist;
     }
@@ -46,5 +50,6 @@ public class Suit {
      * Rellenar suit
      * Leemos del prolog y rellenamos la lista con los ranks del poker.pl
      */
-
+/*
 }
+*/
