@@ -25,6 +25,11 @@ public class Card {
         suit = s;
     }
 
+    public Card(String card)
+    {
+        setCard(card);
+    }
+
     /**
      * @return the rank
      */
@@ -87,12 +92,21 @@ public class Card {
         this.suit = s;
     }
 
-        public void setCard(Rank r, Suit s)
+    public void setCard(Rank r, Suit s)
     {  
             this.rank=r;
             this.suit=s;
     }
 
+    public void setCard(String card)
+    {
+        card.replaceAll("[()]", "");
+        String[] cartas = card.split(",");
+        PRank r=null;
+        PSuit s=null;
+        this.rank = r.stringToRank(cartas[0]);
+        this.suit = s.stringToSuit(cartas[1]);
+    }
     public void printCard()
     {
         System.out.print("Carta: ");

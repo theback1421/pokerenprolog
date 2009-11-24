@@ -26,7 +26,15 @@ public class Mano {
     {
         this.listacartas=listacartas;
     }
-   
+
+    public void print()
+    {
+        ListIterator it = listacartas.listIterator();
+        while(it.hasNext())
+        {
+            ((Card) it.next()).printCard();
+        }
+    }
 
     /**
      * @return the listacartas
@@ -60,18 +68,20 @@ public class Mano {
         return res;
     }
 
-    private void listaCartasProlog(String listaProlog)
+    public void listaCartasProlog(String listaProlog)
     {
-        String[] cartas = listaProlog.split("card");
+        listaProlog = listaProlog.replace("[", "");
+        listaProlog = listaProlog.replace("]", "");
+        listacartas = new ArrayList<Card>();
+        
+        System.out.println(listaProlog);
+        String[] cartas = listaProlog.split(",card");
         for(int i=0; i<cartas.length; i++)
-            System.out.println(cartas[i]);
-       /* int i=0;
-        int posR;
-        int posS;
-        while(cartas != null)
         {
-            posR = cartas[i].indexOf("card(") + 5;
-        }*/
+            cartas[i] = cartas[i].replace("card", "");
+            System.out.println(cartas[i]);
+            listacartas.add(new Card(cartas[i]));
+        }
     }
     
     public int valorCartaMasAlta()

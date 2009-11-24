@@ -13,43 +13,28 @@ import jpl.Query;
  * @author USUARIO
  */
 
-public enum Suit{ SPADES, CLUBS, HEARTS, DIAMONDS};
+public enum Suit{ NOSUIT, SPADES, CLUBS, HEARTS, DIAMONDS};
 
-/*
-public class Suit {
-    private ArrayList<String> suitlist =  new ArrayList();
-
-    /**
-     * @return the suitlist
-     *//*
-    public ArrayList<String> getSuitlist() {
-        return suitlist;
-    }
-
-    /**
-     * @param suitlist the suitlist to set
-     *//*
-    public void setSuitlist(ArrayList<String> suitlist) {
-        this.suitlist = suitlist;
-    }
-
-    public void setSuit()
+class PSuit
+{
+    public String suitToString(Suit s)
     {
-
-        Query q1 = new Query("suit(S)");
-        java.util.Hashtable[] ss4 = q1.allSolutions();
-        System.out.println( "all solutions of " + "suit(S)");
-        for ( int i=0 ; i<ss4.length ; i++ )
+        switch(s)
         {
-            this.suitlist.add(ss4[i].toString());
+            case SPADES: return "spades";
+            case CLUBS: return "clubs";
+            case HEARTS: return "hearts";
+            case DIAMONDS: return "diamonds";
+            default: return "";
         }
-        System.out.println("Suitlist: " + this.suitlist.toString());
     }
 
-     /*
-     * Rellenar suit
-     * Leemos del prolog y rellenamos la lista con los ranks del poker.pl
-     */
-/*
+    public Suit stringToSuit(String s)
+    {
+        if(s.compareTo("spades")==0) return Suit.SPADES;
+        else if(s.compareTo("clubs")==0) return Suit.CLUBS;
+        else if(s.compareTo("hearts")==0) return Suit.HEARTS;
+        else if(s.compareTo("diamonds")==0) return Suit.DIAMONDS;
+        else return Suit.NOSUIT;
+    }
 }
-*/
