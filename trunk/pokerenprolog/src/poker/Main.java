@@ -45,6 +45,8 @@ public class Main {
 
         System.out.println("Valor de la carta más alta = "+m.valorCartaMasAlta());
         System.out.println("Es pareja = "+m.Pareja());
+        m.listaCartasProlog("[card(ace,spades),card(ace,hearts)]");
+
         // TODO code application logic here
        /* Rank conexion;
         Conector c = new Conector();
