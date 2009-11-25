@@ -100,39 +100,37 @@ public class Card {
 
     public void setCard(String card)
     {
-        card.replaceAll("[()]", "");
-        String[] cartas = card.split(",");
-        PRank r=null;
-        PSuit s=null;
-        this.rank = r.stringToRank(cartas[0]);
-        this.suit = s.stringToSuit(cartas[1]);
+        String[] cartas = card.split(", ");
+        
+        this.rank = PRank.stringToRank(cartas[0]);
+        this.suit = PSuit.stringToSuit(cartas[1]);
     }
     public void printCard()
     {
         System.out.print("Carta: ");
         switch(rank)
         {
-            case R1: System.out.print("1 de ");
-            case R2: System.out.print("2 de ");
-            case R3: System.out.print("3 de ");
-            case R4: System.out.print("4 de ");
-            case R5: System.out.print("5 de ");
-            case R6: System.out.print("6 de ");
-            case R7: System.out.print("7 de ");
-            case R8: System.out.print("8 de ");
-            case R9: System.out.print("9 de ");
-            case R10: System.out.print("10 de ");
-            case JACK: System.out.print("J de ");
-            case QUEEN: System.out.print("Q de ");
-            case KING: System.out.print("K de ");
-            case ACE: System.out.print("As de ");
+            case R1: System.out.print("1 de "); break;
+            case R2: System.out.print("2 de "); break;
+            case R3: System.out.print("3 de "); break;
+            case R4: System.out.print("4 de "); break;
+            case R5: System.out.print("5 de "); break;
+            case R6: System.out.print("6 de "); break;
+            case R7: System.out.print("7 de "); break;
+            case R8: System.out.print("8 de "); break;
+            case R9: System.out.print("9 de "); break;
+            case R10: System.out.print("10 de "); break;
+            case JACK: System.out.print("J de "); break;
+            case QUEEN: System.out.print("Q de "); break;
+            case KING: System.out.print("K de "); break;
+            case ACE: System.out.print("As de "); break;
         }
         switch(suit)
         {
-            case SPADES: System.out.print("picas\n");
-            case CLUBS: System.out.print("treboles\n");
-            case HEARTS: System.out.print("corazones\n");
-            case DIAMONDS: System.out.print("diamantes\n");
+            case SPADES: System.out.print("picas\n"); break;
+            case CLUBS: System.out.print("treboles\n"); break;
+            case HEARTS: System.out.print("corazones\n"); break;
+            case DIAMONDS: System.out.print("diamantes\n"); break;
         }
     }
 

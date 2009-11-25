@@ -6,6 +6,8 @@
 package poker;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import jpl.Atom;
 import jpl.Query;
 import jpl.Term;
@@ -50,9 +52,9 @@ public class Mano {
         this.listacartas = listacartas;
     }
 
-    private String arrayCartasProlog()
+    private String arrayCartasProlog(ArrayList<Card> lista)
     {
-        ListIterator<Card> it = listacartas.listIterator();
+        ListIterator<Card> it = lista.listIterator();
         String res = "[";
         Card c;
         boolean primeraCarta = true;
@@ -60,7 +62,7 @@ public class Mano {
         {
             if(!primeraCarta) res = res+",";
             c = it.next();
-            res = res+"card("+c.getStringRank()+","+c.getStringSuit()+")";
+            res = res+"card("+c.getStringRank()+", "+c.getStringSuit()+")";
             primeraCarta = false;
         }
         res = res+"]";
@@ -68,27 +70,24 @@ public class Mano {
         return res;
     }
 
-    public void listaCartasProlog(String listaProlog)
+    public ArrayList<Card> listaCartasProlog(String listaProlog)
     {
-        listaProlog = listaProlog.replace("[", "");
-        listaProlog = listaProlog.replace("]", "");
-        listacartas = new ArrayList<Card>();
-        
-        System.out.println(listaProlog);
-        String[] cartas = listaProlog.split(",card");
-        for(int i=0; i<cartas.length; i++)
-        {
-            cartas[i] = cartas[i].replace("card", "");
-            System.out.println(cartas[i]);
-            listacartas.add(new Card(cartas[i]));
-        }
+        ArrayList<Card> res = new ArrayList<Card>();
+
+        Pattern p = Pattern.compile("(ace|king|queen|jack|[2-9]), (clubs|spades|diamonds|hearts)");
+        Matcher m = p.matcher(listaProlog);
+
+        while(m.find())
+            res.add(new Card(m.group()));
+
+        return res;
     }
     
     public int valorCartaMasAlta()
     {
         String res="-1";
-        Query q = new Query("highestHand("+arrayCartasProlog()+",Result)");
-        System.out.println("highestHand("+arrayCartasProlog()+",Result)   "+q.hasSolution());
+        Query q = new Query("highestHand("+arrayCartasProlog(listacartas)+",Result)");
+        System.out.println("highestHand("+arrayCartasProlog(listacartas)+",Result)   "+q.hasSolution());
         java.util.Hashtable solution =	q.oneSolution();
         if( null != solution ){
 		res = ((Term)solution.get( "Result" )).toString();
@@ -96,27 +95,38 @@ public class Mano {
         q.close();
         return Integer.parseInt(res);
     }
-    public Rank Pareja()
+    public ArrayList<Card> Pareja()
     {
-        String res = "";
-        Query q = new Query("one_pair("+arrayCartasProlog()+", ListaProlog, Rank)");
+        ArrayList<Card> pareja = new ArrayList<Card>();
+        
+        String listaProlog;
+
+        Query q = new Query("one_pair("+arrayCartasProlog(listacartas)+", ListaProlog, Rank)");
         java.util.Hashtable solution =	q.oneSolution();
-        if( null != solution ){
-		res = ((Term)solution.get( "Rank" )).toString();
-	    }
-        //return
         q.close();
-        return Rank.ACE;
+        if( null != solution ){
+            listaProlog = ((Term)solution.get("ListaProlog")).toString();
+            System.out.println(listaProlog);
+            pareja = listaCartasProlog(listaProlog);
+        }
+        return pareja;
     }
 
-    public boolean HayTrio(ArrayList<Card> listacartas)
+    public ArrayList<Card> Trio()
     {
-        boolean res = false;
-        Conector c = new Conector();
-        c.getConector();
-        Query q = new Query("has_three_of_a_kind("+listacartas+")");
-        res = q.hasSolution();
-        return res;
+        ArrayList<Card> trio = new ArrayList<Card>();
+
+        String listaProlog;
+
+        Query q = new Query("three_of_a_kind("+arrayCartasProlog(listacartas)+", ListaProlog)");
+        java.util.Hashtable solution =	q.oneSolution();
+        q.close();
+        if( null != solution ){
+            listaProlog = ((Term)solution.get("ListaProlog")).toString();
+            System.out.println(listaProlog);
+            trio = listaCartasProlog(listaProlog);
+        }
+        return trio;
     }
 
 }
