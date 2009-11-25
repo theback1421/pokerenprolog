@@ -17,7 +17,7 @@ public enum Suit{ NOSUIT, SPADES, CLUBS, HEARTS, DIAMONDS};
 
 class PSuit
 {
-    public String suitToString(Suit s)
+    static public String suitToString(Suit s)
     {
         switch(s)
         {
@@ -29,7 +29,7 @@ class PSuit
         }
     }
 
-    public Suit stringToSuit(String s)
+    static public Suit stringToSuit(String s)
     {
         if(s.compareTo("spades")==0) return Suit.SPADES;
         else if(s.compareTo("clubs")==0) return Suit.CLUBS;

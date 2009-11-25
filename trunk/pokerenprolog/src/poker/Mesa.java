@@ -44,6 +44,11 @@ public class Mesa {
         jugador1.setMano(new Mano());
     }
 
+    public boolean gana()
+    {
+        return true;
+    }
+
     public void preflop()
     {
 

@@ -5,6 +5,8 @@
 
 package poker;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import jpl.*;
 /**
  *
@@ -33,19 +35,23 @@ public class Main {
                 System.err.println( "Consult failed" );
                 System.exit( 1 );
         }
-
-        Card c1 = new Card(Rank.KING,Suit.SPADES);
-        Card c2 = new Card(Rank.R2,Suit.CLUBS);
+        
+        Card c1 = new Card(Rank.ACE,Suit.SPADES);
+        Card c2 = new Card(Rank.ACE,Suit.CLUBS);
+        Card c3 = new Card(Rank.R3,Suit.HEARTS);
 
         ArrayList<Card> listaCartas = new ArrayList<Card>();
         listaCartas.add(c1);
         listaCartas.add(c2);
+        listaCartas.add(c3);
 
         Mano m = new Mano(listaCartas);
 
+
         System.out.println("Valor de la carta más alta = "+m.valorCartaMasAlta());
-        System.out.println("Es pareja = "+m.Pareja());
-        m.listaCartasProlog("[card(ace,spades),card(ace,hearts)]");
+
+        Mano parejita = new Mano(m.Trio());
+        parejita.print();
 
         // TODO code application logic here
        /* Rank conexion;

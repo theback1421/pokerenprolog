@@ -17,7 +17,7 @@ public enum Rank { R1,R2,R3,R4,R5,R6,R7,R8,R9,R10,JACK,QUEEN,KING,ACE};
 
 class PRank
 {
-    public String rankToString(Rank r)
+    static public String rankToString(Rank r)
     {
         switch(r)
         {
@@ -38,7 +38,7 @@ class PRank
         }
     }
 
-    public Rank stringToRank(String s)
+    static public Rank stringToRank(String s)
     {
         if(s.compareTo("2")==0) return Rank.R2;
         else if(s.compareTo("3")==0) return Rank.R3;
