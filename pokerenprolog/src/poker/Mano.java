@@ -31,10 +31,13 @@ public class Mano {
 
     public void print()
     {
-        ListIterator it = listacartas.listIterator();
-        while(it.hasNext())
+        if(listacartas != null)
         {
-            ((Card) it.next()).printCard();
+            ListIterator it = listacartas.listIterator();
+            while(it.hasNext())
+            {
+                ((Card) it.next()).printCard();
+            }
         }
     }
 
@@ -52,7 +55,7 @@ public class Mano {
         this.listacartas = listacartas;
     }
 
-    private String arrayCartasProlog(ArrayList<Card> lista)
+    static private String arrayCartasProlog(ArrayList<Card> lista)
     {
         ListIterator<Card> it = lista.listIterator();
         String res = "[";
@@ -70,7 +73,7 @@ public class Mano {
         return res;
     }
 
-    public ArrayList<Card> listaCartasProlog(String listaProlog)
+    static public ArrayList<Card> listaCartasProlog(String listaProlog)
     {
         ArrayList<Card> res = new ArrayList<Card>();
 

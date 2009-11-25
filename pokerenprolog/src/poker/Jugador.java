@@ -15,11 +15,12 @@ public class Jugador {
     private int dinero;
     private int apuesta;
     private Opcion opcion;
+    private boolean isDealer;
 
 
-    public Jugador()
+    public Jugador(String nombre)
     {
-        this.nombre="";
+        this.nombre=nombre;
         this.mano=new Mano();
     }
     public Jugador(String nombre, Mano mano)
@@ -27,6 +28,27 @@ public class Jugador {
         this.nombre=nombre;
         this.mano=mano;
     }
+
+    public void jugar()
+    {
+        
+    }
+
+    public void setDealer()
+    {
+        isDealer = true;
+    }
+
+    public void unsetDealer()
+    {
+        isDealer = false;
+    }
+
+    public boolean getDealer()
+    {
+        return isDealer;
+    }
+
     /**
      * @return the nombre
      */
