@@ -7,6 +7,7 @@ package clases;
 
 import java.util.ArrayList;
 import jpl.Query;
+import jpl.Term;
 
 
 /**
@@ -26,8 +27,8 @@ public class Mesa {
     public Mesa()
     {
         turno = 1;
-        jugador1 = new Jugador("");
-        jugador2 = new Jugador("");
+        jugador1 = new Jugador("jugador1");
+        jugador2 = new Jugador("jugador2");
         cartasComunitarias = null;
         ronda = Ronda.PREFLOP;
     }
@@ -44,6 +45,16 @@ public class Mesa {
         ronda = Ronda.PREFLOP;
     }
 
+    public Jugador getJugador1()
+    {
+        return jugador1;
+    }
+
+    public Jugador getJugador2()
+    {
+        return jugador2;
+    }
+
     private void baraja()
     {
 
@@ -51,22 +62,39 @@ public class Mesa {
     public void iniciarTurno()
     {
         String listaProlog = null;
-        Query q = new Query("mesa");
+        java.util.Hashtable solution=null;
+        Query q = new Query("baraja");
+        q.hasSolution();
+        q = new Query("mesa");
+        q.hasSolution();
         q = new Query("cartasMesa(ListaProlog)");
-        java.util.Hashtable solution = q.oneSolution();
-        /*if( null != solution ){
+        if(q.hasSolution())
+        {
+            solution = q.oneSolution();
+            if( null != solution ){
 		listaProlog = ((Term)solution.get( "ListaProlog" )).toString();
-	}
-        q.close();
+            }
+        }
 
         cartasComunitarias = Mano.listaCartasProlog(listaProlog);
-*/
+
+        q = new Query("jugadorCarta(" +jugador1.getNombre()+ ",ListaProlog)");
+        if(q.hasSolution())
+        {
+            solution = q.oneSolution();
+            if( null != solution ){
+		listaProlog = ((Term)solution.get( "ListaProlog" )).toString();
+            }
+        }
+
+        jugador1.setMano(new Mano(Mano.listaCartasProlog(listaProlog)));
+
         if( turno % 5 == 0 )
         {
             ciegaPequena *= 2;
             ciegaGrande *= 2;
         }
-        jugador1.setMano(new Mano());
+        q.close();
     }
 
     public boolean gana()

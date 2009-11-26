@@ -58,6 +58,8 @@ public class Main {
         mesa.iniciarTurno();
         Mano comuni = new Mano(mesa.getCartasComunitarias());
         comuni.print();
+        Jugador j1 = new Jugador(mesa.getJugador1());
+        j1.print();
 
     }
 

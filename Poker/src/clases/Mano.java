@@ -29,6 +29,10 @@ public class Mano {
         this.listacartas=listacartas;
     }
 
+    public Mano(Mano mano) {
+        listacartas = mano.getListacartas();
+    }
+
     public void print()
     {
         if(listacartas != null)

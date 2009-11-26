@@ -1,7 +1,7 @@
 % Aplicacion para jugar al poker en prolog
 %
 %Design by:
-%    - Ramón Costafreda
+%    - Ramï¿½n Costafreda
 %    - Marta Gonzalez
 %    - Jose Martin
 %    - Sergio Gonzalez
@@ -79,18 +79,18 @@ jugadorCarta(Jugador,[Carta1,Carta2]):-
 
 
 mesa :- retractall(cartasMesa(_)),
-        writeln('********** MESA DE LA PARTIDA ***************'),
+%        writeln('********** MESA DE LA PARTIDA ***************'),
         cogerCartaAleatoria(Carta1),
-        writeln(Carta1),
+%        writeln(Carta1),
         cogerCartaAleatoria(Carta2),
-        writeln(Carta2),
+%        writeln(Carta2),
         cogerCartaAleatoria(Carta3),
-        writeln(Carta3),
+%        writeln(Carta3),
         cogerCartaAleatoria(Carta4),
-        writeln(Carta4),
+%        writeln(Carta4),
         cogerCartaAleatoria(Carta5),
-        writeln(Carta5),
-        writeln('*********************************************'),
+%        writeln(Carta5),
+%        writeln('*********************************************'),
         assert(cartasMesa([Carta1,Carta2,Carta3,Carta4,Carta5])).
   
    
