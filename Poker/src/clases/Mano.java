@@ -81,7 +81,7 @@ public class Mano {
     {
         ArrayList<Card> res = new ArrayList<Card>();
 
-        Pattern p = Pattern.compile("(ace|king|queen|jack|[2-9]), (clubs|spades|diamonds|hearts)");
+        Pattern p = Pattern.compile("(ace|king|queen|jack|[2-9]|10), (clubs|spades|diamonds|hearts)");
         Matcher m = p.matcher(listaProlog);
 
         while(m.find())

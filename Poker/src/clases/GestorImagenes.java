@@ -37,10 +37,6 @@ public abstract class GestorImagenes {
         PSuit ps = new PSuit();
         String palo = ps.suitToStringNumber(s);
 
-
-
-
-
         
         String sequenceNr = num.concat(palo);//card.getSuit() * Card.NO_OF_RANKS + card.getRank();
         

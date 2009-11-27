@@ -60,6 +60,8 @@ public class Main {
         comuni.print();
         Jugador j1 = new Jugador(mesa.getJugador1());
         j1.print();
+        Jugador j2 = new Jugador(mesa.getJugador2());
+        j2.print();
 
     }
 

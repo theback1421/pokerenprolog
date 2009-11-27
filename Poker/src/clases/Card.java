@@ -5,6 +5,9 @@
 
 package clases;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 /**
  *
@@ -97,10 +100,17 @@ public class Card {
 
     public void setCard(String card)
     {
-        String[] cartas = card.split(", ");
+        Pattern p = Pattern.compile("(ace|king|queen|jack|[2-9]|10)");
+        Matcher m = p.matcher(card);
 
-        this.rank = PRank.stringToRank(cartas[0]);
-        this.suit = PSuit.stringToSuit(cartas[1]);
+        if(m.find())
+            this.rank = PRank.stringToRank(m.group());
+
+        p = Pattern.compile("(clubs|spades|diamonds|hearts)");
+        m = p.matcher(card);
+
+        if(m.find())
+            this.suit = PSuit.stringToSuit(m.group());
     }
     public void printCard()
     {

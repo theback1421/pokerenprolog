@@ -17,7 +17,7 @@
 
 
 
-rank([ace,10,9,8,7,6,5,4,3,2]).
+rank([ace,king,queen,jack,10,9,8,7,6,5,4,3,2]).
 
 suit([spades,hearts,diamonds,clubs]).
 

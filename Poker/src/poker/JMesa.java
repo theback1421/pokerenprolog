@@ -4,7 +4,7 @@
  */
 
 /*
- * Mesa.java
+ * JMesa.java
  *
  * Created on 23-nov-2009, 13:15:47
  */
@@ -22,9 +22,9 @@ import javax.swing.JLabel;
  *
  * @author USUARIO
  */
-public class Mesa extends javax.swing.JPanel {
+public class JMesa extends javax.swing.JPanel {
 
-    /** Creates new form Mesa */
+    /** Creates new form JMesa */
    /** The serial version UID. */
     private static final long serialVersionUID = 1L;
 
@@ -52,7 +52,7 @@ public class Mesa extends javax.swing.JPanel {
      * @param mainFrame
      *            The main frame.
      */
-    public Mesa() {
+    public JMesa() {
        // this.controlPanel = controlPanel;
 
       //  setBorder(UIConstants.PANEL_BORDER);

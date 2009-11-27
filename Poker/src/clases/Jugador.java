@@ -5,6 +5,8 @@
 
 package clases;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author USUARIO
@@ -108,5 +110,6 @@ public class Jugador {
         mano.print();
         System.out.print("Dinero = "+dinero+"\nApuesta = "+apuesta+"\n¿Es Dealer? := "+isDealer+"\n");
     }
+
 
 }

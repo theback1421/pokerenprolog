@@ -8,6 +8,7 @@ package clases;
 import java.util.ArrayList;
 import jpl.Query;
 import jpl.Term;
+import jpl.Variable;
 
 
 /**
@@ -63,7 +64,9 @@ public class Mesa {
     {
         String listaProlog = null;
         java.util.Hashtable solution=null;
-        Query q = new Query("baraja");
+        Query q = /*new Query("seed("+( (int) Math.random())+")");
+        q.hasSolution();
+        q = */new Query("baraja");
         q.hasSolution();
         q = new Query("mesa");
         q.hasSolution();
@@ -78,16 +81,19 @@ public class Mesa {
 
         cartasComunitarias = Mano.listaCartasProlog(listaProlog);
 
-        q = new Query("jugadorCarta(" +jugador1.getNombre()+ ",ListaProlog)");
-        if(q.hasSolution())
-        {
-            solution = q.oneSolution();
-            if( null != solution ){
-		listaProlog = ((Term)solution.get( "ListaProlog" )).toString();
-            }
-        }
+        ArrayList<Card> manoj1 = new ArrayList<Card>();
 
-        jugador1.setMano(new Mano(Mano.listaCartasProlog(listaProlog)));
+        manoj1.add(cogerCartaAleatoria());
+        manoj1.add(cogerCartaAleatoria());
+
+        jugador1.setMano(new Mano(manoj1));
+
+        ArrayList<Card> manoj2 = new ArrayList<Card>();
+
+        manoj2.add(cogerCartaAleatoria());
+        manoj2.add(cogerCartaAleatoria());
+
+        jugador2.setMano(new Mano(manoj2));
 
         if( turno % 5 == 0 )
         {
@@ -95,6 +101,24 @@ public class Mesa {
             ciegaGrande *= 2;
         }
         q.close();
+    }
+
+    private Card cogerCartaAleatoria()
+    {
+        String cartaProlog = null;
+        java.util.Hashtable solution=null;
+
+        Variable Carta = new Variable("Carta");
+        Query q = new Query("cogerCartaAleatoria",new Term[] {Carta});
+        if(q.hasSolution())
+        {
+            solution = q.oneSolution();
+            if( null != solution ){
+		cartaProlog = ((Term)solution.get( "Carta" )).toString();
+                return new Card(cartaProlog);
+            }
+        }
+        return new Card(Rank.R1, Suit.NOSUIT);
     }
 
     public boolean gana()

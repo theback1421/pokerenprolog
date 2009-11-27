@@ -35,7 +35,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" min="-2" pref="700" max="-2" attributes="0"/>
+          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -248,16 +248,7 @@
           <Properties>
             <Property name="icon" type="javax.swing.Icon" resourceKey="jLabelMesa3.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="jLabelMesa3.text"/>
-            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[101, 137]"/>
-            </Property>
-            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[101, 137]"/>
-            </Property>
             <Property name="name" type="java.lang.String" value="jLabelMesa3" noResource="true"/>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[101, 137]"/>
-            </Property>
           </Properties>
         </Component>
       </SubComponents>

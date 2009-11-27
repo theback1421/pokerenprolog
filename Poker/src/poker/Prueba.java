@@ -14,32 +14,71 @@ import javax.swing.ImageIcon;
 import clases.*;
 import clases.Rank;
 import java.awt.Color;
+import jpl.Atom;
+import jpl.JPL;
+import jpl.Query;
+import jpl.Term;
 
 /**
  *
  * @author USUARIO
  */
 public class Prueba extends javax.swing.JFrame {
+        Mesa mesa;
+        Jugador j1;
+        Jugador j2;
+
+        private void init()
+        {
+            JPL.init();
+
+            Term consult_arg[] = {
+                new Atom( "poker.pl" )
+            };
+            Query consult_query =
+                new Query(
+                        "consult",
+                        consult_arg );
+
+            boolean consulted = consult_query.query();
+
+            if ( !consulted ){
+                    System.err.println( "Consult failed" );
+                    System.exit( 1 );
+            }
+        }
 
     /** Creates new form Prueba */
     public Prueba() {
         super();
         initComponents();
+        init();
+        
+        mesa = new Mesa();
+        mesa.iniciarTurno();
+        Mano comuni = new Mano(mesa.getCartasComunitarias());
+        comuni.print();
+        j1 = new Jugador(mesa.getJugador1());
+        Mano mano1 = j1.getMano();
+        mano1.print();
+        j2 = new Jugador(mesa.getJugador2());
+        Mano mano2 = j2.getMano();
+        mano2.print();
 
 
 
-        jLabelJ1C1.setIcon(GestorImagenes.getCardImage(new Card(Rank.ACE,Suit.DIAMONDS)));
-        jLabelJ1C2.setIcon(GestorImagenes.getCardImage(new Card(Rank.JACK,Suit.HEARTS)));
+        jLabelJ1C1.setIcon(GestorImagenes.getCardImage(mano1.getListacartas().get(0)));
+        jLabelJ1C2.setIcon(GestorImagenes.getCardImage(mano1.getListacartas().get(1)));
 
-        jLabelJ2C1.setIcon(GestorImagenes.getCardImage(new Card(Rank.R3,Suit.SPADES)));
-        jLabelJ2C2.setIcon(GestorImagenes.getCardImage(new Card(Rank.JACK,Suit.CLUBS)));
+        jLabelJ2C1.setIcon(GestorImagenes.getCardImage(mano2.getListacartas().get(0)));
+        jLabelJ2C2.setIcon(GestorImagenes.getCardImage(mano2.getListacartas().get(1)));
 
 
-        jLabelMesa1.setIcon(GestorImagenes.getCardImage(new Card(Rank.R2,Suit.SPADES)));
-        jLabelMesa2.setIcon(GestorImagenes.getCardImage(new Card(Rank.R3,Suit.HEARTS)));
-        jLabelMesa3.setIcon(GestorImagenes.getCardImage(new Card(Rank.R4,Suit.SPADES)));
-        jLabelMesa4.setIcon(GestorImagenes.getCardImage(new Card(Rank.R5,Suit.DIAMONDS)));
-        jLabelMesa5.setIcon(GestorImagenes.getCardImage(new Card(Rank.R6,Suit.SPADES)));
+        jLabelMesa1.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(0)));
+        jLabelMesa2.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(1)));
+        jLabelMesa3.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(2)));
+        jLabelMesa4.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(3)));
+        jLabelMesa5.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(4)));
 
     }
 
