@@ -61,35 +61,63 @@
                   <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="239" max="-2" attributes="0"/>
-                          <Component id="jPanel3" min="-2" max="-2" attributes="1"/>
-                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="Dolar1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="SaldoJ1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="162" max="32767" attributes="0"/>
-                          <Component id="EmpiezaPartida" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                           <Component id="jLabelMesa1" min="-2" pref="102" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jLabelMesa2" min="-2" pref="102" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                           <Component id="jLabelMesa3" min="-2" pref="102" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                           <Component id="jLabelMesa4" min="-2" pref="102" max="-2" attributes="0"/>
-                          <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jLabelMesa5" min="-2" pref="102" max="-2" attributes="0"/>
-                          <EmptySpace pref="300" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="Cowboy" min="-2" pref="134" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jPanel3" min="-2" max="-2" attributes="1"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace pref="186" max="32767" attributes="0"/>
+                                          <Component id="EmpiezaPartida" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="Dolar1" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="SaldoJ1" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                                  <Component id="NameJ1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="399" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="234" max="-2" attributes="0"/>
+                          <Component id="pinguino" min="-2" pref="147" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jPanel2" min="-2" max="-2" attributes="1"/>
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="Dolar2" min="-2" max="-2" attributes="0"/>
@@ -103,20 +131,19 @@
                   </Group>
                   <EmptySpace pref="355" max="32767" attributes="0"/>
               </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="491" max="-2" attributes="0"/>
-                  <Component id="NameJ1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="562" max="32767" attributes="0"/>
-              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Group type="102" attributes="0">
+                          <EmptySpace max="32767" attributes="1"/>
+                          <Component id="pinguino" min="-2" pref="159" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel2" max="32767" attributes="1"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
@@ -133,31 +160,38 @@
                       <Component id="jLabelMesa1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabelMesa4" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelMesa2" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelMesa5" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelMesa4" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelMesa3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelMesa5" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
-                                  <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="Dolar1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="SaldoJ1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                                  <Component id="EmpiezaPartida" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="SaldoJ1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="Dolar1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                                  <Component id="EmpiezaPartida" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="Cowboy" pref="165" max="32767" attributes="1"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jPanel3" min="-2" max="-2" attributes="1"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="NameJ1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="NameJ1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -309,6 +343,7 @@
         <Component class="javax.swing.JLabel" name="Dolar2">
           <Properties>
             <Property name="font" type="java.awt.Font" resourceKey="Dolar2.font"/>
+            <Property name="foreground" type="java.awt.Color" resourceKey="Dolar2.foreground"/>
             <Property name="text" type="java.lang.String" resourceKey="Dolar2.text"/>
             <Property name="name" type="java.lang.String" value="Dolar2" noResource="true"/>
           </Properties>
@@ -316,6 +351,7 @@
         <Component class="javax.swing.JLabel" name="SaldoJ2">
           <Properties>
             <Property name="font" type="java.awt.Font" resourceKey="SaldoJ2.font"/>
+            <Property name="foreground" type="java.awt.Color" resourceKey="SaldoJ2.foreground"/>
             <Property name="text" type="java.lang.String" resourceKey="SaldoJ2.text"/>
             <Property name="name" type="java.lang.String" value="SaldoJ2" noResource="true"/>
           </Properties>
@@ -323,6 +359,7 @@
         <Component class="javax.swing.JLabel" name="Dolar1">
           <Properties>
             <Property name="font" type="java.awt.Font" resourceKey="Dolar1.font"/>
+            <Property name="foreground" type="java.awt.Color" resourceKey="Dolar1.foreground"/>
             <Property name="text" type="java.lang.String" resourceKey="Dolar1.text"/>
             <Property name="name" type="java.lang.String" value="Dolar1" noResource="true"/>
           </Properties>
@@ -330,6 +367,7 @@
         <Component class="javax.swing.JLabel" name="SaldoJ1">
           <Properties>
             <Property name="font" type="java.awt.Font" resourceKey="SaldoJ1.font"/>
+            <Property name="foreground" type="java.awt.Color" resourceKey="SaldoJ1.foreground"/>
             <Property name="text" type="java.lang.String" resourceKey="SaldoJ1.text"/>
             <Property name="name" type="java.lang.String" value="SaldoJ1" noResource="true"/>
           </Properties>
@@ -348,6 +386,30 @@
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="EmpiezaPartidaMouseClicked"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="pinguino">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="pinguino.icon"/>
+            <Property name="text" type="java.lang.String" resourceKey="pinguino.text"/>
+            <Property name="name" type="java.lang.String" value="pinguino" noResource="true"/>
+          </Properties>
+          <BindingProperties>
+            <BindingProperty name="background" source="jPanel1" sourcePath="${background}" target="pinguino" targetPath="background" updateStrategy="0" immediately="false"/>
+          </BindingProperties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="jLabel2.text"/>
+            <Property name="name" type="java.lang.String" value="jLabel2" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Cowboy">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="Cowboy.icon"/>
+            <Property name="text" type="java.lang.String" resourceKey="Cowboy.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="Cowboy.toolTipText"/>
+            <Property name="name" type="java.lang.String" value="Cowboy" noResource="true"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
