@@ -27,6 +27,9 @@ public class Prueba extends javax.swing.JFrame {
         Mesa mesa;
         Jugador j1;
         Jugador j2;
+        String nameJ1;
+
+    
 
         private void init()
         {
@@ -49,37 +52,10 @@ public class Prueba extends javax.swing.JFrame {
         }
 
     /** Creates new form Prueba */
-    public Prueba() {
+    public Prueba(String name) {
         super();
+        nameJ1 = name;
         initComponents();
-        init();
-        
-        mesa = new Mesa();
-        mesa.iniciarTurno();
-        Mano comuni = new Mano(mesa.getCartasComunitarias());
-        comuni.print();
-        j1 = new Jugador(mesa.getJugador1());
-        Mano mano1 = j1.getMano();
-        mano1.print();
-        j2 = new Jugador(mesa.getJugador2());
-        Mano mano2 = j2.getMano();
-        mano2.print();
-
-
-
-        jLabelJ1C1.setIcon(GestorImagenes.getCardImage(mano1.getListacartas().get(0)));
-        jLabelJ1C2.setIcon(GestorImagenes.getCardImage(mano1.getListacartas().get(1)));
-
-        jLabelJ2C1.setIcon(GestorImagenes.getCardImage(mano2.getListacartas().get(0)));
-        jLabelJ2C2.setIcon(GestorImagenes.getCardImage(mano2.getListacartas().get(1)));
-
-
-        jLabelMesa1.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(0)));
-        jLabelMesa2.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(1)));
-        jLabelMesa3.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(2)));
-        jLabelMesa4.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(3)));
-        jLabelMesa5.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(4)));
-
     }
 
        
@@ -106,6 +82,13 @@ public class Prueba extends javax.swing.JFrame {
         jLabelMesa2 = new javax.swing.JLabel();
         jLabelMesa4 = new javax.swing.JLabel();
         jLabelMesa3 = new javax.swing.JLabel();
+        NameJ1 = new javax.swing.JLabel();
+        Dolar2 = new javax.swing.JLabel();
+        SaldoJ2 = new javax.swing.JLabel();
+        Dolar1 = new javax.swing.JLabel();
+        SaldoJ1 = new javax.swing.JLabel();
+        NameJ2 = new javax.swing.JLabel();
+        EmpiezaPartida = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(poker.PokerApp.class).getContext().getResourceMap(Prueba.class);
@@ -203,56 +186,122 @@ public class Prueba extends javax.swing.JFrame {
 
         jLabelMesa3.setIcon(resourceMap.getIcon("jLabelMesa3.icon")); // NOI18N
         jLabelMesa3.setText(resourceMap.getString("jLabelMesa3.text")); // NOI18N
-        jLabelMesa3.setMaximumSize(new java.awt.Dimension(101, 137));
-        jLabelMesa3.setMinimumSize(new java.awt.Dimension(101, 137));
         jLabelMesa3.setName("jLabelMesa3"); // NOI18N
-        jLabelMesa3.setPreferredSize(new java.awt.Dimension(101, 137));
+
+        NameJ1.setText(resourceMap.getString("NameJ1.text")); // NOI18N
+        NameJ1.setName("NameJ1"); // NOI18N
+
+        Dolar2.setFont(resourceMap.getFont("Dolar2.font")); // NOI18N
+        Dolar2.setText(resourceMap.getString("Dolar2.text")); // NOI18N
+        Dolar2.setName("Dolar2"); // NOI18N
+
+        SaldoJ2.setFont(resourceMap.getFont("SaldoJ2.font")); // NOI18N
+        SaldoJ2.setText(resourceMap.getString("SaldoJ2.text")); // NOI18N
+        SaldoJ2.setName("SaldoJ2"); // NOI18N
+
+        Dolar1.setFont(resourceMap.getFont("Dolar1.font")); // NOI18N
+        Dolar1.setText(resourceMap.getString("Dolar1.text")); // NOI18N
+        Dolar1.setName("Dolar1"); // NOI18N
+
+        SaldoJ1.setFont(resourceMap.getFont("SaldoJ1.font")); // NOI18N
+        SaldoJ1.setText(resourceMap.getString("SaldoJ1.text")); // NOI18N
+        SaldoJ1.setName("SaldoJ1"); // NOI18N
+
+        NameJ2.setText(resourceMap.getString("NameJ2.text")); // NOI18N
+        NameJ2.setName("NameJ2"); // NOI18N
+
+        EmpiezaPartida.setText(resourceMap.getString("EmpiezaPartida.text")); // NOI18N
+        EmpiezaPartida.setName("EmpiezaPartida"); // NOI18N
+        EmpiezaPartida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EmpiezaPartidaMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(143, 143, 143)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(239, 239, 239)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addComponent(Dolar1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SaldoJ1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
+                        .addComponent(EmpiezaPartida)
+                        .addGap(132, 132, 132))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(jLabelMesa1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelMesa2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelMesa3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelMesa4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelMesa5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(300, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(399, 399, 399)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(Dolar2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SaldoJ2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(73, 73, 73)
-                                .addComponent(jLabelMesa1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabelMesa2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabelMesa3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabelMesa4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabelMesa5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(239, 239, 239)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(282, Short.MAX_VALUE))
+                        .addGap(496, 496, 496)
+                        .addComponent(NameJ2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(355, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(491, 491, 491)
+                .addComponent(NameJ1)
+                .addContainerGap(562, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(SaldoJ2)
+                            .addComponent(Dolar2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(NameJ2)
+                .addGap(57, 57, 57)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelMesa1)
-                    .addComponent(jLabelMesa5)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelMesa4)
                             .addComponent(jLabelMesa2)
-                            .addComponent(jLabelMesa3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(84, 84, 84)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(66, 66, 66))
+                            .addComponent(jLabelMesa3)
+                            .addComponent(jLabelMesa5))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(84, 84, 84)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(113, 113, 113)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(SaldoJ1)
+                                    .addComponent(Dolar1))
+                                .addGap(60, 60, 60)
+                                .addComponent(EmpiezaPartida)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(NameJ1)
+                .addGap(41, 41, 41))
         );
 
         jLabelMesa5.getAccessibleContext().setAccessibleName(resourceMap.getString("jLabelMesa5.AccessibleContext.accessibleName")); // NOI18N
@@ -273,13 +322,56 @@ public class Prueba extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void EmpiezaPartidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpiezaPartidaMouseClicked
+
+        
+        EmpiezaPartida.setVisible(false);
+        NameJ1.setText(nameJ1);
+        NameJ2.setText("pepito");
+
+        init();
+
+        mesa = new Mesa();
+        mesa.iniciarTurno();
+        Mano comuni = new Mano(mesa.getCartasComunitarias());
+        comuni.print();
+        j1 = new Jugador(mesa.getJugador1());
+        Mano mano1 = j1.getMano();
+        mano1.print();
+        j2 = new Jugador(mesa.getJugador2());
+        Mano mano2 = j2.getMano();
+        mano2.print();
+
+
+
+        jLabelJ1C1.setIcon(GestorImagenes.getCardImage(mano1.getListacartas().get(0)));
+        jLabelJ1C2.setIcon(GestorImagenes.getCardImage(mano1.getListacartas().get(1)));
+
+        jLabelJ2C1.setIcon(GestorImagenes.getCardImage(mano2.getListacartas().get(0)));
+        jLabelJ2C2.setIcon(GestorImagenes.getCardImage(mano2.getListacartas().get(1)));
+
+
+        jLabelMesa1.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(0)));
+        jLabelMesa2.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(1)));
+        jLabelMesa3.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(2)));
+        jLabelMesa4.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(3)));
+        jLabelMesa5.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(4)));
+
+
+
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EmpiezaPartidaMouseClicked
+
     /**
     * @param args the command line arguments
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               new Prueba().setVisible(true);
+               new Prueba("juan").setVisible(true);
                 
 
             }
@@ -287,6 +379,13 @@ public class Prueba extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Dolar1;
+    private javax.swing.JLabel Dolar2;
+    private javax.swing.JToggleButton EmpiezaPartida;
+    private javax.swing.JLabel NameJ1;
+    private javax.swing.JLabel NameJ2;
+    private javax.swing.JLabel SaldoJ1;
+    private javax.swing.JLabel SaldoJ2;
     private javax.swing.JLabel jLabelJ1C1;
     private javax.swing.JLabel jLabelJ1C2;
     private javax.swing.JLabel jLabelJ2C1;

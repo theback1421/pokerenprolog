@@ -192,7 +192,7 @@ public class Entrada extends javax.swing.JFrame {
            jLabel1.setText("Nick incorrecto");
        }
        else{
-       Prueba p = new Prueba();
+       Prueba p = new Prueba(nick);
        p.setVisible(true);
        this.setVisible(false);
        }
