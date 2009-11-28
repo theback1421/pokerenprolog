@@ -19,8 +19,11 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        JPL.init();
 
+        String argus[] = JPL.getDefaultInitArgs();
+        for(int i=0; i<argus.length; i++)
+            System.out.println(argus[i]);
+        
         Term consult_arg[] = {
                 new Atom( "poker.pl" )
         };
@@ -29,30 +32,12 @@ public class Main {
                         "consult",
                         consult_arg );
 
-        boolean consulted = consult_query.query();
+        boolean consulted = consult_query.hasSolution();
 
         if ( !consulted ){
                 System.err.println( "Consult failed" );
                 System.exit( 1 );
         }
-
-        Card c1 = new Card(Rank.ACE,Suit.SPADES);
-        Card c2 = new Card(Rank.ACE,Suit.CLUBS);
-        Card c3 = new Card(Rank.R3,Suit.HEARTS);
-
-        ArrayList<Card> listaCartas = new ArrayList<Card>();
-        listaCartas.add(c1);
-        listaCartas.add(c2);
-        listaCartas.add(c3);
-
-        Mano m = new Mano(listaCartas);
-
-
-        System.out.println("Valor de la carta más alta = "+m.valorCartaMasAlta());
-
-        Mano parejita = new Mano(m.Trio());
-        parejita.print();
-
 
         Mesa mesa = new Mesa();
         mesa.iniciarTurno();

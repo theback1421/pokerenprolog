@@ -26,8 +26,6 @@ card(R,S) :- rank(R1), suit(S1), member(R,R1),member(S,S1).
 %%  CREAMOS LA BARAJA USANDO EL PRODUCTO CARTESIANO
 
 
-
-
 baraja:- 
         rank(M),
         suit(N),
@@ -46,13 +44,27 @@ miembros(X, [_|R]):- member(X, R).
 
 
 %%      COGER CARTA DE LA BARAJA Y BORRARLA DE ELLA
+cogerCartaAleatoria(NumAleatorio, Carta):-
+        inicial_baraja(R),
+	nth0(NumAleatorio,R,Carta),
+        %writeln(Carta),
+        select(Carta,R,RestoBaraja),
+        retractall(inicial_baraja(_)),
+        assert(inicial_baraja(RestoBaraja)).
+
+longitud(L):-
+	inicial_baraja(R),
+	length(R,L).
+
 
 cogerCartaAleatoria(Carta):-
         inicial_baraja(R),
         length(R,Longitud),
         %writeln(Longitud),
         random(0,Longitud,Carta1),
+        %writeln(Carta1),
         nth0(Carta1,R,Carta),
+        %writeln(Carta),
         select(Carta,R,RestoBaraja),
         retractall(inicial_baraja(_)),
         assert(inicial_baraja(RestoBaraja)).
@@ -75,8 +87,6 @@ jugadorCarta(Jugador,[Carta1,Carta2]):-
         retractall(carta_jugador(Jugador,[Carta1,Carta2])),
         assert(carta_jugador(Jugador,[Carta1,Carta2])).
 %%      COLOCAMOS 5 CARTAS EN LA MESA
-
-
 
 mesa :- retractall(cartasMesa(_)),
 %        writeln('********** MESA DE LA PARTIDA ***************'),

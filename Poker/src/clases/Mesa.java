@@ -68,7 +68,7 @@ public class Mesa {
         q.hasSolution();
         q = */new Query("baraja");
         q.hasSolution();
-        q = new Query("mesa");
+        /*q = new Query("mesa");
         q.hasSolution();
         q = new Query("cartasMesa(ListaProlog)");
         if(q.hasSolution())
@@ -77,23 +77,14 @@ public class Mesa {
             if( null != solution ){
 		listaProlog = ((Term)solution.get( "ListaProlog" )).toString();
             }
-        }
+        }*/
 
-        cartasComunitarias = Mano.listaCartasProlog(listaProlog);
+        
+        cartasComunitarias = cogerCartasAleatorias(5);
 
-        ArrayList<Card> manoj1 = new ArrayList<Card>();
+        jugador1.setMano(new Mano(cogerCartasAleatorias(2)));
 
-        manoj1.add(cogerCartaAleatoria());
-        manoj1.add(cogerCartaAleatoria());
-
-        jugador1.setMano(new Mano(manoj1));
-
-        ArrayList<Card> manoj2 = new ArrayList<Card>();
-
-        manoj2.add(cogerCartaAleatoria());
-        manoj2.add(cogerCartaAleatoria());
-
-        jugador2.setMano(new Mano(manoj2));
+        jugador2.setMano(new Mano(cogerCartasAleatorias(2)));
 
         if( turno % 5 == 0 )
         {
@@ -103,13 +94,34 @@ public class Mesa {
         q.close();
     }
 
+    private ArrayList<Card> cogerCartasAleatorias(int numCartas)
+    {
+        ArrayList<Card> res = new ArrayList<Card>();
+        for(int i=0; i<numCartas; i++) res.add(cogerCartaAleatoria());
+
+        return res;
+    }
+
     private Card cogerCartaAleatoria()
     {
         String cartaProlog = null;
+        String slongitud = null;
+        int longitud=0;
         java.util.Hashtable solution=null;
 
         Variable Carta = new Variable("Carta");
-        Query q = new Query("cogerCartaAleatoria",new Term[] {Carta});
+        Variable L = new Variable("L");
+        Query q = new Query("longitud",new Term[] {L});
+        if(q.hasSolution())
+        {
+            solution = q.oneSolution();
+            if( null != solution ){
+		slongitud = ((Term)solution.get( "L" )).toString();
+                longitud = Integer.parseInt(slongitud);
+            }
+        }
+        int numAleatorio = (int) (Math.random()*(double)longitud);
+        q = new Query("cogerCartaAleatoria("+numAleatorio+",Carta)");
         if(q.hasSolution())
         {
             solution = q.oneSolution();
