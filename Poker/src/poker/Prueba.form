@@ -383,6 +383,9 @@
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="EmpiezaPartidaMouseClicked"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="Prueba_EmpiezaPartida"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="pinguino">
           <Properties>

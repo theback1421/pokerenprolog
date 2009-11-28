@@ -38,16 +38,20 @@ public class Main {
                 System.err.println( "Consult failed" );
                 System.exit( 1 );
         }
+        Query q = new Query("baraja");
+        q.hasSolution();
 
         Mesa mesa = new Mesa();
+        Mano m = new Mano(mesa.cogerCartasAleatorias(52));
+        m.print();
+/*        Mesa mesa = new Mesa();
         mesa.iniciarTurno();
         Mano comuni = new Mano(mesa.getCartasComunitarias());
         comuni.print();
         Jugador j1 = new Jugador(mesa.getJugador1());
         j1.print();
         Jugador j2 = new Jugador(mesa.getJugador2());
-        j2.print();
-
+        j2.print();*/
     }
 
 

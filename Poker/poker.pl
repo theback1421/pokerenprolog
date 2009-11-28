@@ -47,7 +47,6 @@ miembros(X, [_|R]):- member(X, R).
 cogerCartaAleatoria(NumAleatorio, Carta):-
         inicial_baraja(R),
 	nth0(NumAleatorio,R,Carta),
-        %writeln(Carta),
         select(Carta,R,RestoBaraja),
         retractall(inicial_baraja(_)),
         assert(inicial_baraja(RestoBaraja)).
@@ -64,7 +63,7 @@ cogerCartaAleatoria(Carta):-
         random(0,Longitud,Carta1),
         %writeln(Carta1),
         nth0(Carta1,R,Carta),
-        %writeln(Carta),
+        writeln(Carta),
         select(Carta,R,RestoBaraja),
         retractall(inicial_baraja(_)),
         assert(inicial_baraja(RestoBaraja)).

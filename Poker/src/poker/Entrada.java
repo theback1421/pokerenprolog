@@ -237,7 +237,7 @@ public void Sonar(String nombrefichero){
         }
 
         sonido=Applet.newAudioClip(nombre);
-        sonido.play();
+        //sonido.play();
 
     }
 

@@ -62,23 +62,8 @@ public class Mesa {
     }
     public void iniciarTurno()
     {
-        String listaProlog = null;
-        java.util.Hashtable solution=null;
-        Query q = /*new Query("seed("+( (int) Math.random())+")");
+        Query q = new Query("baraja");
         q.hasSolution();
-        q = */new Query("baraja");
-        q.hasSolution();
-        /*q = new Query("mesa");
-        q.hasSolution();
-        q = new Query("cartasMesa(ListaProlog)");
-        if(q.hasSolution())
-        {
-            solution = q.oneSolution();
-            if( null != solution ){
-		listaProlog = ((Term)solution.get( "ListaProlog" )).toString();
-            }
-        }*/
-
         
         cartasComunitarias = cogerCartasAleatorias(5);
 
@@ -94,7 +79,7 @@ public class Mesa {
         q.close();
     }
 
-    private ArrayList<Card> cogerCartasAleatorias(int numCartas)
+    public ArrayList<Card> cogerCartasAleatorias(int numCartas)
     {
         ArrayList<Card> res = new ArrayList<Card>();
         for(int i=0; i<numCartas; i++) res.add(cogerCartaAleatoria());
@@ -109,26 +94,19 @@ public class Mesa {
         int longitud=0;
         java.util.Hashtable solution=null;
 
-        Variable Carta = new Variable("Carta");
         Variable L = new Variable("L");
         Query q = new Query("longitud",new Term[] {L});
-        if(q.hasSolution())
-        {
-            solution = q.oneSolution();
-            if( null != solution ){
-		slongitud = ((Term)solution.get( "L" )).toString();
-                longitud = Integer.parseInt(slongitud);
-            }
+        solution = q.oneSolution();
+        if( null != solution ){
+            slongitud = ((Term)solution.get( "L" )).toString();
+            longitud = Integer.parseInt(slongitud);
         }
-        int numAleatorio = (int) (Math.random()*(double)longitud);
-        q = new Query("cogerCartaAleatoria("+numAleatorio+",Carta)");
-        if(q.hasSolution())
-        {
-            solution = q.oneSolution();
-            if( null != solution ){
-		cartaProlog = ((Term)solution.get( "Carta" )).toString();
-                return new Card(cartaProlog);
-            }
+        int numAleatorio = (int) (Math.random()*(double)(longitud)-0.001);
+
+        solution = q.oneSolution("cogerCartaAleatoria("+numAleatorio+",Carta)");
+        if( null != solution ){
+            cartaProlog = ((Term)solution.get( "Carta" )).toString();
+            return new Card(cartaProlog);
         }
         return new Card(Rank.R1, Suit.NOSUIT);
     }
