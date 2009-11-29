@@ -115,8 +115,8 @@ public class Mesa {
         ArrayList<Card> lista = new ArrayList<Card>();
         lista.addAll(cartasComunitarias);
         lista.addAll(jugador1.getMano().getListacartas());
-System.out.println("evaluarMano("+jugador1.getNombre()+", "+Mano.arrayCartasProlog(lista)+")");
-        Query q = new Query("evaluarMano("+jugador1.getNombre()+", "+Mano.arrayCartasProlog(lista)+")");
+System.out.println("evaluar_mano("+jugador1.getNombre()+", "+Mano.arrayCartasProlog(lista)+")");
+        Query q = new Query("evaluar_mano("+jugador1.getNombre()+", "+Mano.arrayCartasProlog(lista)+")");
         //Term t = ;
         //jpl.Util.listToTermArray(new Term(Mano.arrayCartasProlog(lista)));
         System.out.println(q.toString());
