@@ -56,10 +56,6 @@ public class Mesa {
         return jugador2;
     }
 
-    private void baraja()
-    {
-
-    }
     public void iniciarTurno()
     {
         Query q = new Query("baraja");
@@ -101,7 +97,7 @@ public class Mesa {
             slongitud = ((Term)solution.get( "L" )).toString();
             longitud = Integer.parseInt(slongitud);
         }
-        int numAleatorio = (int) (Math.random()*(double)(longitud)-0.001);
+        int numAleatorio = (int) (Math.random()*0.9999999*(double)(longitud));
 
         solution = q.oneSolution("cogerCartaAleatoria("+numAleatorio+",Carta)");
         if( null != solution ){
@@ -111,8 +107,27 @@ public class Mesa {
         return new Card(Rank.R1, Suit.NOSUIT);
     }
 
-    public boolean gana()
+    public boolean ganaJugador1()
     {
+        java.util.Hashtable solution=null;
+        int puntos1;
+
+        ArrayList<Card> lista = new ArrayList<Card>();
+        lista.addAll(cartasComunitarias);
+        lista.addAll(jugador1.getMano().getListacartas());
+System.out.println("evaluarMano("+jugador1.getNombre()+", "+Mano.arrayCartasProlog(lista)+")");
+        Query q = new Query("evaluarMano("+jugador1.getNombre()+", "+Mano.arrayCartasProlog(lista)+")");
+        //Term t = ;
+        //jpl.Util.listToTermArray(new Term(Mano.arrayCartasProlog(lista)));
+        System.out.println(q.toString());
+        q.hasSolution();
+        q = new Query("puntosJugador("+jugador1.getNombre()+", Puntos, Jugada)");
+        System.out.println(q.toString());
+        q.oneSolution();
+        if( null != solution ){
+            puntos1 = Integer.parseInt(((Term)solution.get( "Puntos" )).toString());
+            System.out.println("Jugador: "+jugador1.getNombre()+"   tiene "+puntos1+" puntos");
+        }
         return true;
     }
 

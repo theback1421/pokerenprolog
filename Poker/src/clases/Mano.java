@@ -59,7 +59,7 @@ public class Mano {
         this.listacartas = listacartas;
     }
 
-    static private String arrayCartasProlog(ArrayList<Card> lista)
+    static public String arrayCartasProlog(ArrayList<Card> lista)
     {
         ListIterator<Card> it = lista.listIterator();
         String res = "[";
@@ -67,7 +67,7 @@ public class Mano {
         boolean primeraCarta = true;
         while(it.hasNext())
         {
-            if(!primeraCarta) res = res+",";
+            if(!primeraCarta) res = res+", ";
             c = it.next();
             res = res+"card("+c.getStringRank()+", "+c.getStringSuit()+")";
             primeraCarta = false;
@@ -95,11 +95,13 @@ public class Mano {
         String res="-1";
         Query q = new Query("highestHand("+arrayCartasProlog(listacartas)+",Result)");
         System.out.println("highestHand("+arrayCartasProlog(listacartas)+",Result)   "+q.hasSolution());
+
         java.util.Hashtable solution =	q.oneSolution();
         if( null != solution ){
 		res = ((Term)solution.get( "Result" )).toString();
 	    }
         q.close();
+        System.out.println(q.toString()+"      "+res);
         return Integer.parseInt(res);
     }
     public ArrayList<Card> Pareja()

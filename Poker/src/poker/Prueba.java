@@ -405,6 +405,8 @@ public class Prueba extends javax.swing.JFrame {
         jLabelMesa4.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(3)));
         jLabelMesa5.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(4)));
 
+        mesa.ganaJugador1();
+
 
 
 
