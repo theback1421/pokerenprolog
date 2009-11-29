@@ -93,6 +93,9 @@ public class Prueba extends javax.swing.JFrame {
         pinguino = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         Cowboy = new javax.swing.JLabel();
+        StringTotalBote = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        DolarBote = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(poker.PokerApp.class).getContext().getResourceMap(Prueba.class);
@@ -241,6 +244,21 @@ public class Prueba extends javax.swing.JFrame {
         Cowboy.setToolTipText(resourceMap.getString("Cowboy.toolTipText")); // NOI18N
         Cowboy.setName("Cowboy"); // NOI18N
 
+        StringTotalBote.setFont(resourceMap.getFont("StringTotalBote.font")); // NOI18N
+        StringTotalBote.setForeground(resourceMap.getColor("StringTotalBote.foreground")); // NOI18N
+        StringTotalBote.setText(resourceMap.getString("StringTotalBote.text")); // NOI18N
+        StringTotalBote.setName("StringTotalBote"); // NOI18N
+
+        jLabel3.setFont(resourceMap.getFont("jLabel3.font")); // NOI18N
+        jLabel3.setForeground(resourceMap.getColor("jLabel3.foreground")); // NOI18N
+        jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
+        jLabel3.setName("jLabel3"); // NOI18N
+
+        DolarBote.setFont(resourceMap.getFont("DolarBote.font")); // NOI18N
+        DolarBote.setForeground(resourceMap.getColor("DolarBote.foreground")); // NOI18N
+        DolarBote.setText(resourceMap.getString("DolarBote.text")); // NOI18N
+        DolarBote.setName("DolarBote"); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -259,7 +277,14 @@ public class Prueba extends javax.swing.JFrame {
                         .addComponent(jLabelMesa4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabelMesa5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addGap(47, 47, 47)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(DolarBote)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3))
+                            .addComponent(StringTotalBote))
+                        .addGap(65, 65, 65))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -307,27 +332,36 @@ public class Prueba extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pinguino, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Dolar2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SaldoJ2))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(NameJ2)
-                .addGap(57, 57, 57)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelMesa3)
-                    .addComponent(jLabelMesa2)
-                    .addComponent(jLabelMesa1)
-                    .addComponent(jLabelMesa4)
-                    .addComponent(jLabelMesa5))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pinguino, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Dolar2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(SaldoJ2))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(NameJ2)
+                        .addGap(57, 57, 57)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelMesa3)
+                            .addComponent(jLabelMesa2)
+                            .addComponent(jLabelMesa1)
+                            .addComponent(jLabelMesa4)
+                            .addComponent(jLabelMesa5)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(261, 261, 261)
+                        .addComponent(StringTotalBote)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(DolarBote)
+                            .addComponent(jLabel3))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -432,12 +466,15 @@ public class Prueba extends javax.swing.JFrame {
     private javax.swing.JLabel Cowboy;
     private javax.swing.JLabel Dolar1;
     private javax.swing.JLabel Dolar2;
+    private javax.swing.JLabel DolarBote;
     private javax.swing.JToggleButton EmpiezaPartida;
     private javax.swing.JLabel NameJ1;
     private javax.swing.JLabel NameJ2;
     private javax.swing.JLabel SaldoJ1;
     private javax.swing.JLabel SaldoJ2;
+    private javax.swing.JLabel StringTotalBote;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelJ1C1;
     private javax.swing.JLabel jLabelJ1C2;
     private javax.swing.JLabel jLabelJ2C1;
