@@ -50,7 +50,15 @@ public class Main {
         j1.print();
         Jugador j2 = new Jugador(mesa.getJugador2());
         j2.print();
-        mesa.ganaJugador1();
+
+        ArrayList<Puntuacion> puntuaciones = mesa.puntuacionJugadores();
+        ListIterator it = puntuaciones.listIterator();
+        Puntuacion p;
+        while(it.hasNext())
+        {
+            p = (Puntuacion) it.next();
+            System.out.println("El jugador "+p.getNombreJugador()+" tiene "+p.getPuntuacion()+ " puntos");
+        }
     }
 
 

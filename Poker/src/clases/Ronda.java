@@ -10,5 +10,5 @@ package clases;
  * @author Ramon
  */
 public enum Ronda {
-    PREFLOP, FLOP, TURN, RIVER
+    PREFLOP, FLOP, TURN, RIVER, FIN
 }

@@ -10,6 +10,9 @@
  */
 
 package poker;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import clases.*;
 import clases.Rank;
@@ -56,6 +59,53 @@ public class Prueba extends javax.swing.JFrame {
         super();
         nameJ1 = name;
         initComponents();
+        mesa = new Mesa();
+        mesa.iniciarTurno();
+        Mano comuni = new Mano(mesa.getCartasComunitarias());
+        comuni.print();
+        j1 = new Jugador(mesa.getJugador1());
+        Mano mano1 = j1.getMano();
+        mano1.print();
+        j2 = new Jugador(mesa.getJugador2());
+        Mano mano2 = j2.getMano();
+        mano2.print();
+
+
+
+        jLabelJ1C1.setIcon(GestorImagenes.getCardImage(mano1.getListacartas().get(0)));
+        jLabelJ1C2.setIcon(GestorImagenes.getCardImage(mano1.getListacartas().get(1)));
+
+        while(!mesa.ganador() && mesa.getRonda() != Ronda.FIN)
+        {
+            try {
+                System.in.read();
+            } catch (IOException ex) {
+                Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if(mesa.getRonda() == Ronda.PREFLOP)
+                mesa.preflop();
+            else if(mesa.getRonda() == Ronda.FLOP)
+            {
+                mesa.flop();
+                jLabelMesa1.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(0)));
+                jLabelMesa2.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(1)));
+                jLabelMesa3.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(2)));
+            }
+            else if(mesa.getRonda() == Ronda.TURN)
+            {
+                mesa.turn();
+                jLabelMesa4.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(3)));
+            }
+            else if(mesa.getRonda() == Ronda.RIVER)
+            {
+                mesa.river();
+                jLabelMesa5.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(4)));
+            }
+        }
+
+        jLabelJ2C1.setIcon(GestorImagenes.getCardImage(mano2.getListacartas().get(0)));
+        jLabelJ2C2.setIcon(GestorImagenes.getCardImage(mano2.getListacartas().get(1)));
+
     }
 
        
@@ -413,34 +463,7 @@ public class Prueba extends javax.swing.JFrame {
 
         init();
 
-        mesa = new Mesa();
-        mesa.iniciarTurno();
-        Mano comuni = new Mano(mesa.getCartasComunitarias());
-        comuni.print();
-        j1 = new Jugador(mesa.getJugador1());
-        Mano mano1 = j1.getMano();
-        mano1.print();
-        j2 = new Jugador(mesa.getJugador2());
-        Mano mano2 = j2.getMano();
-        mano2.print();
-
-
-
-        jLabelJ1C1.setIcon(GestorImagenes.getCardImage(mano1.getListacartas().get(0)));
-        jLabelJ1C2.setIcon(GestorImagenes.getCardImage(mano1.getListacartas().get(1)));
-
-        jLabelJ2C1.setIcon(GestorImagenes.getCardImage(mano2.getListacartas().get(0)));
-        jLabelJ2C2.setIcon(GestorImagenes.getCardImage(mano2.getListacartas().get(1)));
-
-
-        jLabelMesa1.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(0)));
-        jLabelMesa2.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(1)));
-        jLabelMesa3.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(2)));
-        jLabelMesa4.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(3)));
-        jLabelMesa5.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(4)));
-
-        mesa.ganaJugador1();
-
+        
 
 
 

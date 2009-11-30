@@ -73,6 +73,8 @@ public class Mesa {
             ciegaGrande *= 2;
         }
         q.close();
+
+        ronda = Ronda.PREFLOP;
     }
 
     public ArrayList<Card> cogerCartasAleatorias(int numCartas)
@@ -107,29 +109,36 @@ public class Mesa {
         return new Card(Rank.R1, Suit.NOSUIT);
     }
 
-    public boolean ganaJugador1()
+    public ArrayList<Puntuacion> puntuacionJugadores()
     {
-        java.util.Hashtable solution=null;
-        int puntos1;
+        ArrayList<Puntuacion> puntuaciones = new ArrayList<Puntuacion>();
 
-        ArrayList<Card> lista = new ArrayList<Card>();
-        lista.addAll(cartasComunitarias);
-        lista.addAll(jugador1.getMano().getListacartas());
-System.out.println("evaluar_mano("+jugador1.getNombre()+", "+Mano.arrayCartasProlog(lista)+")");
-        Query q = new Query("evaluar_mano("+jugador1.getNombre()+", "+Mano.arrayCartasProlog(lista)+")");
-        //Term t = ;
-        //jpl.Util.listToTermArray(new Term(Mano.arrayCartasProlog(lista)));
-        System.out.println(q.toString());
-        q.hasSolution();
-        q = new Query("puntosJugador("+jugador1.getNombre()+", Puntos, Jugada)");
-        System.out.println(q.toString());
-        q.oneSolution();
-        if( null != solution ){
-            puntos1 = Integer.parseInt(((Term)solution.get( "Puntos" )).toString());
-            System.out.println("Jugador: "+jugador1.getNombre()+"   tiene "+puntos1+" puntos");
+        Jugador j;
+        java.util.Hashtable solution=null;
+        int puntos=0;
+
+        for(int i=0; i<2; i++)
+        {
+            if(i==0) j = jugador1;
+            else j = jugador2;
+
+            ArrayList<Card> lista;
+
+            lista = new ArrayList<Card>();
+            lista.addAll(cartasComunitarias);
+            lista.addAll(j.getMano().getListacartas());
+            Query q = new Query("evaluar_mano("+j.getNombre()+", "+Mano.arrayCartasProlog(lista)+")");
+            q.hasSolution();
+            q = new Query("puntosJugador("+j.getNombre()+", Puntos, Jugada)");
+            solution = q.oneSolution();
+            if( null != solution ){
+                puntos = Integer.parseInt(((Term)solution.get( "Puntos" )).toString());
+            }
+            puntuaciones.add(new Puntuacion(j.getNombre(),puntos));
         }
-        return true;
+        return puntuaciones;
     }
+
 
     public void preflop()
     {
@@ -143,6 +152,8 @@ System.out.println("evaluar_mano("+jugador1.getNombre()+", "+Mano.arrayCartasPro
             jugador2.jugar();
             jugador1.jugar();
         }
+
+        ronda = Ronda.FLOP;
     }
 
     public void flop()
@@ -157,6 +168,8 @@ System.out.println("evaluar_mano("+jugador1.getNombre()+", "+Mano.arrayCartasPro
             jugador1.jugar();
             jugador2.jugar();
         }
+
+        ronda = Ronda.TURN;
     }
 
     public void turn()
@@ -171,6 +184,8 @@ System.out.println("evaluar_mano("+jugador1.getNombre()+", "+Mano.arrayCartasPro
             jugador1.jugar();
             jugador2.jugar();
         }
+
+        ronda = Ronda.RIVER;
     }
 
     public void river()
@@ -185,11 +200,25 @@ System.out.println("evaluar_mano("+jugador1.getNombre()+", "+Mano.arrayCartasPro
             jugador1.jugar();
             jugador2.jugar();
         }
+
+        ronda = Ronda.FIN;
     }
 
     public ArrayList<Card> getCartasComunitarias()
     {
         return cartasComunitarias;
+    }
+
+    /**
+     * @return the ronda
+     */
+    public Ronda getRonda() {
+        return ronda;
+    }
+
+    public boolean ganador() {
+        if(jugador1.getOpcion() == Opcion.FOLD || jugador2.getOpcion() == Opcion.FOLD ) return true;
+        else return false;
     }
 
 

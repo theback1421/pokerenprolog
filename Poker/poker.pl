@@ -244,18 +244,12 @@ obtenerGanador(Ganador):-
         %writeln(Lista),
         evaluarGanador(Lista, Ganador).
 
-
 evaluar_mano(Jugador, Hand1) :-
-
-
-        
+   %     append(Hand1, Comunitarias, Todas),
              (   three_of_a_kind(Hand1,_),write(Jugador),writeln(' tiene trio'),highestHand(threeofakind, Value),
                                  assert(puntosJugador(Jugador,Value,'trio')),!);
-       
-        
-         (   one_pair(Hand1,_,R),highestHand(pair,R ,Value),write(Jugador),writeln(' tiene pareja'),assert(puntosJugador(Jugador,Value,'pareja')),!);
-        
-          ( highestHand(Hand1, Value), assert(puntosJugador(Jugador,Value,'carta alta')),write(Jugador),writeln(' tiene carta alta'),!).
+             (   one_pair(Hand1,_,R),highestHand(pair,R ,Value),write(Jugador),writeln(' tiene pareja'),assert(puntosJugador(Jugador,Value,'pareja')),!);
+             ( highestHand(Hand1, Value), assert(puntosJugador(Jugador,Value,'carta alta')),write(Jugador),writeln(' tiene carta alta'),!).
         
         
 

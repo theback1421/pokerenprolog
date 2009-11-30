@@ -34,16 +34,18 @@ public class Jugador {
     {
         this.nombre=nombre;
         this.mano=new Mano();
+        this.opcion = Opcion.CHECK;
     }
     public Jugador(String nombre, Mano mano)
     {
         this.nombre=nombre;
         this.mano=mano;
+        this.opcion = Opcion.CHECK;
     }
 
     public void jugar()
     {
-
+        opcion = Opcion.CHECK;
     }
 
     public void setDealer()
@@ -89,19 +91,19 @@ public class Jugador {
         this.mano = mano;
     }
 
-    private int getDinero() {
+    public int getDinero() {
         return dinero;
     }
 
-    private int getApuesta() {
+    public int getApuesta() {
         return apuesta;
     }
 
-    private Opcion getOpcion() {
+    public Opcion getOpcion() {
         return opcion;
     }
 
-    private boolean getIsDealer() {
+    public boolean getIsDealer() {
         return isDealer;
     }
 
@@ -109,6 +111,13 @@ public class Jugador {
         System.out.println("Nombre: "+nombre);
         mano.print();
         System.out.print("Dinero = "+dinero+"\nApuesta = "+apuesta+"\n¿Es Dealer? := "+isDealer+"\n");
+    }
+
+    /**
+     * @param opcion the opcion to set
+     */
+    public void setOpcion(Opcion opcion) {
+        this.opcion = opcion;
     }
 
 
