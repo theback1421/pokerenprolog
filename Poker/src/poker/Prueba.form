@@ -28,7 +28,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <Component id="jPanel1" min="-2" pref="1100" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -58,10 +58,9 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="240" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                           <Component id="jLabelMesa1" min="-2" pref="102" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jLabelMesa2" min="-2" pref="102" max="-2" attributes="0"/>
@@ -73,45 +72,42 @@
                           <Component id="jLabelMesa5" min="-2" pref="102" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="StringTotalBote" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="DolarBote" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Bote" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="StringTotalBote" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="Cowboy" min="-2" pref="134" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="Cowboy" min="-2" pref="134" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jPanel3" min="-2" max="-2" attributes="1"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <EmptySpace pref="186" max="32767" attributes="0"/>
-                                          <Component id="EmpiezaPartida" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="Dolar1" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="SaldoJ1" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
                                       </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="ConfirmarApuesta" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="Apuesta" min="-2" pref="76" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="ConfirmarPasar" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace min="-2" pref="252" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
@@ -121,6 +117,7 @@
                           </Group>
                       </Group>
                   </Group>
+                  <EmptySpace min="-2" pref="217" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -140,6 +137,11 @@
                       </Group>
                   </Group>
                   <EmptySpace pref="376" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace pref="783" max="32767" attributes="0"/>
+                  <Component id="Mensaje" min="-2" pref="383" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -182,7 +184,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="DolarBote" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Bote" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -194,23 +196,31 @@
                               <Component id="Dolar1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="SaldoJ1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                          <Component id="EmpiezaPartida" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="ConfirmarApuesta" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Apuesta" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="ConfirmarPasar" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="Cowboy" pref="165" max="32767" attributes="1"/>
+                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jPanel3" min="-2" max="-2" attributes="1"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="NameJ1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                  <Component id="Mensaje" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -397,18 +407,6 @@
             <Property name="name" type="java.lang.String" value="NameJ2" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="EmpiezaPartida">
-          <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="EmpiezaPartida.text"/>
-            <Property name="name" type="java.lang.String" value="EmpiezaPartida" noResource="true"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="EmpiezaPartidaMouseClicked"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="Prueba_EmpiezaPartida"/>
-          </AuxValues>
-        </Component>
         <Component class="javax.swing.JLabel" name="pinguino">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" resourceKey="pinguino.icon"/>
@@ -441,12 +439,12 @@
             <Property name="name" type="java.lang.String" value="StringTotalBote" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="Bote">
           <Properties>
-            <Property name="font" type="java.awt.Font" resourceKey="jLabel3.font"/>
-            <Property name="foreground" type="java.awt.Color" resourceKey="jLabel3.foreground"/>
-            <Property name="text" type="java.lang.String" resourceKey="jLabel3.text"/>
-            <Property name="name" type="java.lang.String" value="jLabel3" noResource="true"/>
+            <Property name="font" type="java.awt.Font" resourceKey="Bote.font"/>
+            <Property name="foreground" type="java.awt.Color" resourceKey="Bote.foreground"/>
+            <Property name="text" type="java.lang.String" resourceKey="Bote.text"/>
+            <Property name="name" type="java.lang.String" value="Bote" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="DolarBote">
@@ -455,6 +453,33 @@
             <Property name="foreground" type="java.awt.Color" resourceKey="DolarBote.foreground"/>
             <Property name="text" type="java.lang.String" resourceKey="DolarBote.text"/>
             <Property name="name" type="java.lang.String" value="DolarBote" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="Apuesta">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="Apuesta.text"/>
+            <Property name="name" type="java.lang.String" value="Apuesta" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JToggleButton" name="ConfirmarApuesta">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="ConfirmarApuesta.text"/>
+            <Property name="name" type="java.lang.String" value="ConfirmarApuesta" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ConfirmarApuestaMouseClicked"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JToggleButton" name="ConfirmarPasar">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="ConfirmarPasar.text"/>
+            <Property name="name" type="java.lang.String" value="ConfirmarPasar" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Mensaje">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="Mensaje.text"/>
+            <Property name="name" type="java.lang.String" value="Mensaje" noResource="true"/>
           </Properties>
         </Component>
       </SubComponents>
