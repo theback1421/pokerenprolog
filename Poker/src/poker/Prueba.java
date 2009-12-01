@@ -498,9 +498,7 @@ public class Prueba extends javax.swing.JFrame {
             int boteNuevo = Integer.parseInt(Apuesta.getText())+ boteActual;
             Bote.setText(Integer.toString(boteNuevo));
             Apuesta.setText("");
-            if(mesa.getRonda() == Ronda.PREFLOP)
-               mesa.preflop();
-            else if(mesa.getRonda() == Ronda.FLOP)
+            if(mesa.getRonda() == Ronda.FLOP)
             {
                 mesa.flop();
                 jLabelMesa1.setIcon(GestorImagenes.getCardImage(mesa.getCartasComunitarias().get(0)));

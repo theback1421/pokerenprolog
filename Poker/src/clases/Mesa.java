@@ -74,7 +74,7 @@ public class Mesa {
         }
         q.close();
 
-        ronda = Ronda.PREFLOP;
+        ronda = Ronda.FLOP;
     }
 
     public ArrayList<Card> cogerCartasAleatorias(int numCartas)
@@ -144,13 +144,13 @@ public class Mesa {
     {
         if(jugador1.getDealer() == true)
         {
-            jugador1.jugar();
+            //jugador1.jugar();
             jugador2.jugar();
         }
         else
         {
             jugador2.jugar();
-            jugador1.jugar();
+            //jugador1.jugar();
         }
 
         ronda = Ronda.FLOP;
