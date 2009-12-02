@@ -12,6 +12,8 @@
 package poker;
 
 import clases.Jugador;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,13 +26,15 @@ public class Ganador extends javax.swing.JDialog {
     Prueba prueb;
     /** Creates new form Ganador */
     public Ganador(String frase, Jugador J1, Jugador J2,Prueba p) {
+        
+         p.setVisible(true);
         initComponents();
         MensajeGanador.setText(frase);
         this.setVisible(true);
          jug1 = new Jugador(J1.getNombre(),J1.getDinero());
          jug2 = new Jugador(J2.getNombre(),J2.getDinero());
          prueb = p;
-         p.setVisible(false);
+         //p.setVisible(false);
          
     }
 

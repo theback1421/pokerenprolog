@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 import clases.*;
 import clases.Rank;
 import java.awt.Color;
+import java.util.ArrayList;
 import jpl.Atom;
 import jpl.JPL;
 import jpl.Query;
@@ -62,17 +63,19 @@ public class Prueba extends javax.swing.JFrame {
         nameJ1 = name;
         initComponents();
         init();
-        mesa = new Mesa();
+        String jugador = "pingu";
+        j1= new Jugador(nameJ1);
+        j2= new Jugador(jugador);
+
+
+
+        mesa = new Mesa(j1,j2);
         mesa.iniciarTurno();
         Mano comuni = new Mano(mesa.getCartasComunitarias());
         //comuni.print();
-        j1 = new Jugador(mesa.getJugador1());
-        j1.setNombre(nameJ1);
-
+        
         Mano mano1 = j1.getMano();
-        mano1.print();
-        j2 = new Jugador(mesa.getJugador2());
-        j2.setNombre("Mc Floyd");
+        //mano1.print();
         Mano mano2 = j2.getMano();
         mano2.print();
         //EmpiezaPartida.setVisible(false);
@@ -191,6 +194,7 @@ public class Prueba extends javax.swing.JFrame {
         ConfirmarApuesta = new javax.swing.JToggleButton();
         ConfirmarPasar = new javax.swing.JToggleButton();
         Mensaje = new javax.swing.JLabel();
+        Apostar = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(poker.PokerApp.class).getContext().getResourceMap(Prueba.class);
@@ -358,7 +362,10 @@ public class Prueba extends javax.swing.JFrame {
         });
 
         ConfirmarPasar.setText(resourceMap.getString("ConfirmarPasar.text")); // NOI18N
+        ConfirmarPasar.setMaximumSize(new java.awt.Dimension(71, 23));
+        ConfirmarPasar.setMinimumSize(new java.awt.Dimension(71, 23));
         ConfirmarPasar.setName("ConfirmarPasar"); // NOI18N
+        ConfirmarPasar.setPreferredSize(new java.awt.Dimension(71, 23));
         ConfirmarPasar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ConfirmarPasarMouseClicked(evt);
@@ -367,6 +374,17 @@ public class Prueba extends javax.swing.JFrame {
 
         Mensaje.setText(resourceMap.getString("Mensaje.text")); // NOI18N
         Mensaje.setName("Mensaje"); // NOI18N
+
+        Apostar.setText(resourceMap.getString("BotonAll.text")); // NOI18N
+        Apostar.setMaximumSize(new java.awt.Dimension(71, 23));
+        Apostar.setMinimumSize(new java.awt.Dimension(71, 23));
+        Apostar.setName("BotonAll"); // NOI18N
+        Apostar.setPreferredSize(new java.awt.Dimension(71, 23));
+        Apostar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ApostarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -411,9 +429,10 @@ public class Prueba extends javax.swing.JFrame {
                                         .addComponent(SaldoJ1))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(ConfirmarApuesta)
-                                        .addGap(30, 30, 30)
+                                        .addGap(18, 18, 18)
                                         .addComponent(Apuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(ConfirmarPasar))
+                                    .addComponent(ConfirmarPasar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Apostar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(252, 252, 252))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(102, 102, 102)
@@ -434,9 +453,9 @@ public class Prueba extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(496, 496, 496)
                         .addComponent(NameJ2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(593, Short.MAX_VALUE))
+                .addContainerGap(581, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(922, Short.MAX_VALUE)
+                .addContainerGap(910, Short.MAX_VALUE)
                 .addComponent(Mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -476,27 +495,28 @@ public class Prueba extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Dolar1)
-                            .addComponent(SaldoJ1))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ConfirmarApuesta)
-                            .addComponent(Apuesta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(ConfirmarPasar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(84, 84, 84)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Cowboy, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                         .addGap(24, 24, 24))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(NameJ1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(Dolar1)
+                                .addComponent(SaldoJ1))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(ConfirmarApuesta)
+                                .addComponent(Apuesta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(ConfirmarPasar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(Apostar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(NameJ1))))
                 .addGap(15, 15, 15)
                 .addComponent(Mensaje)
                 .addGap(25, 25, 25))
@@ -561,15 +581,49 @@ public class Prueba extends javax.swing.JFrame {
                  j2.setNombre(NameJ2.getText());
                  j1.setDinero(Integer.parseInt(SaldoJ1.getText()));
                  j2.setDinero(Integer.parseInt(SaldoJ2.getText()));
-                 int dineroJ1 = (int) Integer.parseInt(SaldoJ1.getText());
+                 ArrayList<Puntuacion> puntu = new ArrayList<Puntuacion>();
+                 puntu =mesa.puntuacionJugadores();
+              System.out.println("COMENZAMOSSSS");
+                 for(int i =0;i< puntu.size();i++){
+                  System.out.println(puntu.get(i).getNombreJugador());
+                  System.out.println(puntu.get(i).getPuntuacion());
+              }
+              int puntJ1 = puntu.get(0).getPuntuacion();
+              int puntJ2 = puntu.get(1).getPuntuacion();
+              int dineroJ1 = (int) Integer.parseInt(SaldoJ1.getText());
                  int dineroJ2 = (int) Integer.parseInt(SaldoJ2.getText());
-                 if(dineroJ1 <= 0 || dineroJ2 <= 0){
-                     FindePartida fp = new FindePartida("FIN DE LA PARTIDA",j1,j2);
-                     this.setVisible(false);
+              String ganador,figura;
+              if(puntJ1 > puntJ2){
+                    int bote = (int) Integer.parseInt(Bote.getText());
+                    dineroJ1+=bote;
+                    j1.setDinero(dineroJ1);
+                    SaldoJ1.setText(Integer.toString(dineroJ1));
+                    figura=this.calculaQueTengo(puntJ1);
+                    ganador=j1.getNombre()+" gana la ronda "+figura;
+                                }
+              else{
+                     int bote = (int) Integer.parseInt(Bote.getText());
+                     dineroJ2+=bote;
+                     j2.setDinero(dineroJ2);
+                     SaldoJ2.setText(Integer.toString(dineroJ2));
+                     figura=this.calculaQueTengo(puntJ2);
+                     ganador=j2.getNombre()+" gana la ronda "+figura;
+              }
+                 
+                if(dineroJ1 <= 0 || dineroJ2 <= 0){
+                    String Ganador;
+                    if (dineroJ1 < 1){
+                        Ganador =j2.getNombre()+" gana la partida con "+j2.getDinero()+" $";
+                    }
+                    else{
+                        Ganador =j1.getNombre()+" gana la partida con "+j1.getDinero()+" $";
+                    }
+                     FindePartida fp = new FindePartida(Ganador,j1,j2);
+                     ///this.setVisible(false);
                      System.out.println("FIN");
                  }
                  else{
-                 Ganador g = new Ganador("Que pasada",j1,j2,this);
+                 Ganador g = new Ganador(ganador,j1,j2,this);
                  System.out.println("GANADOR PARCIAL");
                  }
 
@@ -593,10 +647,36 @@ public class Prueba extends javax.swing.JFrame {
         Bote.setText("0");
         j1.setDinero(Integer.parseInt(SaldoJ1.getText()));
         j2.setDinero(saldoJ2);
+
         Ganador g = new Ganador(j2.getNombre()+" gana la ronda por retirada",j1,j2,this);
         
 
     }//GEN-LAST:event_ConfirmarPasarMouseClicked
+
+    private void ApostarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ApostarMouseClicked
+        int x = (int) Integer.parseInt(SaldoJ1.getText());
+        int bote = (int) Integer.parseInt(Bote.getText()) + x;
+        Bote.setText(Integer.toString(bote));
+        SaldoJ1.setText("0");
+        //Se evalua la jugada que dice quien es el ganador
+
+        //si gana j1 se le suma el saldo
+        // si le gana
+        Mano fin = j2.getMano();
+        jLabelJ2C1.setIcon(GestorImagenes.getCardImage(fin.getListacartas().get(0)));
+        jLabelJ2C2.setIcon(GestorImagenes.getCardImage(fin.getListacartas().get(1)));
+        FindePartida fp = new FindePartida("lalala",j1,j2);
+
+
+
+        
+
+
+
+
+
+
+    }//GEN-LAST:event_ApostarMouseClicked
 
     /**
     * @param args the command line arguments
@@ -612,6 +692,7 @@ public class Prueba extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton Apostar;
     private javax.swing.JTextField Apuesta;
     private javax.swing.JLabel Bote;
     private javax.swing.JToggleButton ConfirmarApuesta;
@@ -643,4 +724,43 @@ public class Prueba extends javax.swing.JFrame {
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
+
+
+
+public String calculaQueTengo(int puntuacion){
+    String salida;
+    switch(puntuacion){
+        case 2:  salida=" con carta alta (2)"; break;
+        case 3:   salida=" con carta alta (3)"; break;
+        case 4:   salida=" con carta alta (4)"; break;
+        case 5:   salida=" con carta alta (5)"; break;
+        case 6:   salida=" con carta alta (6)"; break;
+        case 7:   salida=" con carta alta (7)"; break;
+        case 8:   salida=" con carta alta (8)"; break;
+        case 9:   salida=" con carta alta (9)"; break;
+        case 10:   salida=" con carta alta (10)"; break;
+        case 11:   salida=" con carta alta (J)"; break;
+        case 12:   salida=" con carta alta (Q)"; break;
+        case 13:  salida=" con carta alta (K)"; break;
+        case 14:   salida=" con carta alta (A)"; break;
+        case 22:   salida=" con pareja de dos"; break;
+        case 23:   salida=" con pareja de tres"; break;
+        case 24:   salida=" con pareja de cuatro"; break;
+        case 25:   salida=" con pareja de cinco"; break;
+        case 26:   salida=" con pareja de seis"; break;
+        case 27:   salida=" con pareja de siete"; break;
+        case 28:   salida=" con pareja de ocho"; break;
+        case 29:   salida=" con pareja de nueve"; break;
+        case 30:   salida=" con pareja de diez"; break;
+        case 31:   salida=" con pareja de J"; break;
+        case 32:   salida= " con pareja de Q"; break;
+        case 33:   salida= " con pareja de reyes"; break;
+        case 34:   salida=" con pareja de ases"; break;
+        case 50:   salida= " con trio"; break;
+        case 1:   salida=" con carta alta (1)"; break;
+        default:  salida= "error";break;
+
+    }
+return salida;
+}
 }

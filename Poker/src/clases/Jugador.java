@@ -40,11 +40,14 @@ public class Jugador {
      }
 
 
-     public Jugador(String nombre)
+
+     public Jugador(String name)
     {
-        this.nombre=nombre;
+        this.nombre=name;
         this.mano=new Mano();
         this.opcion = Opcion.CHECK;
+        this.apuesta=0;
+        this.isDealer=false;
     }
     public Jugador(String nombre, Mano mano)
     {

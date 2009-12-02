@@ -54,7 +54,7 @@ public class Mesa {
         jugador2.unsetDealer();
 
         cartasComunitarias = null;
-        ronda = Ronda.FLOP;
+        ronda = Ronda.PREFLOP;
 
     }
 
