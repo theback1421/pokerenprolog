@@ -115,6 +115,28 @@ public class Prueba extends javax.swing.JFrame {
 
     }
 
+    public Prueba(Jugador J1, Jugador J2){
+        initComponents();
+        init();
+        mesa = new Mesa();
+        mesa.iniciarTurno();
+        NameJ1.setText(J1.getNombre());
+        NameJ2.setText(J2.getNombre());
+        SaldoJ1.setText(Integer.toString(J1.getDinero()));
+        SaldoJ2.setText(Integer.toString(J2.getDinero()));
+        mesa = new Mesa(J1,J2);
+        mesa.iniciarTurno();
+        Mano comuni = new Mano(mesa.getCartasComunitarias());
+        //comuni.print();
+        j1 = new Jugador(mesa.getJugador1());
+        Mano mano1 = j1.getMano();
+        mano1.print();
+        j2 = new Jugador(mesa.getJugador2());
+        Mano mano2 = j2.getMano();
+        mano2.print();
+
+
+    }
        
 
 
@@ -324,6 +346,11 @@ public class Prueba extends javax.swing.JFrame {
 
         ConfirmarPasar.setText(resourceMap.getString("ConfirmarPasar.text")); // NOI18N
         ConfirmarPasar.setName("ConfirmarPasar"); // NOI18N
+        ConfirmarPasar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ConfirmarPasarMouseClicked(evt);
+            }
+        });
 
         Mensaje.setText(resourceMap.getString("Mensaje.text")); // NOI18N
         Mensaje.setName("Mensaje"); // NOI18N
@@ -394,11 +421,11 @@ public class Prueba extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(496, 496, 496)
                         .addComponent(NameJ2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(376, Short.MAX_VALUE))
+                .addContainerGap(593, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(783, Short.MAX_VALUE)
+                .addContainerGap(922, Short.MAX_VALUE)
                 .addComponent(Mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -468,13 +495,11 @@ public class Prueba extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1107, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
         );
 
         bindingGroup.bind();
@@ -519,6 +544,11 @@ public class Prueba extends javax.swing.JFrame {
                 Mano fin = j2.getMano();
                  jLabelJ2C1.setIcon(GestorImagenes.getCardImage(fin.getListacartas().get(0)));
                  jLabelJ2C2.setIcon(GestorImagenes.getCardImage(fin.getListacartas().get(1)));
+                 j1.setNombre(nameJ1);
+                 j2.setNombre(NameJ2.getText());
+                 j1.setDinero(Integer.parseInt(SaldoJ1.getText()));
+                 j2.setDinero(Integer.parseInt(SaldoJ2.getText()));
+                 Ganador g = new Ganador("Que pasada",j1,j2,this);
             }
             
 
@@ -527,6 +557,19 @@ public class Prueba extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_ConfirmarApuestaMouseClicked
+
+    private void ConfirmarPasarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConfirmarPasarMouseClicked
+        // TODO add your handling code here:
+        Mensaje.setText("");
+        j1.setOpcion(Opcion.FOLD);
+        Mensaje.setText(nameJ1+" se planta");
+        int acumulado = (int) Integer.parseInt(Bote.getText());
+        int saldoJ2 = (int) Integer.parseInt(SaldoJ2.getText()) + acumulado;
+        SaldoJ2.setText(Integer.toString(saldoJ2));
+        Bote.setText("0");
+        
+
+    }//GEN-LAST:event_ConfirmarPasarMouseClicked
 
     /**
     * @param args the command line arguments

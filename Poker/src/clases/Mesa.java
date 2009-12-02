@@ -46,6 +46,18 @@ public class Mesa {
         ronda = Ronda.PREFLOP;
     }
 
+    public Mesa(Jugador j1, Jugador j2){
+        turno = 1;
+        jugador1 = j1;
+        jugador1.setDealer();
+        jugador2 = j2;
+        jugador2.unsetDealer();
+
+        cartasComunitarias = null;
+        ronda = Ronda.FLOP;
+
+    }
+
     public Jugador getJugador1()
     {
         return jugador1;

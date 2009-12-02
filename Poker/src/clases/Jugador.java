@@ -19,6 +19,16 @@ public class Jugador {
     private Opcion opcion;
      private boolean isDealer;
 
+     public Jugador(String name, int money){
+          nombre = name;
+         mano = null;
+         dinero = money;
+         apuesta = 0;
+         opcion = null;
+         isDealer = false;
+
+     }
+
      public Jugador(Jugador j)
      {
          nombre = j.getNombre();
@@ -118,6 +128,20 @@ public class Jugador {
      */
     public void setOpcion(Opcion opcion) {
         this.opcion = opcion;
+    }
+
+    /**
+     * @param dinero the dinero to set
+     */
+    public void setDinero(int dinero) {
+        this.dinero = dinero;
+    }
+
+    /**
+     * @param apuesta the apuesta to set
+     */
+    public void setApuesta(int apuesta) {
+        this.apuesta = apuesta;
     }
 
 
