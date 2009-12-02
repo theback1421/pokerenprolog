@@ -67,14 +67,26 @@ public class Prueba extends javax.swing.JFrame {
         Mano comuni = new Mano(mesa.getCartasComunitarias());
         //comuni.print();
         j1 = new Jugador(mesa.getJugador1());
+        j1.setNombre(nameJ1);
+
         Mano mano1 = j1.getMano();
         mano1.print();
         j2 = new Jugador(mesa.getJugador2());
+        j2.setNombre("Mc Floyd");
         Mano mano2 = j2.getMano();
         mano2.print();
         //EmpiezaPartida.setVisible(false);
-        NameJ1.setText(nameJ1);
-        NameJ2.setText("pepito");
+        NameJ1.setText(j1.getNombre());
+        NameJ2.setText(j2.getNombre());
+
+
+        System.out.println("LOS JUGADORESSSSSSSSSSSSSS");
+        j1.print();
+        j2.print();
+
+        System.out.println("............................");
+
+
         
 
 
@@ -134,7 +146,8 @@ public class Prueba extends javax.swing.JFrame {
         j2 = new Jugador(mesa.getJugador2());
         Mano mano2 = j2.getMano();
         mano2.print();
-
+         jLabelJ1C1.setIcon(GestorImagenes.getCardImage(mano1.getListacartas().get(0)));
+        jLabelJ1C2.setIcon(GestorImagenes.getCardImage(mano1.getListacartas().get(1)));
 
     }
        
@@ -514,7 +527,7 @@ public class Prueba extends javax.swing.JFrame {
             Mensaje.setForeground(Color.red);
             Mensaje.setText("No hay suficiente saldo");
             Apuesta.setText("");
-            Mensaje.setForeground(Color.BLACK);
+           // Mensaje.setForeground(Color.BLACK);
         }
         else{
             int valor =(int) Integer.parseInt(SaldoJ1.getText()) - Integer.parseInt(Apuesta.getText());
@@ -548,7 +561,18 @@ public class Prueba extends javax.swing.JFrame {
                  j2.setNombre(NameJ2.getText());
                  j1.setDinero(Integer.parseInt(SaldoJ1.getText()));
                  j2.setDinero(Integer.parseInt(SaldoJ2.getText()));
+                 int dineroJ1 = (int) Integer.parseInt(SaldoJ1.getText());
+                 int dineroJ2 = (int) Integer.parseInt(SaldoJ2.getText());
+                 if(dineroJ1 <= 0 || dineroJ2 <= 0){
+                     FindePartida fp = new FindePartida("FIN DE LA PARTIDA",j1,j2);
+                     this.setVisible(false);
+                     System.out.println("FIN");
+                 }
+                 else{
                  Ganador g = new Ganador("Que pasada",j1,j2,this);
+                 System.out.println("GANADOR PARCIAL");
+                 }
+
             }
             
 
@@ -567,6 +591,9 @@ public class Prueba extends javax.swing.JFrame {
         int saldoJ2 = (int) Integer.parseInt(SaldoJ2.getText()) + acumulado;
         SaldoJ2.setText(Integer.toString(saldoJ2));
         Bote.setText("0");
+        j1.setDinero(Integer.parseInt(SaldoJ1.getText()));
+        j2.setDinero(saldoJ2);
+        Ganador g = new Ganador(j2.getNombre()+" gana la ronda por retirada",j1,j2,this);
         
 
     }//GEN-LAST:event_ConfirmarPasarMouseClicked

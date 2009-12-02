@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Jugador {
     private String nombre;
     private Mano mano;
-    private int dinero;
+    private int dinero = 2000;
     private int apuesta;
     private Opcion opcion;
      private boolean isDealer;
@@ -51,6 +51,10 @@ public class Jugador {
         this.nombre=nombre;
         this.mano=mano;
         this.opcion = Opcion.CHECK;
+    }
+
+    public Jugador() {
+        
     }
 
     public void jugar()
@@ -117,7 +121,7 @@ public class Jugador {
         return isDealer;
     }
 
-    void print() {
+    public void print() {
         System.out.println("Nombre: "+nombre);
         mano.print();
         System.out.print("Dinero = "+dinero+"\nApuesta = "+apuesta+"\n¿Es Dealer? := "+isDealer+"\n");

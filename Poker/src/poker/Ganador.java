@@ -28,10 +28,10 @@ public class Ganador extends javax.swing.JDialog {
         MensajeGanador.setText(frase);
         this.setVisible(true);
          jug1 = new Jugador(J1.getNombre(),J1.getDinero());
-         jug2 = new Jugador(J2.getNombre(),J2.getApuesta());
+         jug2 = new Jugador(J2.getNombre(),J2.getDinero());
          prueb = p;
-
-
+         p.setVisible(false);
+         
     }
 
 
@@ -104,9 +104,6 @@ public class Ganador extends javax.swing.JDialog {
         this.setVisible(false);
         prueb = new Prueba(jug1,jug2);
         prueb.setVisible(true);
-
-
-
 
         // TODO add your handling code here:
     }//GEN-LAST:event_AceptarMouseClicked
