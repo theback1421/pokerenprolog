@@ -6,6 +6,9 @@
 package clases;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
+import jpl.Query;
+import jpl.Term;
 
 /**
  *
@@ -17,7 +20,8 @@ public class Jugador {
     private int dinero = 2000;
     private int apuesta;
     private Opcion opcion;
-     private boolean isDealer;
+    private boolean isDealer;
+    private boolean isCPU;
 
      public Jugador(String name, int money){
           nombre = name;
@@ -37,6 +41,7 @@ public class Jugador {
          apuesta = j.getApuesta();
          opcion = j.getOpcion();
          isDealer = j.getIsDealer();
+         isCPU = j.getIsCPU();
      }
 
 
@@ -63,6 +68,87 @@ public class Jugador {
     public void jugar()
     {
         opcion = Opcion.CHECK;
+    }
+
+    private ArrayList<Opcion> opciones(int apuestaRival, Opcion opcionRival)
+    {
+        ArrayList<Opcion> result = new ArrayList<Opcion>();
+
+        if(opcionRival == Opcion.ALLIN)
+        {
+            result.add(Opcion.ALLIN);
+            if(apuestaRival < dinero) result.add(Opcion.CHECK);
+            result.add(Opcion.FOLD);
+        }
+        else if(opcionRival == Opcion.CHECK)
+        {
+            result.add(Opcion.ALLIN);
+            result.add(Opcion.CHECK);
+            result.add(Opcion.FOLD);
+            result.add(Opcion.RAISE);
+        }
+        else if(opcionRival == Opcion.FOLD)
+        {
+            result.add(Opcion.CHECK);
+        }
+        else if(opcionRival == Opcion.RAISE)
+        {
+            if(apuestaRival > dinero) result.add(Opcion.ALLIN);
+            else
+            {
+                result.add(Opcion.CHECK);
+                result.add(Opcion.FOLD);
+                result.add(Opcion.RAISE);
+            }
+        }
+        return result;
+    }
+
+    private int evaluarMano(ArrayList<Card> cartasComunitarias)
+    {
+        int puntos=0;
+        ArrayList<Card> lista = new ArrayList<Card>();
+        lista.addAll(cartasComunitarias);
+        lista.addAll(mano.getListacartas());
+
+        Query q = new Query("evaluar_mano("+getNombre()+", "+Mano.arrayCartasProlog(lista)+")");
+        q.hasSolution();
+        q = new Query("puntosJugador("+getNombre()+", Puntos, Jugada)");
+        java.util.Hashtable solution = q.oneSolution();
+        if( null != solution ){
+            puntos = Integer.parseInt(((Term)solution.get( "Puntos" )).toString());
+        }
+        return puntos;
+    }
+
+    public int jugar(Mesa mesa, int profundidad, int alfa, int beta, Jugada jugada)
+    {
+        Jugador rival = mesa.getJugador1();
+        if(rival.getNombre().compareTo(nombre)==0) rival = mesa.getJugador2();
+
+        int puntos = evaluarMano(mesa.getCartasComunitarias());
+        
+        if(profundidad == 0)
+        {
+            return puntos*jugada.getApuesta();
+        }
+        else
+        {
+            ArrayList<Opcion> opciones = opciones(rival.getApuesta(), rival.getOpcion());
+            ListIterator<Opcion> it = opciones.listIterator();
+            while(it.hasNext())
+            {
+                Opcion op = (Opcion) it.next();
+                jugar(mesa,--profundidad, alfa, beta, new Jugada(op,rival.getApuesta()));
+            }
+        }
+        return 0;
+    }
+
+    public int jugar(Mesa mesa, int profundidad)
+    {
+        if(!isCPU) return 0;
+        else return jugar(mesa,profundidad,999999999,-999999999,new Jugada());
     }
 
     public void setDealer()
@@ -138,11 +224,24 @@ public class Jugador {
     }
 
     /**
+     * @return the isCPU
+     */
+    public boolean getIsCPU() {
+        return isCPU;
+    }
+    /**
      * @param dinero the dinero to set
      */
     public void setDinero(int dinero) {
         this.dinero = dinero;
     }
+    /**
+     * @param isCPU the isCPU to set
+     */
+    public void setIsCPU(boolean isCPU) {
+        this.isCPU = isCPU;
+    }
+
 
     /**
      * @param apuesta the apuesta to set

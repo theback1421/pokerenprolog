@@ -244,11 +244,11 @@ obtenerGanador(Ganador):-
         %writeln(Lista),
         evaluarGanador(Lista, Ganador).
 
-evaluar_mano(Jugador, Hand1) :-
-   %     append(Hand1, Comunitarias, Todas),
-             (   three_of_a_kind(Hand1,_),write(Jugador),writeln(' tiene trio'),highestHand(threeofakind, Value),
+evaluar_mano(Jugador, Hand1, Comunitarias) :-
+             append(Hand1, Comunitarias, Todas),
+             (   three_of_a_kind(Todas,_),write(Jugador),writeln(' tiene trio'),highestHand(threeofakind, Value),
                                  assert(puntosJugador(Jugador,Value,'trio')),!);
-             (   one_pair(Hand1,_,R),highestHand(pair,R ,Value),write(Jugador),writeln(' tiene pareja'),assert(puntosJugador(Jugador,Value,'pareja')),!);
+             (   one_pair(Todas,_,R),highestHand(pair,R ,Value),write(Jugador),writeln(' tiene pareja'),assert(puntosJugador(Jugador,Value,'pareja')),!);
              ( highestHand(Hand1, Value), assert(puntosJugador(Jugador,Value,'carta alta')),write(Jugador),writeln(' tiene carta alta'),!).
         
         
@@ -291,14 +291,6 @@ highestHand(pair,king,33).
 highestHand(pair,ace,34).
 highestHand(threeofakind,50).
 
-
-
-
-
-
-
-
-
 highestHand([card(R1,S1)], Resultado) :-
         highestHand(card(R1,S1),Value1),
         Resultado is Value1,!.
@@ -311,48 +303,6 @@ highestHand([card(R1,S1)|RestHand],Resultado) :-
         (   Resultado1 >= Value1, Resultado is Resultado1)).
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-%%check_hand(_Mano) :-
-        %winning_hand([card(ace,spades),card(ace,hearts)],[card(9,hearts),card(9,diamonds)],[card(ace,diamonds)],Result1),
-        %writeln(Result1),
-        %winning_hand([card(ace,spades),card(ace,hearts)],[card(9,hearts),card(9,diamonds)],[card(9,clubs)],Result2),
-        %writeln(Result2),
-        %winning_hand([card(ace,spades),card(2,hearts)],[card(3,hearts),card(9,diamonds)],[card(3,diamonds)],Result3),
-        %writeln(Result3),
-        %winning_hand([card(ace,spades),card(ace,hearts)],[card(9,hearts),card(9,diamonds)],[card(ace,diamonds),card(9,clubs)],Result4),
-        %writeln(Result4).      
-        
-        
-        
-        
-        
-
-value(ace,14).
-value(king,13).
-value(queen,12).
-value(jack,11).
-value(10,10).
-value(9,9).
-value(8,8).
-value(7,7).
-value(6,6).
-value(5,5).
-value(4,4).
-value(3,3).
-value(2,2).
 
 save(Exe) :-
         pce_autoload_all,

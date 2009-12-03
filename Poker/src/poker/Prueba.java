@@ -556,21 +556,21 @@ public class Prueba extends javax.swing.JFrame {
             int boteNuevo = Integer.parseInt(Apuesta.getText())+ boteActual;
             Bote.setText(Integer.toString(boteNuevo));
             Apuesta.setText("");
-            if(mesa.getRonda() == Ronda.FLOP)
+            if(mesa.getRonda() == Ronda.PREFLOP)
             {
-                mesa.flop();
+                mesa.jugar();
                 jLabelMesa1.setIcon(GestorImagenes.getCardImage(mesa.getCartasComunitarias().get(0)));
                 jLabelMesa2.setIcon(GestorImagenes.getCardImage(mesa.getCartasComunitarias().get(1)));
                 jLabelMesa3.setIcon(GestorImagenes.getCardImage(mesa.getCartasComunitarias().get(2)));
             }
-            else if(mesa.getRonda() == Ronda.TURN)
+            else if(mesa.getRonda() == Ronda.FLOP)
             {
-                mesa.turn();
+                mesa.jugar();
                 jLabelMesa4.setIcon(GestorImagenes.getCardImage(mesa.getCartasComunitarias().get(3)));
             }
-            else if(mesa.getRonda() == Ronda.RIVER)
+            else if(mesa.getRonda() == Ronda.TURN)
             {
-                mesa.river();
+                mesa.jugar();
                 jLabelMesa5.setIcon(GestorImagenes.getCardImage(mesa.getCartasComunitarias().get(4)));
             }
             else{

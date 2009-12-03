@@ -20,10 +20,11 @@ public class Mesa {
     private Jugador jugador2;
     private ArrayList<Card> cartasComunitarias;
     private Ronda ronda;
-    private int turno=1;
+    private int turno=0;
     private int ciegaPequena;
     private int ciegaGrande;
     private int bote;
+    private int profundidad = 6;
 
     public Mesa()
     {
@@ -32,6 +33,18 @@ public class Mesa {
         jugador2 = new Jugador("jugador2");
         cartasComunitarias = null;
         ronda = Ronda.PREFLOP;
+    }
+
+    public Mesa(Mesa m)
+    {
+        jugador1 = m.getJugador1();
+        jugador2 = m.getJugador2();
+        cartasComunitarias = m.getCartasComunitarias();
+        ronda = m.getRonda();
+        turno = m.getTurno();
+        ciegaPequena = m.getCiegaPequena();
+        ciegaGrande = m.getCiegaGrande();
+        bote = m.getBote();
     }
 
     public Mesa(Jugador j1, Jugador j2, ArrayList<Card> cartas)
@@ -44,6 +57,15 @@ public class Mesa {
 
         cartasComunitarias = cartas;
         ronda = Ronda.PREFLOP;
+    }
+
+    public Mesa copiaMesa()
+    {
+        Mesa result = new Mesa();
+        result.getJugador1().setMano(new Mano());
+        result.getJugador2().setMano(new Mano());
+
+        return result;
     }
 
     public Mesa(Jugador j1, Jugador j2){
@@ -79,14 +101,16 @@ public class Mesa {
 
         jugador2.setMano(new Mano(cogerCartasAleatorias(2)));
 
+        turno++;
+
         if( turno % 5 == 0 )
         {
             ciegaPequena *= 2;
-            ciegaGrande *= 2;
+                  ciegaGrande *= 2;
         }
         q.close();
 
-        ronda = Ronda.FLOP;
+        ronda = Ronda.PREFLOP;
     }
 
     public ArrayList<Card> cogerCartasAleatorias(int numCartas)
@@ -134,12 +158,8 @@ public class Mesa {
             if(i==0) j = jugador1;
             else j = jugador2;
 
-            ArrayList<Card> lista;
-
-            lista = new ArrayList<Card>();
-            lista.addAll(cartasComunitarias);
-            lista.addAll(j.getMano().getListacartas());
-            Query q = new Query("evaluar_mano("+j.getNombre()+", "+Mano.arrayCartasProlog(lista)+")");
+            Query q = new Query("evaluar_mano("+j.getNombre()+", "+Mano.arrayCartasProlog(j.getMano().getListacartas())+", "+Mano.arrayCartasProlog(cartasComunitarias)+")");
+            System.out.println(q.toString());
             q.hasSolution();
             q = new Query("puntosJugador("+j.getNombre()+", Puntos, Jugada)");
             solution = q.oneSolution();
@@ -151,69 +171,22 @@ public class Mesa {
         return puntuaciones;
     }
 
-
-    public void preflop()
+    public boolean finApuestas()
     {
-        if(jugador1.getDealer() == true)
-        {
-            //jugador1.jugar();
-            jugador2.jugar();
-        }
-        else
-        {
-            jugador2.jugar();
-            //jugador1.jugar();
-        }
-
-        ronda = Ronda.FLOP;
+        if(jugador1.getOpcion() == Opcion.FOLD 
+                || jugador2.getOpcion() == Opcion.FOLD
+                || (jugador1.getOpcion() == Opcion.CHECK && jugador2.getOpcion() == Opcion.CHECK)
+                || jugador1.getOpcion() == Opcion.ALLIN
+                || jugador2.getOpcion() == Opcion.ALLIN) return true;
+        else return false;
     }
 
-    public void flop()
+
+    public void jugar()
     {
-        if(jugador1.getDealer() == true)
-        {
-            jugador2.jugar();
-            jugador1.jugar();
-        }
-        else
-        {
-            jugador1.jugar();
-            jugador2.jugar();
-        }
-
-        ronda = Ronda.TURN;
-    }
-
-    public void turn()
-    {
-        if(jugador1.getDealer() == true)
-        {
-            jugador2.jugar();
-            jugador1.jugar();
-        }
-        else
-        {
-            jugador1.jugar();
-            jugador2.jugar();
-        }
-
-        ronda = Ronda.RIVER;
-    }
-
-    public void river()
-    {
-        if(jugador1.getDealer() == true)
-        {
-            jugador2.jugar();
-            jugador1.jugar();
-        }
-        else
-        {
-            jugador1.jugar();
-            jugador2.jugar();
-        }
-
-        ronda = Ronda.FIN;
+        jugador1.jugar(copiaMesa(), profundidad);
+        jugador2.jugar(copiaMesa(), profundidad);
+        if(finApuestas()) siguienteRonda();
     }
 
     public ArrayList<Card> getCartasComunitarias()
@@ -229,8 +202,28 @@ public class Mesa {
     }
 
     public boolean ganador() {
-        if(jugador1.getOpcion() == Opcion.FOLD || jugador2.getOpcion() == Opcion.FOLD ) return true;
-        else return false;
+        return true;}
+
+    private int getTurno() {
+        return turno;
+    }
+
+    private int getCiegaPequena() {
+        return ciegaPequena;
+    }
+
+    private int getCiegaGrande() {
+        return ciegaGrande;
+    }
+
+    private int getBote() {
+        return bote;
+    }
+
+    private void siguienteRonda() {
+        if(ronda == Ronda.PREFLOP) ronda = Ronda.FLOP;
+        else if(ronda == Ronda.FLOP) ronda = Ronda.TURN;
+        else if(ronda == Ronda.TURN) ronda = Ronda.RIVER;
     }
 
 
