@@ -133,8 +133,6 @@ public class Prueba extends javax.swing.JFrame {
     public Prueba(Jugador J1, Jugador J2){
         initComponents();
         init();
-        mesa = new Mesa();
-        mesa.iniciarTurno();
         NameJ1.setText(J1.getNombre());
         NameJ2.setText(J2.getNombre());
         SaldoJ1.setText(Integer.toString(J1.getDinero()));
@@ -626,7 +624,7 @@ public class Prueba extends javax.swing.JFrame {
                  Ganador g = new Ganador(ganador,j1,j2,this);
                  System.out.println("GANADOR PARCIAL");
                  }
-
+                 
             }
             
 
@@ -666,15 +664,6 @@ public class Prueba extends javax.swing.JFrame {
         jLabelJ2C1.setIcon(GestorImagenes.getCardImage(fin.getListacartas().get(0)));
         jLabelJ2C2.setIcon(GestorImagenes.getCardImage(fin.getListacartas().get(1)));
         FindePartida fp = new FindePartida("lalala",j1,j2);
-
-
-
-        
-
-
-
-
-
 
     }//GEN-LAST:event_ApostarMouseClicked
 

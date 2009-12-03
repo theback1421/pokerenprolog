@@ -147,8 +147,42 @@ public class Jugador {
 
     public int jugar(Mesa mesa, int profundidad)
     {
-        if(!isCPU) return 0;
-        else return jugar(mesa,profundidad,999999999,-999999999,new Jugada());
+        Jugador rival = mesa.getJugador1();
+        if(rival.getNombre().compareTo(nombre)==0) rival = mesa.getJugador2();
+
+        ArrayList<Opcion> opciones = opciones(rival.getApuesta(), rival.getOpcion());
+        ListIterator<Opcion> it = opciones.listIterator();
+        while(it.hasNext())
+        {
+            Opcion op = (Opcion) it.next();
+            if(op == Opcion.ALLIN)
+            {
+                opcion = Opcion.ALLIN;
+                apuesta = dinero;
+                return 1;
+            }
+            else if(op == Opcion.RAISE)
+            {
+                opcion = Opcion.CHECK;
+                apuesta = rival.getApuesta();
+                return 2;
+            }
+            else if(op == Opcion.CHECK)
+            {
+                opcion = Opcion.CHECK;
+                apuesta = rival.getApuesta();
+                return 4;
+            }
+            else
+            {
+                opcion = Opcion.CHECK;
+                return 4;
+            }
+            
+        }
+            //if(!isCPU) return 0;
+        //else return jugar(mesa,profundidad,999999999,-999999999,new Jugada());
+        return 0;
     }
 
     public void setDealer()

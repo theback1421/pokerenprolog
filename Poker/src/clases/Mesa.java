@@ -186,7 +186,8 @@ public class Mesa {
     {
         jugador1.jugar(copiaMesa(), profundidad);
         jugador2.jugar(copiaMesa(), profundidad);
-        if(finApuestas()) siguienteRonda();
+        //if(finApuestas()) siguienteRonda();
+        siguienteRonda();
     }
 
     public ArrayList<Card> getCartasComunitarias()

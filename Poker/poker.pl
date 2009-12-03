@@ -164,20 +164,16 @@ dif_from([A|As], D) :-
 
 
 select_from([card(R,S)], Cards, [card(R,S)]) :-
-        writeln('caso 1'),
-        \+ member(card(R,S), Cards),!.
+	\+ member(card(R,S), Cards),!.
 
 select_from([card(R,S)], Cards, []) :-
-        writeln('caso 2'),
         member(card(R,S), Cards),!.
 
 select_from([card(R,S)|Hand], Cards, [card(R,S)|RestHand]) :-
-        writeln('caso 3'),
         \+ member(card(R,S), Cards),
         select_from(Hand, Cards, RestHand).
 
 select_from([card(R,S)|Hand], Cards, RestHand) :-
-        writeln('caso 4'),
         member(card(R,S), Cards),
         select_from(Hand, Cards, RestHand).
 
@@ -244,21 +240,47 @@ obtenerGanador(Ganador):-
         %writeln(Lista),
         evaluarGanador(Lista, Ganador).
 
+reevaluar_mano(Jugador, Hand1, Comunitarias) :-
+	puntosJugador(Jugador,Mano1,_Value1,TextMano1),
+	write('El jugador '), write(Jugador), write(' tenia '),write(TextMano1),
+	retractall(puntosJugador(Jugador,_,_)),
+	select_from(Hand1,Mano1,NuevaHand1),
+	select_from(Comunitarias,Mano1,NuevaComunitarias),
+	evaluar_mano(Jugador, NuevaHand1, NuevaComunitarias),
+	puntosJugador(Jugador,_Mano2,_Value2,TextMano2),
+	write('El jugador '), write(Jugador), write(' tenia '),write(TextMano2).
+	
+
 evaluar_mano(Jugador, Hand1, Comunitarias) :-
+            retractall(puntosJugador(Jugador,_,_)),
              append(Hand1, Comunitarias, Todas),
-             ((   three_of_a_kind(Todas,Trio), \+ three_of_a_kind(Comunitarias,Trio),write(Jugador),writeln(' tiene trio'),highestHand(threeofakind, Value),
-                                 assert(puntosJugador(Jugador,Value,'trio')),!);
-             (   one_pair(Todas,Pareja,R), \+ one_pair(Comunitarias,Pareja,R) ,highestHand(pair,R ,Value),write(Jugador),writeln(' tiene pareja'),assert(puntosJugador(Jugador,Value,'pareja')),!);
-             ( highestHand(Hand1, Value), assert(puntosJugador(Jugador,Value,'carta alta')),write(Jugador),writeln(' tiene carta alta'),!)).
+             (   (    three_of_a_kind(Todas,Trio), \+ three_of_a_kind(Comunitarias,Trio),
+		      write(Jugador),writeln(' tiene trio,caso1'),
+		      writeln(Trio),
+		      highestHand(threeofakind, Value),
+      		      assert(puntosJugador(Jugador,Value,'trio')),
+		      assert(puntosJugador(Jugador,Trio,Value,'trio')),!);
+	     (   one_pair(Todas,Pareja,R), \+ one_pair(Comunitarias,Pareja,R) ,
+		      highestHand(pair,R ,Value),
+		      write(Jugador),writeln(' tiene pareja'),
+		      assert(puntosJugador(Jugador,Pareja,Value,'pareja')),
+		      assert(puntosJugador(Jugador,Value,'pareja')),!);
+             (   highestHand(Hand1, Value), 
+		 assert(puntosJugador(Jugador,Value,'carta alta')),
+		 write(Jugador),writeln(' tiene carta alta'),!)).
         
         
 partidilla :-
-	Comunitarias = [card(3,diamonds),card(3,hearts),card(3,clubs)],
+	Comunitarias = [card(2,diamonds),card(3,hearts),card(2,clubs),card(7,clubs),card(2,hearts)],
+	YoCartas = [card(7,spades),card(7,diamonds)],
+	ElotroCartas = [card(8,hearts),card(5,clubs)],
 	writeln(Comunitarias),
-	evaluar_mano(yo,[card(ace,spades),card(2,diamonds)],Comunitarias),
+	writeln(YoCartas),
+	writeln(ElotroCartas),
+	evaluar_mano(yo,YoCartas,Comunitarias),
 	puntosJugador(yo,V,M),
 	write('yo_value es '),write(V),write(' y yo_mano es '),writeln(M),
-	evaluar_mano(elotro,[card(2,hearts),card(2,clubs)],Comunitarias),
+	evaluar_mano(elotro,ElotroCartas,Comunitarias),
 	puntosJugador(elotro,V2,M2),
 	write('elotro_value es '),write(V2),write(' y elotro_mano es '),writeln(M2).
 

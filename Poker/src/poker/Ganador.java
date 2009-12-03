@@ -31,8 +31,8 @@ public class Ganador extends javax.swing.JDialog {
         initComponents();
         MensajeGanador.setText(frase);
         this.setVisible(true);
-         jug1 = new Jugador(J1.getNombre(),J1.getDinero());
-         jug2 = new Jugador(J2.getNombre(),J2.getDinero());
+         jug1 = J1;
+         jug2 = J2;
          prueb = p;
          //p.setVisible(false);
          
