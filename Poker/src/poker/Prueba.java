@@ -575,15 +575,16 @@ public class Prueba extends javax.swing.JFrame {
                 Mano fin = j2.getMano();
                  jLabelJ2C1.setIcon(GestorImagenes.getCardImage(fin.getListacartas().get(0)));
                  jLabelJ2C2.setIcon(GestorImagenes.getCardImage(fin.getListacartas().get(1)));
-                 j1.setNombre(nameJ1);
-                 j2.setNombre(NameJ2.getText());
+                 
+                 
                  j1.setDinero(Integer.parseInt(SaldoJ1.getText()));
                  j2.setDinero(Integer.parseInt(SaldoJ2.getText()));
                  ArrayList<Puntuacion> puntu = new ArrayList<Puntuacion>();
                  puntu =mesa.puntuacionJugadores();
-              System.out.println("COMENZAMOSSSS");
+                 System.out.println("COMENZAMOSSSS");
                  for(int i =0;i< puntu.size();i++){
                   System.out.println(puntu.get(i).getNombreJugador());
+                  System.out.println(j1.getNombre());
                   System.out.println(puntu.get(i).getPuntuacion());
               }
               int puntJ1 = puntu.get(0).getPuntuacion();
