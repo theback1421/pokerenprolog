@@ -87,11 +87,6 @@ public class Prueba extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
-
-
-
         mesa = new Mesa(j1,j2);
         mesa.iniciarTurno();
         Mano comuni = new Mano(mesa.getCartasComunitarias());
@@ -119,38 +114,8 @@ public class Prueba extends javax.swing.JFrame {
 
         jLabelJ1C1.setIcon(GestorImagenes.getCardImage(mano1.getListacartas().get(0)));
         jLabelJ1C2.setIcon(GestorImagenes.getCardImage(mano1.getListacartas().get(1)));
-/*
-        while(!mesa.ganador() && mesa.getRonda() != Ronda.FIN)
-        {
-           // try {
-          //      System.in.read();
-           // } catch (IOException ex) {
-             //   Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
-           // }
-            if(mesa.getRonda() == Ronda.PREFLOP)
-                mesa.preflop();
-            else if(mesa.getRonda() == Ronda.FLOP)
-            {
-                mesa.flop();
-                jLabelMesa1.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(0)));
-                jLabelMesa2.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(1)));
-                jLabelMesa3.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(2)));
-            }
-            else if(mesa.getRonda() == Ronda.TURN)
-            {
-                mesa.turn();
-                jLabelMesa4.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(3)));
-            }
-            else if(mesa.getRonda() == Ronda.RIVER)
-            {
-                mesa.river();
-                jLabelMesa5.setIcon(GestorImagenes.getCardImage(comuni.getListacartas().get(4)));
-            }
-        }
-*/
-        //jLabelJ2C1.setIcon(GestorImagenes.getCardImage(mano2.getListacartas().get(0)));
-        //jLabelJ2C2.setIcon(GestorImagenes.getCardImage(mano2.getListacartas().get(1)));
-
+        j2.setIsCPU(true);
+        j1.setIsCPU(false);
     }
 
     public Prueba(Jugador J1, Jugador J2){
@@ -172,6 +137,9 @@ public class Prueba extends javax.swing.JFrame {
         mano2.print();
          jLabelJ1C1.setIcon(GestorImagenes.getCardImage(mano1.getListacartas().get(0)));
         jLabelJ1C2.setIcon(GestorImagenes.getCardImage(mano1.getListacartas().get(1)));
+
+        j2.setIsCPU(true);
+        j1.setIsCPU(false);
 
     }
        
@@ -578,10 +546,14 @@ public class Prueba extends javax.swing.JFrame {
             int boteActual = Integer.parseInt(Bote.getText());
             int boteNuevo = Integer.parseInt(Apuesta.getText())+ boteActual;
             Bote.setText(Integer.toString(boteNuevo));
+            mesa.setBote(boteNuevo);
+            mesa.getJugador1().setApuesta(Integer.parseInt(Apuesta.getText()));
             Apuesta.setText("");
             if(mesa.getRonda() == Ronda.PREFLOP)
             {
                 mesa.jugar();
+                SaldoJ2.setText(Integer.toString(mesa.getJugador2().getDinero()));
+                Bote.setText(Integer.toString(mesa.getBote()));
                 jLabelMesa1.setIcon(GestorImagenes.getCardImage(mesa.getCartasComunitarias().get(0)));
                 jLabelMesa2.setIcon(GestorImagenes.getCardImage(mesa.getCartasComunitarias().get(1)));
                 jLabelMesa3.setIcon(GestorImagenes.getCardImage(mesa.getCartasComunitarias().get(2)));
@@ -589,38 +561,48 @@ public class Prueba extends javax.swing.JFrame {
             else if(mesa.getRonda() == Ronda.FLOP)
             {
                 mesa.jugar();
+                SaldoJ2.setText(Integer.toString(mesa.getJugador2().getDinero()));
+                Bote.setText(Integer.toString(mesa.getBote()));
                 jLabelMesa4.setIcon(GestorImagenes.getCardImage(mesa.getCartasComunitarias().get(3)));
             }
             else if(mesa.getRonda() == Ronda.TURN)
             {
                 mesa.jugar();
+                SaldoJ2.setText(Integer.toString(mesa.getJugador2().getDinero()));
+                Bote.setText(Integer.toString(mesa.getBote()));
                 jLabelMesa5.setIcon(GestorImagenes.getCardImage(mesa.getCartasComunitarias().get(4)));
             }
             else{
+                mesa.jugar();
+                SaldoJ2.setText(Integer.toString(mesa.getJugador2().getDinero()));
+                Bote.setText(Integer.toString(mesa.getBote()));
                 Mano fin = j2.getMano();
                  jLabelJ2C1.setIcon(GestorImagenes.getCardImage(fin.getListacartas().get(0)));
                  jLabelJ2C2.setIcon(GestorImagenes.getCardImage(fin.getListacartas().get(1)));
                  
                  
-                 j1.setDinero(Integer.parseInt(SaldoJ1.getText()));
+                 /*j1.setDinero(Integer.parseInt(SaldoJ1.getText()));
+                 mesa.getJugador1().setDinero(j1.getDinero());
                  j2.setDinero(Integer.parseInt(SaldoJ2.getText()));
+                 mesa.getJugador2().setDinero(j2.getDinero());*/
                  ArrayList<Puntuacion> puntu = new ArrayList<Puntuacion>();
                  puntu =mesa.puntuacionJugadores();
-                 System.out.println("COMENZAMOSSSS");
+                 /*System.out.println("COMENZAMOSSSS");
                  for(int i =0;i< puntu.size();i++){
                   System.out.println(puntu.get(i).getNombreJugador());
                   System.out.println(j1.getNombre());
                   System.out.println(puntu.get(i).getPuntuacion());
-              }
+                    }*/
               int puntJ1 = puntu.get(0).getPuntuacion();
               int puntJ2 = puntu.get(1).getPuntuacion();
               int dineroJ1 = (int) Integer.parseInt(SaldoJ1.getText());
-                 int dineroJ2 = (int) Integer.parseInt(SaldoJ2.getText());
+              int dineroJ2 = (int) Integer.parseInt(SaldoJ2.getText());
               String ganador,figura;
               if(puntJ1 > puntJ2){
                     int bote = (int) Integer.parseInt(Bote.getText());
                     dineroJ1+=bote;
-                    j1.setDinero(dineroJ1);
+                    mesa.getJugador1().setDinero(dineroJ1);
+                    j1 = mesa.getJugador1();
                     SaldoJ1.setText(Integer.toString(dineroJ1));
                     figura=this.calculaQueTengo(puntJ1);
                     ganador=j1.getNombre()+" gana la ronda "+figura;
@@ -628,7 +610,8 @@ public class Prueba extends javax.swing.JFrame {
               else{
                      int bote = (int) Integer.parseInt(Bote.getText());
                      dineroJ2+=bote;
-                     j2.setDinero(dineroJ2);
+                     mesa.getJugador2().setDinero(dineroJ2);
+                     j2 = mesa.getJugador2();
                      SaldoJ2.setText(Integer.toString(dineroJ2));
                      figura=this.calculaQueTengo(puntJ2);
                      ganador=j2.getNombre()+" gana la ronda "+figura;
@@ -686,7 +669,7 @@ public class Prueba extends javax.swing.JFrame {
     }//GEN-LAST:event_ConfirmarPasarMouseClicked
 
     private void ApostarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ApostarMouseClicked
-        int x = (int) Integer.parseInt(SaldoJ1.getText());
+        int x = (int) Integer.parseInt(SaldoJ1.getText()+SaldoJ2.getText());
         int bote = (int) Integer.parseInt(Bote.getText()) + x;
         Bote.setText(Integer.toString(bote));
         SaldoJ1.setText("0");
@@ -694,7 +677,7 @@ public class Prueba extends javax.swing.JFrame {
 
         //si gana j1 se le suma el saldo
         // si le gana
-        Mano fin = j2.getMano();
+        Mano fin = mesa.getJugador2().getMano();
         jLabelJ2C1.setIcon(GestorImagenes.getCardImage(fin.getListacartas().get(0)));
         jLabelJ2C2.setIcon(GestorImagenes.getCardImage(fin.getListacartas().get(1)));
         FindePartida fp = new FindePartida("lalala",j1,j2);

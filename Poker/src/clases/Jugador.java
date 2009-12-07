@@ -142,6 +142,8 @@ public class Jugador {
 
     public int jugar(Mesa mesa, int numCartasAleatorias)
     {
+        if(getIsCPU() == false) return -1;
+        
         Jugador rival = mesa.getJugador1();
         if(rival.getNombre().compareTo(nombre)==0) rival = mesa.getJugador2();
 
@@ -158,7 +160,7 @@ public class Jugador {
         while(it.hasNext())
         {
             Opcion op = (Opcion) it.next();
-            if(op == Opcion.ALLIN)
+            if(rival.getOpcion() == Opcion.ALLIN)
             {
                 if(evaluar(mesa,numCartasAleatorias) > 0.0)
                 {
@@ -172,7 +174,13 @@ public class Jugador {
                 }
                 return 1;
             }
-            else if(op == Opcion.RAISE || op == Opcion.CHECK)
+            else if(rival.getOpcion() == Opcion.FOLD)
+            {
+                opcion = Opcion.CHECK;
+                apuesta = 0;
+                return 4;
+            }
+            else
             {
                 double res = evaluar(mesa,numCartasAleatorias);
                 if(res > 0.3)
@@ -192,11 +200,7 @@ public class Jugador {
                 }
                 return 4;
             }
-            else
-            {
-                opcion = Opcion.CHECK;
-                return 4;
-            }
+           
             
         }
         return 0;

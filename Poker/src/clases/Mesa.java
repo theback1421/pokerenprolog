@@ -207,8 +207,9 @@ public class Mesa {
 
     public void jugar()
     {
-        jugador1.jugar(copiaMesa(), numCartasAleatorias);
         jugador2.jugar(copiaMesa(), numCartasAleatorias);
+        bote += jugador2.getApuesta();
+        jugador2.setDinero(jugador2.getDinero()-jugador2.getApuesta());
         //if(finApuestas()) siguienteRonda();
         siguienteRonda();
     }
