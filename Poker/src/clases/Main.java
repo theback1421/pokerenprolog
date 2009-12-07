@@ -59,6 +59,7 @@ public class Main {
             p = (Puntuacion) it.next();
             System.out.println("El jugador "+p.getNombreJugador()+" tiene "+p.getPuntuacion()+ " puntos");
         }
+        System.out.println(j1.evaluar(mesa, 600));
     }
 
 

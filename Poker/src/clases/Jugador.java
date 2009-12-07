@@ -19,6 +19,7 @@ public class Jugador {
     private Mano mano;
     private int dinero = 2000;
     private int apuesta;
+    private int numApuesta=0;
     private Opcion opcion;
     private boolean isDealer;
     private boolean isCPU;
@@ -121,34 +122,36 @@ public class Jugador {
         return puntos;
     }
 
-    public int jugar(Mesa mesa, int profundidad, int alfa, int beta, Jugada jugada)
-    {
-        Jugador rival = mesa.getJugador1();
-        if(rival.getNombre().compareTo(nombre)==0) rival = mesa.getJugador2();
 
-        int puntos = evaluarMano(mesa.getCartasComunitarias());
-        
-        if(profundidad == 0)
+    public double evaluar(Mesa mesa, int numManosAleatorias)
+    {
+        ArrayList<Card> cartasProhibidas = new ArrayList<Card>();
+        cartasProhibidas.addAll(mesa.getCartasComunitarias());
+        cartasProhibidas.addAll(mano.getListacartas());
+
+        ArrayList<Card> cartasRivalFicticio = null;
+
+        int resultado = 0;
+        for(int i=0; i<numManosAleatorias; i++)
         {
-            return puntos*jugada.getApuesta();
+            cartasRivalFicticio = Card.getCartasAleatorias(cartasProhibidas);
+            resultado += mano.gana(new Mano(cartasRivalFicticio), new Mano(mesa.getCartasComunitarias()));
         }
-        else
-        {
-            ArrayList<Opcion> opciones = opciones(rival.getApuesta(), rival.getOpcion());
-            ListIterator<Opcion> it = opciones.listIterator();
-            while(it.hasNext())
-            {
-                Opcion op = (Opcion) it.next();
-                jugar(mesa,--profundidad, alfa, beta, new Jugada(op,rival.getApuesta()));
-            }
-        }
-        return 0;
+        return (double)resultado/(double)numManosAleatorias;
     }
 
-    public int jugar(Mesa mesa, int profundidad)
+    public int jugar(Mesa mesa, int numCartasAleatorias)
     {
         Jugador rival = mesa.getJugador1();
         if(rival.getNombre().compareTo(nombre)==0) rival = mesa.getJugador2();
+
+        numApuesta++;
+        if(numApuesta == 3)
+        {
+                opcion = Opcion.CHECK;
+                apuesta = rival.getApuesta();
+                return -1;
+        }
 
         ArrayList<Opcion> opciones = opciones(rival.getApuesta(), rival.getOpcion());
         ListIterator<Opcion> it = opciones.listIterator();
@@ -157,20 +160,36 @@ public class Jugador {
             Opcion op = (Opcion) it.next();
             if(op == Opcion.ALLIN)
             {
-                opcion = Opcion.ALLIN;
-                apuesta = dinero;
+                if(evaluar(mesa,numCartasAleatorias) > 0.0)
+                {
+                    opcion = Opcion.ALLIN;
+                    apuesta = dinero;
+                }
+                else
+                {
+                    opcion = Opcion.FOLD;
+                    apuesta = 0;
+                }
                 return 1;
             }
-            else if(op == Opcion.RAISE)
+            else if(op == Opcion.RAISE || op == Opcion.CHECK)
             {
-                opcion = Opcion.CHECK;
-                apuesta = rival.getApuesta();
-                return 2;
-            }
-            else if(op == Opcion.CHECK)
-            {
-                opcion = Opcion.CHECK;
-                apuesta = rival.getApuesta();
+                double res = evaluar(mesa,numCartasAleatorias);
+                if(res > 0.3)
+                {
+                    opcion = Opcion.RAISE;
+                    apuesta = rival.getApuesta()+mesa.getCiegaGrande();
+                }
+                else if(res > 0.0)
+                {
+                    opcion = Opcion.CHECK;
+                    apuesta = rival.getApuesta();
+                }
+                else
+                {
+                    opcion = Opcion.FOLD;
+                    apuesta = 0;
+                }
                 return 4;
             }
             else
@@ -180,8 +199,6 @@ public class Jugador {
             }
             
         }
-            //if(!isCPU) return 0;
-        //else return jugar(mesa,profundidad,999999999,-999999999,new Jugada());
         return 0;
     }
 

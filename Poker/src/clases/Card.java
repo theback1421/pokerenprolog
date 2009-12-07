@@ -5,6 +5,8 @@
 
 package clases;
 
+import java.util.ArrayList;
+import java.util.ListIterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -139,6 +141,89 @@ public class Card {
             case HEARTS: System.out.print("corazones\n"); break;
             case DIAMONDS: System.out.print("diamantes\n"); break;
         }
+    }
+
+    private static int enteroAleatorio(int min, int max)
+    {
+        return (int)(Math.random()*0.9999999*((double)(max+1-min)))+min;
+    }
+
+    public static ArrayList<Card> getCartasAleatorias(ArrayList<Card> cartasProhibidas)
+    {
+        ArrayList<Card> resultado = new ArrayList<Card>();
+
+        ArrayList<Card> baraja = new ArrayList<Card>();
+        {
+            baraja.add(new Card(Rank.ACE,Suit.CLUBS));
+            baraja.add(new Card(Rank.ACE,Suit.SPADES));
+            baraja.add(new Card(Rank.ACE,Suit.HEARTS));
+            baraja.add(new Card(Rank.ACE,Suit.DIAMONDS));
+            baraja.add(new Card(Rank.KING,Suit.CLUBS));
+            baraja.add(new Card(Rank.KING,Suit.SPADES));
+            baraja.add(new Card(Rank.KING,Suit.HEARTS));
+            baraja.add(new Card(Rank.KING,Suit.DIAMONDS));
+            baraja.add(new Card(Rank.QUEEN,Suit.CLUBS));
+            baraja.add(new Card(Rank.QUEEN,Suit.SPADES));
+            baraja.add(new Card(Rank.QUEEN,Suit.HEARTS));
+            baraja.add(new Card(Rank.QUEEN,Suit.DIAMONDS));
+            baraja.add(new Card(Rank.JACK,Suit.CLUBS));
+            baraja.add(new Card(Rank.JACK,Suit.SPADES));
+            baraja.add(new Card(Rank.JACK,Suit.HEARTS));
+            baraja.add(new Card(Rank.JACK,Suit.DIAMONDS));
+            baraja.add(new Card(Rank.R10,Suit.CLUBS));
+            baraja.add(new Card(Rank.R10,Suit.SPADES));
+            baraja.add(new Card(Rank.R10,Suit.HEARTS));
+            baraja.add(new Card(Rank.R10,Suit.DIAMONDS));
+            baraja.add(new Card(Rank.R9,Suit.CLUBS));
+            baraja.add(new Card(Rank.R9,Suit.SPADES));
+            baraja.add(new Card(Rank.R9,Suit.HEARTS));
+            baraja.add(new Card(Rank.R9,Suit.DIAMONDS));
+            baraja.add(new Card(Rank.R8,Suit.CLUBS));
+            baraja.add(new Card(Rank.R8,Suit.SPADES));
+            baraja.add(new Card(Rank.R8,Suit.HEARTS));
+            baraja.add(new Card(Rank.R8,Suit.DIAMONDS));
+            baraja.add(new Card(Rank.R7,Suit.CLUBS));
+            baraja.add(new Card(Rank.R7,Suit.SPADES));
+            baraja.add(new Card(Rank.R7,Suit.HEARTS));
+            baraja.add(new Card(Rank.R7,Suit.DIAMONDS));
+            baraja.add(new Card(Rank.R6,Suit.CLUBS));
+            baraja.add(new Card(Rank.R6,Suit.SPADES));
+            baraja.add(new Card(Rank.R6,Suit.HEARTS));
+            baraja.add(new Card(Rank.R6,Suit.DIAMONDS));
+            baraja.add(new Card(Rank.R5,Suit.CLUBS));
+            baraja.add(new Card(Rank.R5,Suit.SPADES));
+            baraja.add(new Card(Rank.R5,Suit.HEARTS));
+            baraja.add(new Card(Rank.R5,Suit.DIAMONDS));
+            baraja.add(new Card(Rank.R4,Suit.CLUBS));
+            baraja.add(new Card(Rank.R4,Suit.SPADES));
+            baraja.add(new Card(Rank.R4,Suit.HEARTS));
+            baraja.add(new Card(Rank.R4,Suit.DIAMONDS));
+            baraja.add(new Card(Rank.R3,Suit.CLUBS));
+            baraja.add(new Card(Rank.R3,Suit.SPADES));
+            baraja.add(new Card(Rank.R3,Suit.HEARTS));
+            baraja.add(new Card(Rank.R3,Suit.DIAMONDS));
+            baraja.add(new Card(Rank.R2,Suit.CLUBS));
+            baraja.add(new Card(Rank.R2,Suit.SPADES));
+            baraja.add(new Card(Rank.R2,Suit.HEARTS));
+            baraja.add(new Card(Rank.R2,Suit.DIAMONDS));
+        }
+
+        ListIterator it = cartasProhibidas.listIterator();
+        while(it.hasNext())
+        {
+            Card c = (Card)it.next();
+            baraja.remove(c);
+        }
+        
+        int i;
+        for(int j=0; j<2; j++)
+        {
+            i = enteroAleatorio(0,baraja.size()-1);
+            resultado.add(baraja.get(i));
+            baraja.remove(i);
+        }
+
+        return resultado;
     }
 
 }

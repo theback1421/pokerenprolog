@@ -138,4 +138,32 @@ public class Mano {
         return trio;
     }
 
+    static public Mano manoAleatoria()
+    {
+        return new Mano(Mesa.cogerCartasAleatorias(2));
+    }
+
+    public int gana(Mano rival, Mano comunitarias)
+    {
+        Query q = new Query("evaluar_mano(miManitaUno, "+Mano.arrayCartasProlog( rival.getListacartas() )+", "+Mano.arrayCartasProlog( comunitarias.getListacartas() )+")");
+        q.hasSolution();
+        q = new Query("puntosJugador(miManitaUno, Puntos, Jugada)");
+        java.util.Hashtable solution = q.oneSolution();
+        int puntos1 = 0;
+        if( null != solution ){
+            puntos1 = Integer.parseInt(((Term)solution.get( "Puntos" )).toString());
+        }
+        int puntos2 = 0;
+        q = new Query("evaluar_mano(miManitaDos, "+Mano.arrayCartasProlog( getListacartas() )+", "+Mano.arrayCartasProlog( comunitarias.getListacartas() )+")");
+        q.hasSolution();
+        q = new Query("puntosJugador(miManitaDos, Puntos, Jugada)");
+        solution = q.oneSolution();
+        if( null != solution ){
+            puntos2 = Integer.parseInt(((Term)solution.get( "Puntos" )).toString());
+        }
+        if(puntos2>puntos1) return 1;
+        else if(puntos2 == puntos1) return 0;
+        else return -1;
+    }
+
 }

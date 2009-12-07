@@ -24,7 +24,7 @@ public class Mesa {
     private int ciegaPequena;
     private int ciegaGrande;
     private int bote;
-    private int profundidad = 6;
+    private int numCartasAleatorias = 100;
 
     public Mesa()
     {
@@ -61,11 +61,34 @@ public class Mesa {
 
     public Mesa copiaMesa()
     {
-        Mesa result = new Mesa();
-        result.getJugador1().setMano(new Mano());
-        result.getJugador2().setMano(new Mano());
+        Jugador j1 = new Jugador(jugador1);
+        j1.setMano(new Mano());
+        Jugador j2 = new Jugador(jugador2);
+        j2.setMano(new Mano());
+        ArrayList<Card> cartasCom2 = new ArrayList<Card>();
+        if(ronda == Ronda.FLOP)
+        {
+            cartasCom2.add(cartasComunitarias.get(0));
+            cartasCom2.add(cartasComunitarias.get(1));
+            cartasCom2.add(cartasComunitarias.get(2));
+        }
+        else if(ronda == Ronda.TURN)
+        {
+            cartasCom2.add(cartasComunitarias.get(0));
+            cartasCom2.add(cartasComunitarias.get(1));
+            cartasCom2.add(cartasComunitarias.get(2));
+            cartasCom2.add(cartasComunitarias.get(3));
+        }
+        else if(ronda == Ronda.RIVER)
+        {
+            cartasCom2.add(cartasComunitarias.get(0));
+            cartasCom2.add(cartasComunitarias.get(1));
+            cartasCom2.add(cartasComunitarias.get(2));
+            cartasCom2.add(cartasComunitarias.get(3));
+            cartasCom2.add(cartasComunitarias.get(4));
+        }
 
-        return result;
+        return new Mesa(j1,j2,cartasCom2);
     }
 
     public Mesa(Jugador j1, Jugador j2){
@@ -105,15 +128,15 @@ public class Mesa {
 
         if( turno % 5 == 0 )
         {
-            ciegaPequena *= 2;
-                  ciegaGrande *= 2;
+            setCiegaPequena(getCiegaPequena() * 2);
+                  setCiegaGrande(getCiegaGrande() * 2);
         }
         q.close();
 
         ronda = Ronda.PREFLOP;
     }
 
-    public ArrayList<Card> cogerCartasAleatorias(int numCartas)
+    static public ArrayList<Card> cogerCartasAleatorias(int numCartas)
     {
         ArrayList<Card> res = new ArrayList<Card>();
         for(int i=0; i<numCartas; i++) res.add(cogerCartaAleatoria());
@@ -121,7 +144,7 @@ public class Mesa {
         return res;
     }
 
-    private Card cogerCartaAleatoria()
+    static private Card cogerCartaAleatoria()
     {
         String cartaProlog = null;
         String slongitud = null;
@@ -184,8 +207,8 @@ public class Mesa {
 
     public void jugar()
     {
-        jugador1.jugar(copiaMesa(), profundidad);
-        jugador2.jugar(copiaMesa(), profundidad);
+        jugador1.jugar(copiaMesa(), numCartasAleatorias);
+        jugador2.jugar(copiaMesa(), numCartasAleatorias);
         //if(finApuestas()) siguienteRonda();
         siguienteRonda();
     }
@@ -209,15 +232,15 @@ public class Mesa {
         return turno;
     }
 
-    private int getCiegaPequena() {
+    public int getCiegaPequena() {
         return ciegaPequena;
     }
 
-    private int getCiegaGrande() {
+    public int getCiegaGrande() {
         return ciegaGrande;
     }
 
-    private int getBote() {
+    public int getBote() {
         return bote;
     }
 
@@ -225,6 +248,28 @@ public class Mesa {
         if(ronda == Ronda.PREFLOP) ronda = Ronda.FLOP;
         else if(ronda == Ronda.FLOP) ronda = Ronda.TURN;
         else if(ronda == Ronda.TURN) ronda = Ronda.RIVER;
+        else ronda = Ronda.PREFLOP;
+    }
+
+    /**
+     * @param ciegaPequena the ciegaPequena to set
+     */
+    public void setCiegaPequena(int ciegaPequena) {
+        this.ciegaPequena = ciegaPequena;
+    }
+
+    /**
+     * @param ciegaGrande the ciegaGrande to set
+     */
+    public void setCiegaGrande(int ciegaGrande) {
+        this.ciegaGrande = ciegaGrande;
+    }
+
+    /**
+     * @param bote the bote to set
+     */
+    public void setBote(int bote) {
+        this.bote = bote;
     }
 
 

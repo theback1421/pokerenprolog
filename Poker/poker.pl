@@ -255,19 +255,20 @@ evaluar_mano(Jugador, Hand1, Comunitarias) :-
             retractall(puntosJugador(Jugador,_,_)),
              append(Hand1, Comunitarias, Todas),
              (   (    three_of_a_kind(Todas,Trio), \+ three_of_a_kind(Comunitarias,Trio),
-		      write(Jugador),writeln(' tiene trio,caso1'),
-		      writeln(Trio),
+		      %write(Jugador),writeln(' tiene trio,caso1'),
+		      %writeln(Trio),
 		      highestHand(threeofakind, Value),
       		      assert(puntosJugador(Jugador,Value,'trio')),
 		      assert(puntosJugador(Jugador,Trio,Value,'trio')),!);
 	     (   one_pair(Todas,Pareja,R), \+ one_pair(Comunitarias,Pareja,R) ,
 		      highestHand(pair,R ,Value),
-		      write(Jugador),writeln(' tiene pareja'),
+		      %write(Jugador),writeln(' tiene pareja'),
 		      assert(puntosJugador(Jugador,Pareja,Value,'pareja')),
 		      assert(puntosJugador(Jugador,Value,'pareja')),!);
              (   highestHand(Hand1, Value), 
 		 assert(puntosJugador(Jugador,Value,'carta alta')),
-		 write(Jugador),writeln(' tiene carta alta'),!)).
+		 %write(Jugador),writeln(' tiene carta alta'),
+                !)).
         
         
 partidilla :-
