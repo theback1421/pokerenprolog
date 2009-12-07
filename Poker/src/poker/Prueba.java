@@ -75,43 +75,11 @@ public class Prueba extends javax.swing.JFrame {
         String jugador = "pingu";
         j1= new Jugador(nameJ1);
         j2= new Jugador(jugador);
-       
-
-         File f = new File("./images/fondopantalla.jpg");
-        try {
-            BufferedImage imagen = ImageIO.read(f);
-            BgBorder border = new BgBorder(imagen);
-            contenido.setBorder(border);
-            
-
-        } catch (IOException ex) {
-            Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
-        }
         mesa = new Mesa(j1,j2);
         mesa.iniciarTurno();
-        Mano comuni = new Mano(mesa.getCartasComunitarias());
-        //comuni.print();
-        
-        Mano mano1 = j1.getMano();
-        //mano1.print();
-        Mano mano2 = j2.getMano();
-        mano2.print();
-        //EmpiezaPartida.setVisible(false);
+        Mano mano1 = mesa.getJugador1().getMano();
         NameJ1.setText(j1.getNombre());
         NameJ2.setText(j2.getNombre());
-
-
-        System.out.println("LOS JUGADORESSSSSSSSSSSSSS");
-        j1.print();
-        j2.print();
-
-        System.out.println("............................");
-
-
-        
-
-
-
         jLabelJ1C1.setIcon(GestorImagenes.getCardImage(mano1.getListacartas().get(0)));
         jLabelJ1C2.setIcon(GestorImagenes.getCardImage(mano1.getListacartas().get(1)));
         j2.setIsCPU(true);
@@ -127,17 +95,12 @@ public class Prueba extends javax.swing.JFrame {
         SaldoJ2.setText(Integer.toString(J2.getDinero()));
         mesa = new Mesa(J1,J2);
         mesa.iniciarTurno();
-        Mano comuni = new Mano(mesa.getCartasComunitarias());
-        //comuni.print();
         j1 = new Jugador(mesa.getJugador1());
         Mano mano1 = j1.getMano();
-        mano1.print();
         j2 = new Jugador(mesa.getJugador2());
         Mano mano2 = j2.getMano();
-        mano2.print();
-         jLabelJ1C1.setIcon(GestorImagenes.getCardImage(mano1.getListacartas().get(0)));
+        jLabelJ1C1.setIcon(GestorImagenes.getCardImage(mano1.getListacartas().get(0)));
         jLabelJ1C2.setIcon(GestorImagenes.getCardImage(mano1.getListacartas().get(1)));
-
         j2.setIsCPU(true);
         j1.setIsCPU(false);
 
@@ -155,7 +118,7 @@ public class Prueba extends javax.swing.JFrame {
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        jPanel1 = new javax.swing.JPanel();
+        Mensaje1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabelJ1C1 = new javax.swing.JLabel();
         jLabelJ1C2 = new javax.swing.JLabel();
@@ -184,6 +147,7 @@ public class Prueba extends javax.swing.JFrame {
         ConfirmarPasar = new javax.swing.JToggleButton();
         Mensaje = new javax.swing.JLabel();
         Apostar = new javax.swing.JToggleButton();
+        Mensaje2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(poker.PokerApp.class).getContext().getResourceMap(Prueba.class);
@@ -193,10 +157,10 @@ public class Prueba extends javax.swing.JFrame {
         setName("Form"); // NOI18N
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 0));
-        jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
-        jPanel1.setName("jPanel1"); // NOI18N
-        jPanel1.setPreferredSize(new java.awt.Dimension(1100, 700));
+        Mensaje1.setBackground(new java.awt.Color(0, 153, 0));
+        Mensaje1.setBorder(new javax.swing.border.MatteBorder(null));
+        Mensaje1.setName("Mensaje1"); // NOI18N
+        Mensaje1.setPreferredSize(new java.awt.Dimension(1100, 700));
 
         jPanel3.setBackground(resourceMap.getColor("jPanel3.background")); // NOI18N
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -315,7 +279,7 @@ public class Prueba extends javax.swing.JFrame {
         pinguino.setText(resourceMap.getString("pinguino.text")); // NOI18N
         pinguino.setName("pinguino"); // NOI18N
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jPanel1, org.jdesktop.beansbinding.ELProperty.create("${background}"), pinguino, org.jdesktop.beansbinding.BeanProperty.create("background"));
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, Mensaje1, org.jdesktop.beansbinding.ELProperty.create("${background}"), pinguino, org.jdesktop.beansbinding.BeanProperty.create("background"));
         bindingGroup.addBinding(binding);
 
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
@@ -377,14 +341,36 @@ public class Prueba extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        Mensaje2.setText(resourceMap.getString("Mensaje2.text")); // NOI18N
+        Mensaje2.setName("Mensaje2"); // NOI18N
+
+        javax.swing.GroupLayout Mensaje1Layout = new javax.swing.GroupLayout(Mensaje1);
+        Mensaje1.setLayout(Mensaje1Layout);
+        Mensaje1Layout.setHorizontalGroup(
+            Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Mensaje1Layout.createSequentialGroup()
+                .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Mensaje1Layout.createSequentialGroup()
+                        .addGap(234, 234, 234)
+                        .addComponent(pinguino, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Dolar2)
+                        .addGap(6, 6, 6)
+                        .addComponent(SaldoJ2))
+                    .addGroup(Mensaje1Layout.createSequentialGroup()
+                        .addGap(496, 496, 496)
+                        .addComponent(NameJ2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(372, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Mensaje1Layout.createSequentialGroup()
+                .addContainerGap(1330, Short.MAX_VALUE)
+                .addComponent(Mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(Mensaje1Layout.createSequentialGroup()
                 .addGap(240, 240, 240)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Mensaje1Layout.createSequentialGroup()
                         .addComponent(jLabelMesa1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabelMesa2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -395,122 +381,105 @@ public class Prueba extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabelMesa5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(StringTotalBote)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(Mensaje1Layout.createSequentialGroup()
                                 .addComponent(DolarBote)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Bote))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(Mensaje1Layout.createSequentialGroup()
+                        .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(Mensaje1Layout.createSequentialGroup()
                                 .addGap(90, 90, 90)
                                 .addComponent(jLabel2))
                             .addComponent(Cowboy, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Mensaje1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(Mensaje1Layout.createSequentialGroup()
                                         .addComponent(Dolar1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(SaldoJ1))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(Mensaje1Layout.createSequentialGroup()
                                         .addComponent(ConfirmarApuesta)
                                         .addGap(18, 18, 18)
                                         .addComponent(Apuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(ConfirmarPasar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Apostar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(252, 252, 252))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(Mensaje1Layout.createSequentialGroup()
                                 .addGap(102, 102, 102)
                                 .addComponent(NameJ1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))))
-                .addGap(217, 217, 217))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(234, 234, 234)
-                        .addComponent(pinguino, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Dolar2)
-                        .addGap(6, 6, 6)
-                        .addComponent(SaldoJ2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(496, 496, 496)
-                        .addComponent(NameJ2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(581, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(914, Short.MAX_VALUE)
-                .addComponent(Mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                                .addGap(285, 285, 285)
+                                .addComponent(Mensaje2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(633, 633, 633))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+        Mensaje1Layout.setVerticalGroup(
+            Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Mensaje1Layout.createSequentialGroup()
+                .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Mensaje1Layout.createSequentialGroup()
+                        .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(Mensaje1Layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(pinguino, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(Mensaje1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, Mensaje1Layout.createSequentialGroup()
                                 .addGap(56, 56, 56)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(Dolar2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(SaldoJ2))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(NameJ2)
                         .addGap(57, 57, 57)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelMesa3)
                             .addComponent(jLabelMesa2)
                             .addComponent(jLabelMesa1)
                             .addComponent(jLabelMesa4)
                             .addComponent(jLabelMesa5)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(Mensaje1Layout.createSequentialGroup()
                         .addGap(261, 261, 261)
                         .addComponent(StringTotalBote)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(DolarBote)
                             .addComponent(Bote))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Mensaje1Layout.createSequentialGroup()
                         .addGap(84, 84, 84)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Cowboy, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                        .addGap(24, 24, 24))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Cowboy, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(Mensaje1Layout.createSequentialGroup()
+                            .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(Dolar1)
                                 .addComponent(SaldoJ1))
                             .addGap(18, 18, 18)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(ConfirmarApuesta)
                                 .addComponent(Apuesta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(ConfirmarPasar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(Apostar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(Mensaje1Layout.createSequentialGroup()
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(NameJ1))))
+                            .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(NameJ1)
+                                .addComponent(Mensaje2)))))
                 .addGap(15, 15, 15)
                 .addComponent(Mensaje)
-                .addGap(25, 25, 25))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabelMesa5.getAccessibleContext().setAccessibleName(resourceMap.getString("jLabelMesa5.AccessibleContext.accessibleName")); // NOI18N
@@ -519,11 +488,13 @@ public class Prueba extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Mensaje1, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 2103, Short.MAX_VALUE)
+            .addComponent(Mensaje1, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         bindingGroup.bind();
@@ -535,14 +506,15 @@ public class Prueba extends javax.swing.JFrame {
 
         //Faltaria las comprobaciones para que lo que entra sea numeros y no letras.
         if(Integer.parseInt(Apuesta.getText()) > Integer.parseInt(SaldoJ1.getText())){
-            Mensaje.setForeground(Color.red);
-            Mensaje.setText("No hay suficiente saldo");
+            Mensaje2.setForeground(Color.red);
+            Mensaje2.setText("No hay suficiente saldo");
             Apuesta.setText("");
            // Mensaje.setForeground(Color.BLACK);
         }
         else{
             int valor =(int) Integer.parseInt(SaldoJ1.getText()) - Integer.parseInt(Apuesta.getText());
             SaldoJ1.setText(Integer.toString(valor));
+            
             int boteActual = Integer.parseInt(Bote.getText());
             int boteNuevo = Integer.parseInt(Apuesta.getText())+ boteActual;
             Bote.setText(Integer.toString(boteNuevo));
@@ -552,6 +524,36 @@ public class Prueba extends javax.swing.JFrame {
             if(mesa.getRonda() == Ronda.PREFLOP)
             {
                 mesa.jugar();
+
+                if(mesa.getJugador2().getOpcion() == Opcion.FOLD){
+                    Mensaje2.setForeground(Color.red);
+                    Mensaje2.setText(j2.getNombre()+" se retira");
+                    System.out.println("Se retira");
+                    int actual = (int) Integer.parseInt(SaldoJ1.getText());
+                    int bote = (int) Integer.parseInt(Bote.getText())+ actual;
+                    mesa.getJugador1().setDinero(bote);
+                    j1 = mesa.getJugador1();
+                    SaldoJ1.setText(Integer.toString(bote));
+                    mesa.getJugador2().setDinero(Integer.parseInt(SaldoJ2.getText()));
+                    j2 = mesa.getJugador2();
+
+                    ConfirmarApuesta.setVisible(false);
+                    ConfirmarPasar.setVisible(false);
+                    Apostar.setVisible(false);
+                    Apuesta.setVisible(false);
+                    Ganador g = new Ganador(j2.getNombre()+" se retira",j1,j2,this);
+                }
+                else{
+                    if(mesa.getJugador2().getOpcion()==Opcion.ALLIN){
+                        Mensaje2.setForeground(Color.red);
+                        Mensaje2.setText(j2.getNombre()+" hace ALL-IN");
+                        this.ConfirmarApuesta.setVisible(false);
+                        this.Apostar.setVisible(false);
+                    }
+                }
+                //Mensaje2.setForeground(Color.red);
+                //Mensaje2.setText(j2.getNombre()+" apuesta "+j2.getApuesta()+"$");
+
                 SaldoJ2.setText(Integer.toString(mesa.getJugador2().getDinero()));
                 Bote.setText(Integer.toString(mesa.getBote()));
                 jLabelMesa1.setIcon(GestorImagenes.getCardImage(mesa.getCartasComunitarias().get(0)));
@@ -561,6 +563,38 @@ public class Prueba extends javax.swing.JFrame {
             else if(mesa.getRonda() == Ronda.FLOP)
             {
                 mesa.jugar();
+                if(mesa.getJugador2().getOpcion() == Opcion.FOLD){
+                    Mensaje2.setForeground(Color.red);
+
+                    Mensaje2.setText(j2.getNombre()+" se retira");
+                    System.out.println("Se retira");
+                    int actual = (int) Integer.parseInt(SaldoJ1.getText());
+                    int bote = (int) Integer.parseInt(Bote.getText())+ actual;
+                    mesa.getJugador1().setDinero(bote);
+                    j1 = mesa.getJugador1();
+                    SaldoJ1.setText(Integer.toString(bote));
+                    mesa.getJugador2().setDinero(Integer.parseInt(SaldoJ2.getText()));
+                    j2 = mesa.getJugador2();
+
+                    ConfirmarApuesta.setVisible(false);
+                    ConfirmarPasar.setVisible(false);
+                    Apostar.setVisible(false);
+                    Apuesta.setVisible(false);
+                    Ganador g = new Ganador(j2.getNombre()+" se retira",j1,j2,this);
+
+
+                }
+                else{
+                    if(mesa.getJugador2().getOpcion()==Opcion.ALLIN){
+                        Mensaje2.setForeground(Color.red);
+                        Mensaje2.setText(j2.getNombre()+" hace ALL-IN");
+                        this.ConfirmarApuesta.setVisible(false);
+                        this.Apostar.setVisible(false);
+                    }
+                }
+//Mensaje2.setForeground(Color.red);
+
+//Mensaje2.setText(j2.getNombre()+" apuesta "+j2.getApuesta()+"$");
                 SaldoJ2.setText(Integer.toString(mesa.getJugador2().getDinero()));
                 Bote.setText(Integer.toString(mesa.getBote()));
                 jLabelMesa4.setIcon(GestorImagenes.getCardImage(mesa.getCartasComunitarias().get(3)));
@@ -568,31 +602,84 @@ public class Prueba extends javax.swing.JFrame {
             else if(mesa.getRonda() == Ronda.TURN)
             {
                 mesa.jugar();
+                if(mesa.getJugador2().getOpcion() == Opcion.FOLD){
+            Mensaje2.setForeground(Color.red);
+
+                    Mensaje2.setText(j2.getNombre()+" se retira");
+                    System.out.println("Se retira");
+                    int actual = (int) Integer.parseInt(SaldoJ1.getText());
+                    int bote = (int) Integer.parseInt(Bote.getText())+ actual;
+                    mesa.getJugador1().setDinero(bote);
+                    j1 = mesa.getJugador1();
+                    SaldoJ1.setText(Integer.toString(bote));
+                    mesa.getJugador2().setDinero(Integer.parseInt(SaldoJ2.getText()));
+                    j2 = mesa.getJugador2();
+                    
+                    ConfirmarApuesta.setVisible(false);
+                    ConfirmarPasar.setVisible(false);
+                    Apostar.setVisible(false);
+                    Apuesta.setVisible(false);
+                    Ganador g = new Ganador(j2.getNombre()+" se retira",j1,j2,this);
+
+
+                }
+                else{
+                    if(mesa.getJugador2().getOpcion()==Opcion.ALLIN){
+                        Mensaje2.setForeground(Color.red);
+                        Mensaje2.setText(j2.getNombre()+" hace ALL-IN");
+                        this.ConfirmarApuesta.setVisible(false);
+                        this.Apostar.setVisible(false);
+                    }
+                }
+//Mensaje2.setForeground(Color.red);
+
+  //              Mensaje2.setText(j2.getNombre()+" apuesta "+j2.getApuesta()+"$");
                 SaldoJ2.setText(Integer.toString(mesa.getJugador2().getDinero()));
                 Bote.setText(Integer.toString(mesa.getBote()));
                 jLabelMesa5.setIcon(GestorImagenes.getCardImage(mesa.getCartasComunitarias().get(4)));
             }
             else{
                 mesa.jugar();
+                if(mesa.getJugador2().getOpcion() == Opcion.FOLD){
+            Mensaje2.setForeground(Color.red);
+
+                    Mensaje2.setText(j2.getNombre()+" se retira");
+                    System.out.println("Se retira");
+                    int actual = (int) Integer.parseInt(SaldoJ1.getText());
+                    int bote = (int) Integer.parseInt(Bote.getText())+ actual;
+                    mesa.getJugador1().setDinero(bote);
+                    j1 = mesa.getJugador1();
+                    SaldoJ1.setText(Integer.toString(bote));
+                    mesa.getJugador2().setDinero(Integer.parseInt(SaldoJ2.getText()));
+                    j2 = mesa.getJugador2();
+
+                    ConfirmarApuesta.setVisible(false);
+                    ConfirmarPasar.setVisible(false);
+                    Apostar.setVisible(false);
+                    Apuesta.setVisible(false);
+                    Ganador g = new Ganador(j2.getNombre()+" se retira",j1,j2,this);
+
+
+                }
+                else{
+                    if(mesa.getJugador2().getOpcion()==Opcion.ALLIN){
+                        Mensaje2.setForeground(Color.red);
+                        Mensaje2.setText(j2.getNombre()+" hace ALL-IN");
+                        this.ConfirmarApuesta.setVisible(false);
+                        this.Apostar.setVisible(false);
+                    }
+                }
+//Mensaje2.setForeground(Color.red);
+
+    //            Mensaje2.setText(j2.getNombre()+" apuesta "+j2.getApuesta()+"$");
                 SaldoJ2.setText(Integer.toString(mesa.getJugador2().getDinero()));
                 Bote.setText(Integer.toString(mesa.getBote()));
                 Mano fin = j2.getMano();
-                 jLabelJ2C1.setIcon(GestorImagenes.getCardImage(fin.getListacartas().get(0)));
-                 jLabelJ2C2.setIcon(GestorImagenes.getCardImage(fin.getListacartas().get(1)));
-                 
-                 
-                 /*j1.setDinero(Integer.parseInt(SaldoJ1.getText()));
-                 mesa.getJugador1().setDinero(j1.getDinero());
-                 j2.setDinero(Integer.parseInt(SaldoJ2.getText()));
-                 mesa.getJugador2().setDinero(j2.getDinero());*/
-                 ArrayList<Puntuacion> puntu = new ArrayList<Puntuacion>();
-                 puntu =mesa.puntuacionJugadores();
-                 /*System.out.println("COMENZAMOSSSS");
-                 for(int i =0;i< puntu.size();i++){
-                  System.out.println(puntu.get(i).getNombreJugador());
-                  System.out.println(j1.getNombre());
-                  System.out.println(puntu.get(i).getPuntuacion());
-                    }*/
+                jLabelJ2C1.setIcon(GestorImagenes.getCardImage(fin.getListacartas().get(0)));
+                jLabelJ2C2.setIcon(GestorImagenes.getCardImage(fin.getListacartas().get(1)));
+                ArrayList<Puntuacion> puntu = new ArrayList<Puntuacion>();
+                puntu =mesa.puntuacionJugadores();
+                
               int puntJ1 = puntu.get(0).getPuntuacion();
               int puntJ2 = puntu.get(1).getPuntuacion();
               int dineroJ1 = (int) Integer.parseInt(SaldoJ1.getText());
@@ -603,6 +690,8 @@ public class Prueba extends javax.swing.JFrame {
                     dineroJ1+=bote;
                     mesa.getJugador1().setDinero(dineroJ1);
                     j1 = mesa.getJugador1();
+                    mesa.getJugador2().setDinero(dineroJ2);
+                    j2 = mesa.getJugador2();
                     SaldoJ1.setText(Integer.toString(dineroJ1));
                     figura=this.calculaQueTengo(puntJ1);
                     ganador=j1.getNombre()+" gana la ronda "+figura;
@@ -610,6 +699,9 @@ public class Prueba extends javax.swing.JFrame {
               else{
                      int bote = (int) Integer.parseInt(Bote.getText());
                      dineroJ2+=bote;
+                     mesa.getJugador1().setDinero(dineroJ1);
+                     j1 = mesa.getJugador1();
+
                      mesa.getJugador2().setDinero(dineroJ2);
                      j2 = mesa.getJugador2();
                      SaldoJ2.setText(Integer.toString(dineroJ2));
@@ -654,33 +746,150 @@ public class Prueba extends javax.swing.JFrame {
     private void ConfirmarPasarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConfirmarPasarMouseClicked
         // TODO add your handling code here:
         Mensaje.setText("");
+        mesa.getJugador1().setOpcion(Opcion.FOLD);
         j1.setOpcion(Opcion.FOLD);
-        Mensaje.setText(nameJ1+" se planta");
+        Mensaje2.setText(j1.getNombre()+" se retira");
         int acumulado = (int) Integer.parseInt(Bote.getText());
         int saldoJ2 = (int) Integer.parseInt(SaldoJ2.getText()) + acumulado;
         SaldoJ2.setText(Integer.toString(saldoJ2));
         Bote.setText("0");
         j1.setDinero(Integer.parseInt(SaldoJ1.getText()));
         j2.setDinero(saldoJ2);
-
+        ConfirmarApuesta.setVisible(false);
+        ConfirmarPasar.setVisible(false);
+        Apostar.setVisible(false);
+        Apuesta.setVisible(false);
         Ganador g = new Ganador(j2.getNombre()+" gana la ronda por retirada",j1,j2,this);
         
 
     }//GEN-LAST:event_ConfirmarPasarMouseClicked
 
     private void ApostarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ApostarMouseClicked
-        int x = (int) Integer.parseInt(SaldoJ1.getText()+SaldoJ2.getText());
+        j1.setOpcion(Opcion.ALLIN);
+        mesa.getJugador1().setOpcion(Opcion.ALLIN);
+        int x = (int) Integer.parseInt(SaldoJ1.getText());
         int bote = (int) Integer.parseInt(Bote.getText()) + x;
         Bote.setText(Integer.toString(bote));
         SaldoJ1.setText("0");
+        j1.setApuesta(x);
+        j1.setDinero(0);
+        mesa.getJugador1().setApuesta(x);
+        mesa.getJugador1().setDinero(0);
+
         //Se evalua la jugada que dice quien es el ganador
+       // mesa.jugar();
+        if(mesa.getJugador2().getOpcion()==Opcion.ALLIN){
+            Mensaje2.setText(j2.getNombre()+" contesta con ALL-IN");
+            x = (int) Integer.parseInt(SaldoJ2.getText());
+            bote = (int) Integer.parseInt(Bote.getText()) + x;
+            Bote.setText(Integer.toString(bote));
+            SaldoJ2.setText("0");
+            j2.setApuesta(x);
+            j2.setDinero(0);
+            mesa.getJugador2().setApuesta(x);
+            mesa.getJugador2().setDinero(0);
+            ArrayList<Puntuacion> puntu = new ArrayList<Puntuacion>();
+            puntu =mesa.puntuacionJugadores();
+            int puntJ1 = puntu.get(0).getPuntuacion();
+            int puntJ2 = puntu.get(1).getPuntuacion();
+            int dineroJ1 = (int) Integer.parseInt(SaldoJ1.getText());
+            int dineroJ2 = (int) Integer.parseInt(SaldoJ2.getText());
+              String ganador,figura;
+            if(puntJ1 > puntJ2){
+                    bote = (int) Integer.parseInt(Bote.getText());
+                    dineroJ1+=bote;
+                    mesa.getJugador1().setDinero(dineroJ1);
+                    j1 = mesa.getJugador1();
+                    SaldoJ1.setText(Integer.toString(dineroJ1));
+                    figura=this.calculaQueTengo(puntJ1);
+                    ganador=j1.getNombre()+" gana la partida "+figura;
+                     FindePartida fp = new FindePartida(ganador,j1,j2);
+                                }
+              else{
+                     bote = (int) Integer.parseInt(Bote.getText());
+                     dineroJ2+=bote;
+                     mesa.getJugador2().setDinero(dineroJ2);
+                     j2 = mesa.getJugador2();
+                     SaldoJ2.setText(Integer.toString(dineroJ2));
+                     figura=this.calculaQueTengo(puntJ2);
+                     ganador=j2.getNombre()+" gana la partida "+figura;
+                     ConfirmarApuesta.setVisible(false);
+                     ConfirmarPasar.setVisible(false);
+                     Apostar.setVisible(false);
+                     Apuesta.setVisible(false);
+                     FindePartida fp = new FindePartida(ganador,j1,j2);
+              }
+
+        }
+        else{
+            mesa.jugar();
+             if(mesa.getJugador2().getOpcion()==Opcion.ALLIN){
+            Mensaje2.setText(j2.getNombre()+" contesta con ALL-IN");
+            x = (int) Integer.parseInt(SaldoJ2.getText());
+            bote = (int) Integer.parseInt(Bote.getText()) + x;
+            Bote.setText(Integer.toString(bote));
+            SaldoJ2.setText("0");
+            j2.setApuesta(x);
+            j2.setDinero(0);
+            mesa.getJugador2().setApuesta(x);
+            mesa.getJugador2().setDinero(0);
+            ArrayList<Puntuacion> puntu = new ArrayList<Puntuacion>();
+            puntu =mesa.puntuacionJugadores();
+            int puntJ1 = puntu.get(0).getPuntuacion();
+            int puntJ2 = puntu.get(1).getPuntuacion();
+            int dineroJ1 = (int) Integer.parseInt(SaldoJ1.getText());
+            int dineroJ2 = (int) Integer.parseInt(SaldoJ2.getText());
+              String ganador,figura;
+            if(puntJ1 > puntJ2){
+                    bote = (int) Integer.parseInt(Bote.getText());
+                    dineroJ1+=bote;
+                    mesa.getJugador1().setDinero(dineroJ1);
+                    j1 = mesa.getJugador1();
+                    SaldoJ1.setText(Integer.toString(dineroJ1));
+                    figura=this.calculaQueTengo(puntJ1);
+                    ganador=j1.getNombre()+" gana la partida "+figura;
+                     FindePartida fp = new FindePartida(ganador,j1,j2);
+                                }
+              else{
+                     bote = (int) Integer.parseInt(Bote.getText());
+                     dineroJ2+=bote;
+                     mesa.getJugador2().setDinero(dineroJ2);
+                     j2 = mesa.getJugador2();
+                     SaldoJ2.setText(Integer.toString(dineroJ2));
+                     figura=this.calculaQueTengo(puntJ2);
+                     ganador=j2.getNombre()+" gana la partida "+figura;
+                     ConfirmarApuesta.setVisible(false);
+                     ConfirmarPasar.setVisible(false);
+                     Apostar.setVisible(false);
+                     Apuesta.setVisible(false);
+                     FindePartida fp = new FindePartida(ganador,j1,j2);
+              }
+
+        }
+             else{
+            Mensaje2.setText(j2.getNombre()+" se retira");
+            System.out.println("Se retira");
+            bote = (int) Integer.parseInt(Bote.getText());
+            mesa.getJugador1().setDinero(bote);
+            j1 = mesa.getJugador1();
+            SaldoJ1.setText(Integer.toString(bote));
+            ConfirmarApuesta.setVisible(false);
+            ConfirmarPasar.setVisible(false);
+            Apostar.setVisible(false);
+            Apuesta.setVisible(false);
+            Ganador g = new Ganador(j2.getNombre()+" se retira",j1,j2,this);
+
+
+        }
+        }
+
 
         //si gana j1 se le suma el saldo
         // si le gana
         Mano fin = mesa.getJugador2().getMano();
         jLabelJ2C1.setIcon(GestorImagenes.getCardImage(fin.getListacartas().get(0)));
         jLabelJ2C2.setIcon(GestorImagenes.getCardImage(fin.getListacartas().get(1)));
-        FindePartida fp = new FindePartida("lalala",j1,j2);
+        
 
     }//GEN-LAST:event_ApostarMouseClicked
 
@@ -708,6 +917,8 @@ public class Prueba extends javax.swing.JFrame {
     private javax.swing.JLabel Dolar2;
     private javax.swing.JLabel DolarBote;
     private javax.swing.JLabel Mensaje;
+    private javax.swing.JPanel Mensaje1;
+    private javax.swing.JLabel Mensaje2;
     private javax.swing.JLabel NameJ1;
     private javax.swing.JLabel NameJ2;
     private javax.swing.JLabel SaldoJ1;
@@ -723,7 +934,6 @@ public class Prueba extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelMesa3;
     private javax.swing.JLabel jLabelMesa4;
     private javax.swing.JLabel jLabelMesa5;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel pinguino;

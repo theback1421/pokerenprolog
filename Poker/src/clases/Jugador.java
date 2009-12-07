@@ -166,11 +166,13 @@ public class Jugador {
                 {
                     opcion = Opcion.ALLIN;
                     apuesta = dinero;
+                    System.out.println("Apuesto todo "+apuesta);
                 }
                 else
                 {
                     opcion = Opcion.FOLD;
                     apuesta = 0;
+                    System.out.println("Me planto  "+apuesta);
                 }
                 return 1;
             }
@@ -178,6 +180,7 @@ public class Jugador {
             {
                 opcion = Opcion.CHECK;
                 apuesta = 0;
+                System.out.println("Me planto  "+apuesta);
                 return 4;
             }
             else
@@ -186,17 +189,28 @@ public class Jugador {
                 if(res > 0.3)
                 {
                     opcion = Opcion.RAISE;
-                    apuesta = rival.getApuesta()+mesa.getCiegaGrande();
+                    if(rival.getApuesta()+mesa.getCiegaGrande() < this.getDinero()){
+                    apuesta = rival.getApuesta()+mesa.getCiegaGrande();}
+                    else{
+                        if(rival.getApuesta() >= this.getDinero()){
+                        apuesta =this.getDinero();
+                        opcion = Opcion.ALLIN;
+                        return 1;
+                        }
+                    }
+                    System.out.println("Apuesto "+apuesta);
                 }
                 else if(res > 0.0)
                 {
                     opcion = Opcion.CHECK;
                     apuesta = rival.getApuesta();
+                    System.out.println("Lo veo "+apuesta);
                 }
                 else
                 {
                     opcion = Opcion.FOLD;
                     apuesta = 0;
+                    System.out.println("Me planto "+apuesta);
                 }
                 return 4;
             }
