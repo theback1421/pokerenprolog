@@ -17,11 +17,16 @@ import javax.swing.ImageIcon;
 import clases.*;
 import clases.Rank;
 import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 import jpl.Atom;
 import jpl.JPL;
 import jpl.Query;
 import jpl.Term;
+import poker.resources.BgBorder;
 
 /**
  *
@@ -61,11 +66,29 @@ public class Prueba extends javax.swing.JFrame {
     public Prueba(String name) {
         super();
         nameJ1 = name;
+         JPanel contenido = new JPanel();
+        this.setContentPane(contenido);
+
+        
         initComponents();
         init();
         String jugador = "pingu";
         j1= new Jugador(nameJ1);
         j2= new Jugador(jugador);
+       
+
+         File f = new File("./images/fondopantalla.jpg");
+        try {
+            BufferedImage imagen = ImageIO.read(f);
+            BgBorder border = new BgBorder(imagen);
+            contenido.setBorder(border);
+            
+
+        } catch (IOException ex) {
+            Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
 
 
 
@@ -202,12 +225,13 @@ public class Prueba extends javax.swing.JFrame {
         setName("Form"); // NOI18N
         setResizable(false);
 
-        jPanel1.setBackground(resourceMap.getColor("jPanel1.background")); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(0, 153, 0));
         jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
         jPanel1.setName("jPanel1"); // NOI18N
         jPanel1.setPreferredSize(new java.awt.Dimension(1100, 700));
 
         jPanel3.setBackground(resourceMap.getColor("jPanel3.background")); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel3.setMinimumSize(new java.awt.Dimension(100, 100));
         jPanel3.setName("jPanel3"); // NOI18N
 
@@ -241,6 +265,7 @@ public class Prueba extends javax.swing.JFrame {
         );
 
         jPanel2.setBackground(resourceMap.getColor("jPanel2.background")); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setName("jPanel2"); // NOI18N
 
         jLabelJ2C1.setIcon(resourceMap.getIcon("jLabelJ2C1.icon")); // NOI18N
@@ -453,7 +478,7 @@ public class Prueba extends javax.swing.JFrame {
                         .addComponent(NameJ2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(581, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(910, Short.MAX_VALUE)
+                .addContainerGap(914, Short.MAX_VALUE)
                 .addComponent(Mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -526,11 +551,11 @@ public class Prueba extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1107, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 2103, Short.MAX_VALUE)
         );
 
         bindingGroup.bind();
@@ -617,11 +642,19 @@ public class Prueba extends javax.swing.JFrame {
                     else{
                         Ganador =j1.getNombre()+" gana la partida con "+j1.getDinero()+" $";
                     }
+                    ConfirmarApuesta.setVisible(false);
+                    ConfirmarPasar.setVisible(false);
+                    Apostar.setVisible(false);
+                    Apuesta.setVisible(false);
                      FindePartida fp = new FindePartida(Ganador,j1,j2);
                      ///this.setVisible(false);
                      System.out.println("FIN");
                  }
                  else{
+                  ConfirmarApuesta.setVisible(false);
+                    ConfirmarPasar.setVisible(false);
+                    Apostar.setVisible(false);
+                    Apuesta.setVisible(false);
                  Ganador g = new Ganador(ganador,j1,j2,this);
                  System.out.println("GANADOR PARCIAL");
                  }

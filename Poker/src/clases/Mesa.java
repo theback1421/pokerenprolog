@@ -21,8 +21,8 @@ public class Mesa {
     private ArrayList<Card> cartasComunitarias;
     private Ronda ronda;
     private int turno=0;
-    private int ciegaPequena;
-    private int ciegaGrande;
+    private int ciegaPequena = 25;
+    private int ciegaGrande = 100;
     private int bote;
     private int numCartasAleatorias = 100;
 
