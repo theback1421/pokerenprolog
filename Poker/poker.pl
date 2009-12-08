@@ -193,6 +193,15 @@ one_pair(OP, [card(R,S1),card(R,S2)],R) :-
         member(card(R,S1), OP),
         member(card(R,S2), OP),!.
 
+two_pairs(TP, [card(R1,S1),card(R1,S2),card(R2,S3),card(R2,S4)],R1,R2) :-
+	all_dif([S1,S2]),
+	all_dif([R1,R2]),
+	all_dif([S3,S4]),
+        member(card(R1,S1), TP),
+        member(card(R1,S2), TP),
+	member(card(R2,S3), TP),
+	member(card(R2,S4), TP),!.
+
 best_pair([card(R1,_S1)|_RestPair1], [card(R2,_S2)|_Pair2], Result) :-
         value(R1,V1),
         value(R2,V2),
@@ -205,6 +214,27 @@ three_of_a_kind(TOAK,[card(R,S1),card(R,S2),card(R,S3)]) :-
         member(card(R,S1), TOAK),
         member(card(R,S2), TOAK),
         member(card(R,S3), TOAK),!.
+
+full(FULL,[card(R1,S1),card(R1,S2),card(R1,S3),card(R2,S4),card(R2,S5)],R1,R2) :-
+	three_of_a_kind(FULL,[card(R1,S1),card(R1,S2),card(R1,S3)]),
+	select_from(FULL,[card(R1,S1),card(R1,S2),card(R1,S3)],Resto),
+	one_pair(Resto,[card(R2,S4),card(R2,S5)],R2),!.
+
+poker(POKER,[card(R,S1),card(R,S2),card(R,S3),card(R,S4)],R) :-
+	all_dif([S1,S2,S3,S4]),
+	member(card(R,S1),POKER),
+	member(card(R,S2),POKER),
+	member(card(R,S3),POKER),
+	member(card(R,S4),POKER),!.
+
+flush(F,[card(R1,S),card(R2,S),card(R3,S),card(R4,S),card(R5,S)]) :-
+	all_dif([R1,R2,R3,R4,R5]),
+	member(card(R1,S),F),
+	member(card(R2,S),F),
+	member(card(R3,S),F),
+	member(card(R4,S),F),
+	member(card(R5,S),F),!.
+
 
 winning_hand([]).
 winning_hand([jugadorCarta(Jugador,Hand)|RestoJugadoresCartas]):-
@@ -254,25 +284,36 @@ reevaluar_mano(Jugador, Hand1, Comunitarias) :-
 evaluar_mano(Jugador, Hand1, Comunitarias) :-
             retractall(puntosJugador(Jugador,_,_)),
              append(Hand1, Comunitarias, Todas),
-             (   (    three_of_a_kind(Todas,Trio), \+ three_of_a_kind(Comunitarias,Trio),
-		      %write(Jugador),writeln(' tiene trio,caso1'),
-		      %writeln(Trio),
+             (   (   poker(Todas,Poker,_R),
+		      highestHand(poker, Value),
+      		      assert(puntosJugador(Jugador,Value,'poker')),
+		      assert(puntosJugador(Jugador,Poker,Value,'poker')),!);
+	     (    flush(Todas,Flush),
+		      highestHand(flush, Value),
+      		      assert(puntosJugador(Jugador,Value,'flush')),
+		      assert(puntosJugador(Jugador,Flush,Value,'flush')),!);
+	     (    full(Todas,Full,_R1,_R2),
+		      highestHand(full, Value),
+      		      assert(puntosJugador(Jugador,Value,'full')),
+		      assert(puntosJugador(Jugador,Full,Value,'full')),!);
+	     (    two_pairs(Todas,TP,R1,R2), \+ two_pairs(Comunitarias, TP, R1,R2),
+		      highestHand(twopairs, Value),
+      		      assert(puntosJugador(Jugador,Value,'dobles parejas')),
+		      assert(puntosJugador(Jugador,TP,Value,'dobles parejas')),!);
+	     (    three_of_a_kind(Todas,Trio), \+ three_of_a_kind(Comunitarias,Trio),
 		      highestHand(threeofakind, Value),
       		      assert(puntosJugador(Jugador,Value,'trio')),
 		      assert(puntosJugador(Jugador,Trio,Value,'trio')),!);
 	     (   one_pair(Todas,Pareja,R), \+ one_pair(Comunitarias,Pareja,R) ,
 		      highestHand(pair,R ,Value),
-		      %write(Jugador),writeln(' tiene pareja'),
 		      assert(puntosJugador(Jugador,Pareja,Value,'pareja')),
 		      assert(puntosJugador(Jugador,Value,'pareja')),!);
              (   highestHand(Hand1, Value), 
-		 assert(puntosJugador(Jugador,Value,'carta alta')),
-		 %write(Jugador),writeln(' tiene carta alta'),
-                !)).
+		 assert(puntosJugador(Jugador,Value,'carta alta')),!)).
         
         
 partidilla :-
-	Comunitarias = [card(2,diamonds),card(3,hearts),card(2,clubs),card(7,clubs),card(2,hearts)],
+	Comunitarias = [card(2,diamonds),card(3,hearts),card(2,clubs),card(7,clubs),card(7,hearts)],
 	YoCartas = [card(7,spades),card(7,diamonds)],
 	ElotroCartas = [card(8,hearts),card(5,clubs)],
 	writeln(Comunitarias),
@@ -320,7 +361,16 @@ highestHand(pair,jack,31).
 highestHand(pair,queen,32).
 highestHand(pair,king,33).
 highestHand(pair,ace,34).
+
+highestHand(twopairs,40).
+
 highestHand(threeofakind,50).
+
+highestHand(flush,60).
+
+highestHand(full,70).
+
+highestHand(poker,80).
 
 highestHand([card(R1,S1)], Resultado) :-
         highestHand(card(R1,S1),Value1),
