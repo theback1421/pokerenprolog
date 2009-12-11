@@ -78,11 +78,6 @@
                   </Group>
                   <EmptySpace pref="372" max="32767" attributes="0"/>
               </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="1330" max="32767" attributes="0"/>
-                  <Component id="Mensaje" min="-2" pref="383" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-              </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="240" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -121,31 +116,38 @@
                                   <Component id="jPanel3" min="-2" max="-2" attributes="1"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="Dolar1" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="SaldoJ1" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Component id="Dolar1" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="SaldoJ1" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="ConfirmarApuesta" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="Apuesta" min="-2" pref="76" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="ConfirmarPasar" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="252" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="ConfirmarApuesta" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="Apuesta" min="-2" pref="76" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="ConfirmarPasar" min="-2" max="-2" attributes="0"/>
-                                      <Component id="Apostar" min="-2" max="-2" attributes="0"/>
+                                      <Component id="Apostar" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="252" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
                                   <Component id="NameJ1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="285" max="-2" attributes="0"/>
-                                  <Component id="Mensaje2" min="-2" pref="229" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="633" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace pref="976" max="32767" attributes="0"/>
+                  <Component id="Mensaje2" min="-2" pref="89" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="658" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -192,43 +194,47 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="Cowboy" min="-2" pref="196" max="-2" attributes="1"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="Cowboy" min="-2" pref="196" max="-2" attributes="1"/>
+                              </Group>
+                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="Dolar1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="SaldoJ1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="ConfirmarApuesta" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="Apuesta" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="ConfirmarPasar" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="Apostar" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jPanel3" min="-2" max="-2" attributes="1"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="NameJ1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace pref="26" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="Dolar1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="SaldoJ1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="ConfirmarApuesta" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Apuesta" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="ConfirmarPasar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="Apostar" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jPanel3" min="-2" max="-2" attributes="1"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="NameJ1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Mensaje2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="Mensaje2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                  <Component id="Mensaje" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -242,6 +248,7 @@
                 <BevelBorder/>
               </Border>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[100, 100]"/>
             </Property>
@@ -298,6 +305,7 @@
                 <BevelBorder/>
               </Border>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="name" type="java.lang.String" value="jPanel2" noResource="true"/>
           </Properties>
 
@@ -505,12 +513,6 @@
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ConfirmarPasarMouseClicked"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="Mensaje">
-          <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="Mensaje.text"/>
-            <Property name="name" type="java.lang.String" value="Mensaje" noResource="true"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JToggleButton" name="Apostar">
           <Properties>

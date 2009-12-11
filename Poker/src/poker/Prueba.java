@@ -145,7 +145,6 @@ public class Prueba extends javax.swing.JFrame {
         Apuesta = new javax.swing.JTextField();
         ConfirmarApuesta = new javax.swing.JToggleButton();
         ConfirmarPasar = new javax.swing.JToggleButton();
-        Mensaje = new javax.swing.JLabel();
         Apostar = new javax.swing.JToggleButton();
         Mensaje2 = new javax.swing.JLabel();
 
@@ -164,6 +163,7 @@ public class Prueba extends javax.swing.JFrame {
 
         jPanel3.setBackground(resourceMap.getColor("jPanel3.background")); // NOI18N
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.setEnabled(false);
         jPanel3.setMinimumSize(new java.awt.Dimension(100, 100));
         jPanel3.setName("jPanel3"); // NOI18N
 
@@ -198,6 +198,7 @@ public class Prueba extends javax.swing.JFrame {
 
         jPanel2.setBackground(resourceMap.getColor("jPanel2.background")); // NOI18N
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setEnabled(false);
         jPanel2.setName("jPanel2"); // NOI18N
 
         jLabelJ2C1.setIcon(resourceMap.getIcon("jLabelJ2C1.icon")); // NOI18N
@@ -327,9 +328,6 @@ public class Prueba extends javax.swing.JFrame {
             }
         });
 
-        Mensaje.setText(resourceMap.getString("Mensaje.text")); // NOI18N
-        Mensaje.setName("Mensaje"); // NOI18N
-
         Apostar.setText(resourceMap.getString("BotonAll.text")); // NOI18N
         Apostar.setMaximumSize(new java.awt.Dimension(71, 23));
         Apostar.setMinimumSize(new java.awt.Dimension(71, 23));
@@ -363,10 +361,6 @@ public class Prueba extends javax.swing.JFrame {
                         .addGap(496, 496, 496)
                         .addComponent(NameJ2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(372, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Mensaje1Layout.createSequentialGroup()
-                .addContainerGap(1330, Short.MAX_VALUE)
-                .addComponent(Mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(Mensaje1Layout.createSequentialGroup()
                 .addGap(240, 240, 240)
                 .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,23 +394,27 @@ public class Prueba extends javax.swing.JFrame {
                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(Mensaje1Layout.createSequentialGroup()
-                                        .addComponent(Dolar1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(SaldoJ1))
-                                    .addGroup(Mensaje1Layout.createSequentialGroup()
-                                        .addComponent(ConfirmarApuesta)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(Apuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(ConfirmarPasar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Apostar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(252, 252, 252))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Mensaje1Layout.createSequentialGroup()
+                                        .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(Mensaje1Layout.createSequentialGroup()
+                                                .addComponent(Dolar1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(SaldoJ1))
+                                            .addGroup(Mensaje1Layout.createSequentialGroup()
+                                                .addComponent(ConfirmarApuesta)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(Apuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(ConfirmarPasar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(252, 252, 252))
+                                    .addComponent(Apostar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(Mensaje1Layout.createSequentialGroup()
                                 .addGap(102, 102, 102)
-                                .addComponent(NameJ1)
-                                .addGap(285, 285, 285)
-                                .addComponent(Mensaje2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(NameJ1)))))
                 .addGap(633, 633, 633))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Mensaje1Layout.createSequentialGroup()
+                .addContainerGap(976, Short.MAX_VALUE)
+                .addComponent(Mensaje2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(658, 658, 658))
         );
         Mensaje1Layout.setVerticalGroup(
             Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -451,35 +449,37 @@ public class Prueba extends javax.swing.JFrame {
                         .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(DolarBote)
                             .addComponent(Bote))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(Mensaje1Layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Cowboy, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(Mensaje1Layout.createSequentialGroup()
-                            .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(Dolar1)
-                                .addComponent(SaldoJ1))
-                            .addGap(18, 18, 18)
-                            .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(ConfirmarApuesta)
-                                .addComponent(Apuesta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(ConfirmarPasar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(Apostar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(Mensaje1Layout.createSequentialGroup()
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(NameJ1)
-                                .addComponent(Mensaje2)))))
-                .addGap(15, 15, 15)
-                .addComponent(Mensaje)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(Mensaje1Layout.createSequentialGroup()
+                                .addGap(84, 84, 84)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Cowboy, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(Mensaje1Layout.createSequentialGroup()
+                                    .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(Dolar1)
+                                        .addComponent(SaldoJ1))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(Mensaje1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(ConfirmarApuesta)
+                                        .addComponent(Apuesta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(ConfirmarPasar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(Apostar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(Mensaje1Layout.createSequentialGroup()
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(NameJ1))))
+                        .addContainerGap(26, Short.MAX_VALUE))
+                    .addGroup(Mensaje1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Mensaje2)
+                        .addContainerGap())))
         );
 
         jLabelMesa5.getAccessibleContext().setAccessibleName(resourceMap.getString("jLabelMesa5.AccessibleContext.accessibleName")); // NOI18N
@@ -489,7 +489,7 @@ public class Prueba extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Mensaje1, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Mensaje1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -745,7 +745,7 @@ public class Prueba extends javax.swing.JFrame {
 
     private void ConfirmarPasarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConfirmarPasarMouseClicked
         // TODO add your handling code here:
-        Mensaje.setText("");
+       
         mesa.getJugador1().setOpcion(Opcion.FOLD);
         j1.setOpcion(Opcion.FOLD);
         Mensaje2.setText(j1.getNombre()+" se retira");
@@ -779,7 +779,6 @@ public class Prueba extends javax.swing.JFrame {
         //Se evalua la jugada que dice quien es el ganador
        // mesa.jugar();
         if(mesa.getJugador2().getOpcion()==Opcion.ALLIN){
-            Mensaje2.setText(j2.getNombre()+" contesta con ALL-IN");
             x = (int) Integer.parseInt(SaldoJ2.getText());
             bote = (int) Integer.parseInt(Bote.getText()) + x;
             Bote.setText(Integer.toString(bote));
@@ -893,18 +892,7 @@ public class Prueba extends javax.swing.JFrame {
 
     }//GEN-LAST:event_ApostarMouseClicked
 
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-               new Prueba("juan").setVisible(true);
-                
-
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton Apostar;
@@ -916,7 +904,6 @@ public class Prueba extends javax.swing.JFrame {
     private javax.swing.JLabel Dolar1;
     private javax.swing.JLabel Dolar2;
     private javax.swing.JLabel DolarBote;
-    private javax.swing.JLabel Mensaje;
     private javax.swing.JPanel Mensaje1;
     private javax.swing.JLabel Mensaje2;
     private javax.swing.JLabel NameJ1;

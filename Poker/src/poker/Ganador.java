@@ -6,27 +6,26 @@
 /*
  * Ganador.java
  *
- * Created on 02-dic-2009, 0:01:47
+ * Created on 11-dic-2009, 14:01:25
  */
 
 package poker;
 
 import clases.Jugador;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author USUARIO
  */
-public class Ganador extends javax.swing.JDialog {
+public class Ganador extends javax.swing.JFrame {
 
-    Jugador jug1;
+    /** Creates new form Ganador */
+   Jugador jug1;
     Jugador jug2;
     Prueba prueb;
     /** Creates new form Ganador */
     public Ganador(String frase, Jugador J1, Jugador J2,Prueba p) {
-        
+
          p.setVisible(true);
         initComponents();
         MensajeGanador.setText(frase);
@@ -35,9 +34,8 @@ public class Ganador extends javax.swing.JDialog {
          jug2 = J2;
          prueb = p;
          //p.setVisible(false);
-         
-    }
 
+    }
 
 
     /** This method is called from within the constructor to
@@ -49,14 +47,27 @@ public class Ganador extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Aceptar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         MensajeGanador = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        Aceptar = new javax.swing.JToggleButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(poker.PokerApp.class).getContext().getResourceMap(Ganador.class);
+        setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(poker.PokerApp.class).getContext().getResourceMap(Ganador.class);
+        jPanel1.setBackground(resourceMap.getColor("jPanel1.background")); // NOI18N
+        jPanel1.setName("jPanel1"); // NOI18N
+
+        jLabel1.setBackground(resourceMap.getColor("jLabel1.background")); // NOI18N
+        jLabel1.setIcon(resourceMap.getIcon("jLabel1.icon")); // NOI18N
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setName("jLabel1"); // NOI18N
+
+        MensajeGanador.setText(resourceMap.getString("MensajeGanador.text")); // NOI18N
+        MensajeGanador.setName("MensajeGanador"); // NOI18N
+
         Aceptar.setText(resourceMap.getString("Aceptar.text")); // NOI18N
         Aceptar.setName("Aceptar"); // NOI18N
         Aceptar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -65,58 +76,70 @@ public class Ganador extends javax.swing.JDialog {
             }
         });
 
-        MensajeGanador.setText(resourceMap.getString("MensajeGanador.text")); // NOI18N
-        MensajeGanador.setName("MensajeGanador"); // NOI18N
-
-        jLabel2.setIcon(resourceMap.getIcon("jLabel2.icon")); // NOI18N
-        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
-        jLabel2.setName("jLabel2"); // NOI18N
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(MensajeGanador, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(91, Short.MAX_VALUE)
+                .addComponent(Aceptar)
+                .addGap(81, 81, 81))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(MensajeGanador)
+                .addGap(18, 18, 18)
+                .addComponent(Aceptar)
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(90, Short.MAX_VALUE)
-                .addComponent(MensajeGanador, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(Aceptar)
-                .addContainerGap(227, Short.MAX_VALUE))
+            .addGap(0, 283, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(MensajeGanador)
-                .addGap(18, 18, 18)
-                .addComponent(Aceptar)
-                .addGap(33, 33, 33))
+            .addGap(0, 216, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void AceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AceptarMouseClicked
+        // TODO add your handling code here:
         this.setVisible(false);
         prueb = new Prueba(jug1,jug2);
         prueb.setVisible(true);
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_AceptarMouseClicked
 
 
+
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Aceptar;
+    private javax.swing.JToggleButton Aceptar;
     private javax.swing.JLabel MensajeGanador;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
 }
