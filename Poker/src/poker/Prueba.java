@@ -974,9 +974,12 @@ public String calculaQueTengo(int puntuacion){
         case 34:   salida=" con pareja de ases"; break;
         case 40:   salida= " con dobles parejas"; break;
         case 50:   salida= " con trio"; break;
+        case 55:   salida= " con escalera"; break;
         case 60:   salida= " con flush"; break;
         case 70:   salida= " con full"; break;
         case 80:   salida= " con poker"; break;
+        case 90:   salida= " con escalera de color"; break;
+        case 100:  salida= " con escalera real"; break;
         case 1:   salida=" con carta alta (1)"; break;
         default:  salida= "error";break;
 

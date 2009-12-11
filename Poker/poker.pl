@@ -284,7 +284,19 @@ reevaluar_mano(Jugador, Hand1, Comunitarias) :-
 evaluar_mano(Jugador, Hand1, Comunitarias) :-
             retractall(puntosJugador(Jugador,_,_)),
              append(Hand1, Comunitarias, Todas),
-             (   (   poker(Todas,Poker,_R),
+             (   (   straight_flush(Todas,StraightFlush,_R), \+ straight_flush(Comunitarias, StraightFlush, _R),
+		      highestHand(straightflush, Value),
+      		      assert(puntosJugador(Jugador,Value,'straight flush')),
+		      assert(puntosJugador(Jugador,StraightFlush,Value,'straight flush')),!);
+	     (   royal_flush(Todas,RoyalFlush), \+ royal_flush(Comunitarias, RoyalFlush),
+		      highestHand(royalflush, Value),
+      		      assert(puntosJugador(Jugador,Value,'royal flush')),
+		      assert(puntosJugador(Jugador,RoyalFlush,Value,'royal flush')),!);
+	     (   straight(Todas,Straight,_R), \+ straight(Comunitarias, Straight, _R),
+		      highestHand(straight, Value),
+      		      assert(puntosJugador(Jugador,Value,'straight')),
+		      assert(puntosJugador(Jugador,Straight,Value,'straight')),!);
+	     (   poker(Todas,Poker,_R),
 		      highestHand(poker, Value),
       		      assert(puntosJugador(Jugador,Value,'poker')),
 		      assert(puntosJugador(Jugador,Poker,Value,'poker')),!);
@@ -313,8 +325,8 @@ evaluar_mano(Jugador, Hand1, Comunitarias) :-
         
         
 partidilla :-
-	Comunitarias = [card(2,diamonds),card(3,hearts),card(2,clubs),card(7,clubs),card(7,hearts)],
-	YoCartas = [card(7,spades),card(7,diamonds)],
+	Comunitarias = [card(2,diamonds),card(3,hearts),card(4,clubs),card(5,clubs),card(7,hearts)],
+	YoCartas = [card(7,spades),card(6,diamonds)],
 	ElotroCartas = [card(8,hearts),card(5,clubs)],
 	writeln(Comunitarias),
 	writeln(YoCartas),
@@ -326,7 +338,47 @@ partidilla :-
 	puntosJugador(elotro,V2,M2),
 	write('elotro_value es '),write(V2),write(' y elotro_mano es '),writeln(M2).
 
+royal_flush(RF,[card(ace,S),card(king,S),card(queen,S),card(jack,S),card(10,S)]) :-
+	member(card(ace,S),RF),
+	member(card(king,S),RF),
+	member(card(queen,S),RF),
+	member(card(jack,S),RF),
+	member(card(10,S),RF),!.
 
+
+straight_flush(SF,[card(R1,S),card(R2,S),card(R3,S),card(R4,S),card(R5,S)],R5) :-
+	member(card(R1,S),SF),
+	highestHand(card(R1,S),Value1),
+	member(card(R2,S),SF),
+	highestHand(card(R2,S),Value2),
+	member(card(R3,S),SF),
+	highestHand(card(R3,S),Value3),
+	member(card(R4,S),SF),
+	highestHand(card(R4,S),Value4),
+	member(card(R5,S),SF),
+	highestHand(card(R5,S),Value5),
+	Value1+1 =:= Value2,
+	Value2+1 =:= Value3,
+	Value3+1 =:= Value4,
+	Value4+1 =:= Value5,!.
+	
+
+straight(S,[card(R1,S1),card(R2,S2),card(R3,S3),card(R4,S4),card(R5,S5)],R5) :-
+	member(card(R1,S1),S),
+	highestHand(card(R1,S1),Value1),
+	member(card(R2,S2),S),
+	highestHand(card(R2,S2),Value2),
+	member(card(R3,S3),S),
+	highestHand(card(R3,S3),Value3),
+	member(card(R4,S4),S),
+	highestHand(card(R4,S4),Value4),
+	member(card(R5,S5),S),
+	highestHand(card(R5,S5),Value5),
+	Value1+1 =:= Value2,
+	Value2+1 =:= Value3,
+	Value3+1 =:= Value4,
+	Value4+1 =:= Value5,!.
+	
 
 
 % Mano : Valor
@@ -366,11 +418,17 @@ highestHand(twopairs,40).
 
 highestHand(threeofakind,50).
 
+highestHand(straight, 55).
+
 highestHand(flush,60).
 
 highestHand(full,70).
 
 highestHand(poker,80).
+
+highestHand(straightflush, 90).
+
+highestHand(royalflush, 100).
 
 highestHand([card(R1,S1)], Resultado) :-
         highestHand(card(R1,S1),Value1),
