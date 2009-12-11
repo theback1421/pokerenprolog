@@ -642,7 +642,7 @@ public class Prueba extends javax.swing.JFrame {
             else{
                 mesa.jugar();
                 if(mesa.getJugador2().getOpcion() == Opcion.FOLD){
-            Mensaje2.setForeground(Color.red);
+                    Mensaje2.setForeground(Color.red);
 
                     Mensaje2.setText(j2.getNombre()+" se retira");
                     System.out.println("Se retira");
@@ -711,18 +711,18 @@ public class Prueba extends javax.swing.JFrame {
               }
                  
                 if(dineroJ1 <= 0 || dineroJ2 <= 0){
-                    String Ganador;
+                    String Ganador = null;
                     if (dineroJ1 < 1){
-                        Ganador =j2.getNombre()+" gana la partida con "+j2.getDinero()+" $";
+                       ganador=j2.getNombre()+" gana "+j2.getDinero()+" $ con";
                     }
                     else{
-                        Ganador =j1.getNombre()+" gana la partida con "+j1.getDinero()+" $";
+                       ganador=j1.getNombre()+" gana "+j1.getDinero()+" $ con";
                     }
                     ConfirmarApuesta.setVisible(false);
                     ConfirmarPasar.setVisible(false);
                     Apostar.setVisible(false);
                     Apuesta.setVisible(false);
-                     FindePartida fp = new FindePartida(Ganador,j1,j2);
+                     FindePartida fp = new FindePartida(ganador,j1,j2,figura);
                      ///this.setVisible(false);
                      System.out.println("FIN");
                  }
@@ -802,8 +802,8 @@ public class Prueba extends javax.swing.JFrame {
                     j1 = mesa.getJugador1();
                     SaldoJ1.setText(Integer.toString(dineroJ1));
                     figura=this.calculaQueTengo(puntJ1);
-                    ganador=j1.getNombre()+" gana la partida "+figura;
-                     FindePartida fp = new FindePartida(ganador,j1,j2);
+                   ganador=j1.getNombre()+" gana "+j1.getDinero()+" $ con";
+                     FindePartida fp = new FindePartida(ganador,j1,j2,figura);
                                 }
               else{
                      bote = (int) Integer.parseInt(Bote.getText());
@@ -812,12 +812,12 @@ public class Prueba extends javax.swing.JFrame {
                      j2 = mesa.getJugador2();
                      SaldoJ2.setText(Integer.toString(dineroJ2));
                      figura=this.calculaQueTengo(puntJ2);
-                     ganador=j2.getNombre()+" gana la partida "+figura;
+                    ganador=j2.getNombre()+" gana "+j2.getDinero()+" $ con";
                      ConfirmarApuesta.setVisible(false);
                      ConfirmarPasar.setVisible(false);
                      Apostar.setVisible(false);
                      Apuesta.setVisible(false);
-                     FindePartida fp = new FindePartida(ganador,j1,j2);
+                     FindePartida fp = new FindePartida(ganador,j1,j2,figura);
               }
 
         }
@@ -847,8 +847,8 @@ public class Prueba extends javax.swing.JFrame {
                     j1 = mesa.getJugador1();
                     SaldoJ1.setText(Integer.toString(dineroJ1));
                     figura=this.calculaQueTengo(puntJ1);
-                    ganador=j1.getNombre()+" gana la partida "+figura;
-                     FindePartida fp = new FindePartida(ganador,j1,j2);
+                    ganador=j1.getNombre()+" gana "+j1.getDinero()+" $ con";
+                     FindePartida fp = new FindePartida(ganador,j1,j2,figura);
                                 }
               else{
                      bote = (int) Integer.parseInt(Bote.getText());
@@ -857,12 +857,12 @@ public class Prueba extends javax.swing.JFrame {
                      j2 = mesa.getJugador2();
                      SaldoJ2.setText(Integer.toString(dineroJ2));
                      figura=this.calculaQueTengo(puntJ2);
-                     ganador=j2.getNombre()+" gana la partida "+figura;
+                     ganador=j2.getNombre()+" gana "+j2.getDinero()+" $ con";
                      ConfirmarApuesta.setVisible(false);
                      ConfirmarPasar.setVisible(false);
                      Apostar.setVisible(false);
                      Apuesta.setVisible(false);
-                     FindePartida fp = new FindePartida(ganador,j1,j2);
+                     FindePartida fp = new FindePartida(ganador,j1,j2,figura);
               }
 
         }
@@ -886,6 +886,12 @@ public class Prueba extends javax.swing.JFrame {
 
         //si gana j1 se le suma el saldo
         // si le gana
+        jLabelMesa1.setIcon(GestorImagenes.getCardImage(mesa.getCartasComunitarias().get(0)));
+        jLabelMesa2.setIcon(GestorImagenes.getCardImage(mesa.getCartasComunitarias().get(1)));
+        jLabelMesa3.setIcon(GestorImagenes.getCardImage(mesa.getCartasComunitarias().get(2)));
+        jLabelMesa4.setIcon(GestorImagenes.getCardImage(mesa.getCartasComunitarias().get(3)));
+        jLabelMesa5.setIcon(GestorImagenes.getCardImage(mesa.getCartasComunitarias().get(4)));
+
         Mano fin = mesa.getJugador2().getMano();
         jLabelJ2C1.setIcon(GestorImagenes.getCardImage(fin.getListacartas().get(0)));
         jLabelJ2C2.setIcon(GestorImagenes.getCardImage(fin.getListacartas().get(1)));
@@ -934,41 +940,41 @@ public class Prueba extends javax.swing.JFrame {
 public String calculaQueTengo(int puntuacion){
     String salida;
     switch(puntuacion){
-        case 2:  salida=" con carta alta (2)"; break;
-        case 3:   salida=" con carta alta (3)"; break;
-        case 4:   salida=" con carta alta (4)"; break;
-        case 5:   salida=" con carta alta (5)"; break;
-        case 6:   salida=" con carta alta (6)"; break;
-        case 7:   salida=" con carta alta (7)"; break;
-        case 8:   salida=" con carta alta (8)"; break;
-        case 9:   salida=" con carta alta (9)"; break;
-        case 10:   salida=" con carta alta (10)"; break;
-        case 11:   salida=" con carta alta (J)"; break;
-        case 12:   salida=" con carta alta (Q)"; break;
-        case 13:  salida=" con carta alta (K)"; break;
-        case 14:   salida=" con carta alta (A)"; break;
-        case 22:   salida=" con pareja de dos"; break;
-        case 23:   salida=" con pareja de tres"; break;
-        case 24:   salida=" con pareja de cuatro"; break;
-        case 25:   salida=" con pareja de cinco"; break;
-        case 26:   salida=" con pareja de seis"; break;
-        case 27:   salida=" con pareja de siete"; break;
-        case 28:   salida=" con pareja de ocho"; break;
-        case 29:   salida=" con pareja de nueve"; break;
-        case 30:   salida=" con pareja de diez"; break;
-        case 31:   salida=" con pareja de J"; break;
-        case 32:   salida= " con pareja de Q"; break;
-        case 33:   salida= " con pareja de reyes"; break;
-        case 34:   salida=" con pareja de ases"; break;
-        case 40:   salida= " con dobles parejas"; break;
-        case 50:   salida= " con trio"; break;
-        case 55:   salida= " con escalera"; break;
-        case 60:   salida= " con flush"; break;
-        case 70:   salida= " con full"; break;
-        case 80:   salida= " con poker"; break;
-        case 90:   salida= " con escalera de color"; break;
-        case 100:  salida= " con escalera real"; break;
-        case 1:   salida=" con carta alta (1)"; break;
+        case 2:  salida="carta alta (2)"; break;
+        case 3:   salida="carta alta (3)"; break;
+        case 4:   salida="carta alta (4)"; break;
+        case 5:   salida="carta alta (5)"; break;
+        case 6:   salida="carta alta (6)"; break;
+        case 7:   salida="carta alta (7)"; break;
+        case 8:   salida="carta alta (8)"; break;
+        case 9:   salida="carta alta (9)"; break;
+        case 10:   salida="carta alta (10)"; break;
+        case 11:   salida="carta alta (J)"; break;
+        case 12:   salida="carta alta (Q)"; break;
+        case 13:  salida="carta alta (K)"; break;
+        case 14:   salida="carta alta (A)"; break;
+        case 22:   salida="pareja de dos"; break;
+        case 23:   salida="pareja de tres"; break;
+        case 24:   salida="pareja de cuatro"; break;
+        case 25:   salida="pareja de cinco"; break;
+        case 26:   salida="pareja de seis"; break;
+        case 27:   salida="pareja de siete"; break;
+        case 28:   salida="pareja de ocho"; break;
+        case 29:   salida="pareja de nueve"; break;
+        case 30:   salida="pareja de diez"; break;
+        case 31:   salida="pareja de J"; break;
+        case 32:   salida= "pareja de Q"; break;
+        case 33:   salida= "pareja de reyes"; break;
+        case 34:   salida=" pareja de ases"; break;
+        case 40:   salida= "dobles parejas"; break;
+        case 50:   salida= "trio"; break;
+        case 55:   salida= "escalera"; break;
+        case 60:   salida= "flush"; break;
+        case 70:   salida= "full"; break;
+        case 80:   salida= "poker"; break;
+        case 90:   salida= "escalera de color"; break;
+        case 100:  salida= "escalera real"; break;
+        case 1:   salida="carta alta (1)"; break;
         default:  salida= "error";break;
 
     }
