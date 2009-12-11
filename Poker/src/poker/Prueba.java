@@ -548,7 +548,7 @@ public class Prueba extends javax.swing.JFrame {
                         Mensaje2.setForeground(Color.red);
                         Mensaje2.setText(j2.getNombre()+" hace ALL-IN");
                         this.ConfirmarApuesta.setVisible(false);
-                        this.Apostar.setVisible(false);
+                        this.Apuesta.setVisible(false);
                     }
                 }
                 //Mensaje2.setForeground(Color.red);
@@ -589,7 +589,7 @@ public class Prueba extends javax.swing.JFrame {
                         Mensaje2.setForeground(Color.red);
                         Mensaje2.setText(j2.getNombre()+" hace ALL-IN");
                         this.ConfirmarApuesta.setVisible(false);
-                        this.Apostar.setVisible(false);
+                        this.Apuesta.setVisible(false);
                     }
                 }
 //Mensaje2.setForeground(Color.red);
@@ -628,7 +628,7 @@ public class Prueba extends javax.swing.JFrame {
                         Mensaje2.setForeground(Color.red);
                         Mensaje2.setText(j2.getNombre()+" hace ALL-IN");
                         this.ConfirmarApuesta.setVisible(false);
-                        this.Apostar.setVisible(false);
+                        this.Apuesta.setVisible(false);
                     }
                 }
 //Mensaje2.setForeground(Color.red);
@@ -666,7 +666,7 @@ public class Prueba extends javax.swing.JFrame {
                         Mensaje2.setForeground(Color.red);
                         Mensaje2.setText(j2.getNombre()+" hace ALL-IN");
                         this.ConfirmarApuesta.setVisible(false);
-                        this.Apostar.setVisible(false);
+                        this.Apuesta.setVisible(false);
                     }
                 }
 //Mensaje2.setForeground(Color.red);
