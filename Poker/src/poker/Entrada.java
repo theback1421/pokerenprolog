@@ -33,10 +33,14 @@ public class Entrada extends javax.swing.JFrame {
     int rotacion=0;
     private URL nombre;
     private AudioClip sonido;
-
+String ruta;
     /** Creates new form Entrada */
     public Entrada() {
+        nombrefichero="inicio.wav";
+       Sonar(nombrefichero);
+       sonido.play();
         initComponents();
+       
     }
 
     /** This method is called from within the constructor to
@@ -181,13 +185,14 @@ public class Entrada extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void EmpezarPartidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpezarPartidaMouseClicked
-       nombrefichero="No.wav";
-       Sonar(nombrefichero);        // TODO add your handling code here:
+          // TODO add your handling code here:
+        sonido.stop();
        String nick = NickName.getText();
        System.out.println("El usuario es: "+nick);
        if(nick.compareTo("")==0 ){
            nombrefichero="No.wav";
-           Sonar(nombrefichero);        // TODO add your handling code here:
+           Sonar(nombrefichero);
+           sonido.play();// TODO add your handling code here:
            jLabel1.setForeground(Color.red);
            jLabel1.setText("Nick incorrecto");
        }
@@ -195,6 +200,9 @@ public class Entrada extends javax.swing.JFrame {
        Prueba p = new Prueba(nick);
        p.setVisible(true);
        this.setVisible(false);
+       nombrefichero="musicafondo2.wav";
+       Sonar(nombrefichero);
+       sonido.loop();
        }
     }//GEN-LAST:event_EmpezarPartidaMouseClicked
 
@@ -230,12 +238,13 @@ public class Entrada extends javax.swing.JFrame {
 
 public void Sonar(String nombrefichero){
      try {
+         System.out.println("HOLAAAAAAA");
             nombre= new URL("file:./sonido/" +nombrefichero);
         } catch (Exception ex) {
             System.out.println("Excepcion: ");
             ex.printStackTrace();
         }
-
+        System.out.println("Intento que suene");
         sonido=Applet.newAudioClip(nombre);
         //sonido.play();
 

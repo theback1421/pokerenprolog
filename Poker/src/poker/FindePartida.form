@@ -99,7 +99,7 @@
                   <Component id="Mensaje" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="Figura" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="132" max="32767" attributes="0"/>
+                  <EmptySpace pref="192" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jToggleButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jToggleButton2" alignment="3" min="-2" max="-2" attributes="0"/>

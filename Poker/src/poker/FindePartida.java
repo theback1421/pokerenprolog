@@ -12,6 +12,9 @@
 package poker;
 
 import clases.Jugador;
+import java.applet.Applet;
+import java.applet.AudioClip;
+import java.net.URL;
 
 /**
  *
@@ -19,6 +22,9 @@ import clases.Jugador;
  */
 public class FindePartida extends javax.swing.JFrame {
     Jugador j1;
+    private URL nombre;
+    private AudioClip sonido;
+    String ruta;
     /** Creates new form FindePartida */
     public FindePartida(String frase, Jugador J1, Jugador J2, String palo) {
 
@@ -27,6 +33,17 @@ public class FindePartida extends javax.swing.JFrame {
         this.setTitle("Final de la partida");
         Mensaje.setText(frase);
         Figura.setText(palo);
+        if(J1.getDinero() == 0){
+            ruta = "yijaaaa.wav";
+            Sonar(ruta);
+            sonido.play();
+        }
+        else{
+            ruta= "risamalvada.wav";
+            Sonar(ruta);
+            sonido.play();
+        }
+
         this.setVisible(true);
     }
 
@@ -184,4 +201,19 @@ public class FindePartida extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton2;
     // End of variables declaration//GEN-END:variables
 
+
+
+    public void Sonar(String nombrefichero){
+     try {
+         System.out.println("HOLAAAAAAA");
+            nombre= new URL("file:./sonido/" +nombrefichero);
+        } catch (Exception ex) {
+            System.out.println("Excepcion: ");
+            ex.printStackTrace();
+        }
+        System.out.println("Intento que suene");
+        sonido=Applet.newAudioClip(nombre);
+        //sonido.play();
+
+    }
 }
