@@ -186,7 +186,13 @@ public class Jugador {
             else
             {
                 double res = evaluar(mesa,numCartasAleatorias);
-                if(res > 0.3)
+                if(res > 0.5 && mesa.getRonda() != Ronda.PREFLOP)
+                {
+                    apuesta =this.getDinero();
+                    opcion = Opcion.ALLIN;
+                    return 1;
+                }
+                else if(res > 0.3)
                 {
                     opcion = Opcion.RAISE;
                     if(rival.getApuesta()+mesa.getCiegaGrande() < this.getDinero()){
