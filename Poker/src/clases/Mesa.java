@@ -210,7 +210,7 @@ public class Mesa {
         jugador2.jugar(copiaMesa(), numCartasAleatorias);
         bote += jugador2.getApuesta();
         jugador2.setDinero(jugador2.getDinero()-jugador2.getApuesta());
-        //if(finApuestas()) siguienteRonda();
+       // if(finApuestas()) siguienteRonda();
         siguienteRonda();
     }
 

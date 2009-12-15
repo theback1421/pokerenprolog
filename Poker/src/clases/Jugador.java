@@ -190,12 +190,15 @@ public class Jugador {
                 {
                     opcion = Opcion.RAISE;
                     if(rival.getApuesta()+mesa.getCiegaGrande() < this.getDinero()){
-                    apuesta = rival.getApuesta()+mesa.getCiegaGrande();}
+                        if(rival.getApuesta() >= this.getDinero())
+                            apuesta =this.getDinero();
+                        else apuesta = rival.getApuesta()+mesa.getCiegaGrande();
+                    }
                     else{
                         if(rival.getApuesta() >= this.getDinero()){
-                        apuesta =this.getDinero();
-                        opcion = Opcion.ALLIN;
-                        return 1;
+                            apuesta =this.getDinero();
+                            opcion = Opcion.ALLIN;
+                            return 1;
                         }
                     }
                     System.out.println("Apuesto "+apuesta);
@@ -203,7 +206,9 @@ public class Jugador {
                 else if(res > 0.0)
                 {
                     opcion = Opcion.CHECK;
-                    apuesta = rival.getApuesta();
+                    if(rival.getApuesta() >= this.getDinero())
+                        apuesta =this.getDinero();
+                    else apuesta = rival.getApuesta();
                     System.out.println("Lo veo "+apuesta);
                 }
                 else
