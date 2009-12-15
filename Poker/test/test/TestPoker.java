@@ -8,6 +8,8 @@ package test;
 import clases.*;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import jpl.Atom;
+import jpl.JPL;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -15,6 +17,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import jpl.Query;
+import jpl.Term;
 
 /**
  *
@@ -36,7 +39,24 @@ public class TestPoker {
 
     @Before
     public void setUp() {
-        
+
+
+           JPL.init();
+
+            Term consult_arg[] = {
+                new Atom( "poker.pl" )
+            };
+            Query consult_query =
+                new Query(
+                        "consult",
+                        consult_arg );
+
+            boolean consulted = consult_query.query();
+
+            if ( !consulted ){
+                    System.err.println( "Consult failed" );
+                    System.exit( 1 );
+            }
 
     }
 
@@ -64,10 +84,6 @@ public class TestPoker {
      * Reparto
      */
 
-    
-
-    
-    
 
     @Test
     public void testRankExiste()
@@ -76,6 +92,7 @@ public class TestPoker {
         Rank actual = null;
         String esperado;
         esperado = "ACE";
+        Rank r;
         if(esperado.compareTo(actual.ACE.toString())==0)
             res = true;
         assertTrue(res);
@@ -123,10 +140,13 @@ public class TestPoker {
     @Test
     public void testCartaExiste()
     {
+        boolean res=false;
         String rank = "ace";
         String suit = "spades";
         Query q = new Query("card("+rank+","+suit+")");
-        assert(q.hasSolution());
+        System.out.println(q.toString());
+
+        assertTrue(q.hasSolution());
     }
 
 
@@ -136,205 +156,66 @@ public class TestPoker {
         String rank = "as";
         String suit = "bastos";
         Query q = new Query("card("+rank+","+suit+")");
-        q.hasSolution();
+        assertFalse(q.hasSolution());
     }
-}
-/*
+
+
 
     @Test
     public void tesCartaMasAlta()
     {
-        boolean res = false;
-        Mano m1 = new Mano();
-        ArrayList<Card> listacartas = new ArrayList();
-        Card esperada1 = new Card();
-        Card esperada2 = new Card();
-        Card esperada3 = new Card();
-        Card esperada4 = new Card();
-        Card esperada5 = new Card();
-        Card esperada6 = new Card();
-        Card esperada7 = new Card();
-        esperada1.setCard("{R=ace}", "{S=spades}");
-        esperada2.setCard("{R=8}", "{S=clubs}");
-        esperada3.setCard("{R=2}", "{S=spades}");
-        esperada4.setCard("{R=3}", "{S=spades}");
-        esperada5.setCard("{R=4}", "{S=spades}");
-        esperada6.setCard("{R=5}", "{S=spades}");
-        esperada7.setCard("{R=6}", "{S=spades}");
-
-        listacartas.add(esperada1);
-        listacartas.add(esperada2);
-        listacartas.add(esperada3);
-        listacartas.add(esperada4);
-        listacartas.add(esperada5);
-        listacartas.add(esperada6);
-        listacartas.add(esperada7);
-
-        m1.setListacartas(listacartas);
-        Card actual = m1.CogerCartaMasAlta(listacartas);
-
-        assertEquals("{ace}",actual.getRank());
+        String actual = "{C=6}";
+        Query q = new Query("highestHand([card(2,clubs),card(3,diamonds),card(4,spades),card(5,hearts),card(6,hearts)],C)");
+        java.util.Hashtable solucion = q.oneSolution();
+        System.out.println(solucion.toString());
+        assertTrue(q.hasSolution());
     }
 
-    
+
     @Test
     public void testParejaValida()
     {
-        boolean res = false;
-        Mano m1 = new Mano();
-        ArrayList<Card> listacartas = new ArrayList();
-        Card esperada1 = new Card();
-        Card esperada2 = new Card();
-        Card esperada3 = new Card();
-        Card esperada4 = new Card();
-        Card esperada5 = new Card();
-        Card esperada6 = new Card();
-        Card esperada7 = new Card();
-        esperada1.setCard("{R=ace}", "{S=spades}");
-        esperada2.setCard("{R=ace}", "{S=clubs}");
-        esperada3.setCard("{R=2}", "{S=spades}");
-        esperada4.setCard("{R=3}", "{S=spades}");
-        esperada5.setCard("{R=4}", "{S=spades}");
-        esperada6.setCard("{R=5}", "{S=spades}");
-        esperada7.setCard("{R=6}", "{S=spades}");
-
-        listacartas.add(esperada1);
-        listacartas.add(esperada2);
-        listacartas.add(esperada3);
-        listacartas.add(esperada4);
-        listacartas.add(esperada5);
-        listacartas.add(esperada6);
-        listacartas.add(esperada7);
-
-        m1.setListacartas(listacartas);
-        res = m1.HayPareja(listacartas);
-
-        assertTrue("Pareja no valida",res);
+        Query q = new Query("one_pair(OP,[card(2,clubs),card(2,hearts)],R)");
+        assertTrue(q.hasSolution());
+        //assertEquals("{OP='.'(card(2, clubs), '.'(card(2, hearts), _4)), R=2}",q.oneSolution().toString());
     }
+
+
 
     @Test
     public void testParejaNoValida()
     {
-        boolean res = true;
-        Mano m1 = new Mano();
-        ArrayList<Card> listacartas = new ArrayList();
-        Card esperada1 = new Card();
-        Card esperada2 = new Card();
-        Card esperada3 = new Card();
-        Card esperada4 = new Card();
-        Card esperada5 = new Card();
-        Card esperada6 = new Card();
-        Card esperada7 = new Card();
-        esperada1.setCard("{R=ace}", "{S=spades}");
-        esperada2.setCard("{R=7}", "{S=clubs}");
-        esperada3.setCard("{R=2}", "{S=spades}");
-        esperada4.setCard("{R=3}", "{S=spades}");
-        esperada5.setCard("{R=4}", "{S=spades}");
-        esperada6.setCard("{R=5}", "{S=spades}");
-        esperada7.setCard("{R=6}", "{S=spades}");
-
-        listacartas.add(esperada1);
-        listacartas.add(esperada2);
-        listacartas.add(esperada3);
-        listacartas.add(esperada4);
-        listacartas.add(esperada5);
-        listacartas.add(esperada6);
-        listacartas.add(esperada7);
-
-        m1.setListacartas(listacartas);
-        res = m1.HayPareja(listacartas);
-
-        assertTrue("Pareja valida",res);
+        Query q = new Query("one_pair(OP,[card(4,clubs),card(2,hearts)],R)");
+        assertFalse(q.hasSolution());
     }
 
     @Test
     public void testTrioValido()
     {
-        boolean res = true;
-        Mano m1 = new Mano();
-        ArrayList<Card> listacartas = new ArrayList();
-        Card esperada1 = new Card();
-        Card esperada2 = new Card();
-        Card esperada3 = new Card();
-        Card esperada4 = new Card();
-        Card esperada5 = new Card();
-        Card esperada6 = new Card();
-        Card esperada7 = new Card();
-        esperada1.setCard("{R=ace}", "{S=spades}");
-        esperada2.setCard("{R=ace}", "{S=clubs}");
-        esperada3.setCard("{R=ace}", "{S=hearts}");
-        esperada4.setCard("{R=3}", "{S=spades}");
-        esperada5.setCard("{R=4}", "{S=spades}");
-        esperada6.setCard("{R=5}", "{S=spades}");
-        esperada7.setCard("{R=6}", "{S=spades}");
-
-        listacartas.add(esperada1);
-        listacartas.add(esperada2);
-        listacartas.add(esperada3);
-        listacartas.add(esperada4);
-        listacartas.add(esperada5);
-        listacartas.add(esperada6);
-        listacartas.add(esperada7);
-
-        m1.setListacartas(listacartas);
-        res = m1.HayTrio(listacartas);
-
-        assertTrue("Trio no valido",res);
-
+        Query q = new Query("three_of_a_kind(TOAK,[card(ace,spades),card(ace,clubs),card(ace,hearts)])");
+        assertTrue(q.hasSolution());
     }
 
     @Test
     public void testTrioNovalido()
     {
-        boolean res = true;
-        Mano m1 = new Mano();
-        ArrayList<Card> listacartas = new ArrayList();
-        Card esperada1 = new Card();
-        Card esperada2 = new Card();
-        Card esperada3 = new Card();
-        Card esperada4 = new Card();
-        Card esperada5 = new Card();
-        Card esperada6 = new Card();
-        Card esperada7 = new Card();
-        esperada1.setCard("{R=ace}", "{S=spades}");
-        esperada2.setCard("{R=ace}", "{S=clubs}");
-        esperada3.setCard("{R=8}", "{S=hearts}");
-        esperada4.setCard("{R=3}", "{S=spades}");
-        esperada5.setCard("{R=4}", "{S=spades}");
-        esperada6.setCard("{R=5}", "{S=spades}");
-        esperada7.setCard("{R=6}", "{S=spades}");
-
-        listacartas.add(esperada1);
-        listacartas.add(esperada2);
-        listacartas.add(esperada3);
-        listacartas.add(esperada4);
-        listacartas.add(esperada5);
-        listacartas.add(esperada6);
-        listacartas.add(esperada7);
-
-        m1.setListacartas(listacartas);
-        res = m1.HayTrio(listacartas);
-
-        assertTrue("Trio valido",res);
-
+        Query q = new Query("three_of_a_kind(TOAK,[card(3,spades),card(ace,clubs),card(ace,hearts)])");
+        assertFalse(q.hasSolution());
     }
+
 
     @Test
     public void testRepartir()
     {
-        /*que reparta cartas y que se quiten las repartidas de la baraja
-        boolean res = false;
-        Baraja actual = new Baraja();
-        Baraja aux = new Baraja();
-        actual.setBaraja();
-        aux=actual;
-        actual.repartirCartas();
-        Baraja esperada = actual;
-        if(esperada.getBarajalist().size()!=aux.getBarajalist().size())
-        {
-            res = true;
-        }
-        assertTrue("No reparte bien",res);
+        Query q = new Query("jugadorCarta(Jugador,[card(6,spades),card(king,hearts)])");
+        assertTrue(q.hasSolution());
+    }
+
+    @Test
+    public void testRepartirMal()
+    {
+        Query q = new Query("jugadorCarta(Jugador,[card(6,spades),card(king,hearts),card(8,clubs),card(10,diamonds)])");
+        assertFalse(q.hasSolution());
     }
 
     @Test
@@ -364,15 +245,22 @@ public class TestPoker {
     }
 
     @Test
-    public void testApuesta()
+    public void testApuestaValida()
     {
         Apuesta a = new Apuesta();
-        a.setApuesta(-1);
+        a.setApuesta(100);
+        boolean res=a.validarApuesta();
+        assertTrue("Apuesta valida",res);
+    }
+
+    @Test
+    public void testApuestaNoValida()
+    {
+        Apuesta a = new Apuesta();
+        a.setApuesta(-100);
         boolean res=a.validarApuesta();
         assertFalse("Apuesta valida",res);
     }
 
-    
 
 }
-*/
